@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".BuscarInformacion">
 
+
+    <SearchView
+        android:id="@+id/@id+/BarraBusqueda"
+        android:layout_width="346dp"
+        android:layout_height="42dp"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="72dp" />
 </android.support.constraint.ConstraintLayout>
