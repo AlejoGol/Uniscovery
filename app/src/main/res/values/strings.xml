@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Uniscovery</string>
+    <string-array name="ArrayDeString">
+        <item>Ingenieria informatica</item>
+        <item>Ciencias de la computacion</item>
+        <item>Ingenieria Ambiental</item>
+        <item>Ingenieria Aeroespacial</item>
+        <item>Ingenieria Aeronáutica</item>
+        <item>Musico Profesional</item>
+        <item>Licenciatura en filosofia</item>
+    </string-array>
+    <string-array name="Facultades">
+        <item>UBA</item>
+        <item>UTN</item>
+        <item>Universidad Católica Argentina</item>
+        <item>Universidad de Belgrano</item>
+        <item>Universidad de Morón</item>
+        <item>Escuela de Música de Buenos Aires</item>
+        <item>Universidad Nacional de Tres de Febrero</item>
+    </string-array>
 </resources>
