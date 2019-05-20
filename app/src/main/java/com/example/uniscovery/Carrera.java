@@ -1,3 +1,5 @@
+package com.example.uniscovery;
+
 import java.util.List;
 
 public class Carrera {
@@ -18,4 +20,7 @@ public class Carrera {
         NombreFacultad = "";
         Tags = null;
     }
+    public int getIDImagen(){return IDImagen; }
+    public String getNombreCarrera(){return NombreCarrera;}
+    public String getNombreFacultad(){return NombreFacultad;}
 }
