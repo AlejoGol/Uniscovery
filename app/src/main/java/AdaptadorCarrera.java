@@ -30,7 +30,7 @@ public class AdaptadorCarrera extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater layoutInflater=(LayoutInflater) getApplicationContext;
+        //final View view=inflater.inflate(R.la)
     return null;
     }
 }
