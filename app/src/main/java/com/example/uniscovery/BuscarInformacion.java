@@ -9,11 +9,13 @@ import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
+
 import java.util.ArrayList;
 
 public class
 BuscarInformacion extends AppCompatActivity {
-
+    SearchView searchView;
     ListView lista;
     String [] NombreCarreras;
     String [] Facultades;
@@ -30,8 +32,26 @@ BuscarInformacion extends AppCompatActivity {
         ArrayList<Carrera> listaDeCarreras=new ArrayList<>();
         listaDeCarreras=getItemEnElArray(NombreCarreras,Facultades,imgs);
         adapter=new AdaptadorCarrera(this,listaDeCarreras);
+        searchView=findViewById(R.id.SearchBuscar);
         lista.setAdapter((ListAdapter) adapter);
-    }
+
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+
+
+                return true;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return true;
+            }
+
+    });
+
+
 
     private ArrayList<Carrera> getItemEnElArray(String[] nombreCarreras, String[] facultades, int[] imgs)
     {
