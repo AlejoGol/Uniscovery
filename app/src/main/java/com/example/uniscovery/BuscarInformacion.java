@@ -11,7 +11,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import java.util.ArrayList;
 
-public class BuscarInformacion extends AppCompatActivity {
+public class
+BuscarInformacion extends AppCompatActivity {
 
     ListView lista;
     String [] NombreCarreras;
@@ -26,20 +27,22 @@ public class BuscarInformacion extends AppCompatActivity {
         NombreCarreras=res.getStringArray(R.array.ArrayDeString);
         Facultades=res.getStringArray(R.array.Facultades);
         lista=findViewById(R.id.ListaDeInformacion);
-        adapter=new AdaptadorCarrera(this,getItemEnElArray(NombreCarreras,Facultades,imgs));
+        ArrayList<Carrera> listaDeCarreras=new ArrayList<>();
+        listaDeCarreras=getItemEnElArray(NombreCarreras,Facultades,imgs);
+        adapter=new AdaptadorCarrera(this,R.layout.diseniolistview,listaDeCarreras);
         lista.setAdapter((ListAdapter) adapter);
     }
 
     private ArrayList<Carrera> getItemEnElArray(String[] nombreCarreras, String[] facultades, int[] imgs)
     {
         ArrayList<Carrera> items=new ArrayList<Carrera>();
-        items.add(new Carrera(imgs[0],nombreCarreras[0],facultades[0],null));
-        items.add(new Carrera(imgs[1],nombreCarreras[1],facultades[1],null));
-        items.add(new Carrera(imgs[2],nombreCarreras[2],facultades[2],null));
-        items.add(new Carrera(imgs[3],nombreCarreras[3],facultades[3],null));
-        items.add(new Carrera(imgs[4],nombreCarreras[4],facultades[4],null));
-        items.add(new Carrera(imgs[5],nombreCarreras[5],facultades[5],null));
-        items.add(new Carrera(imgs[6],nombreCarreras[6],facultades[6],null));
+        items.add(new Carrera(imgs[0],nombreCarreras[0],facultades[0]));
+        items.add(new Carrera(imgs[1],nombreCarreras[1],facultades[1]));
+        items.add(new Carrera(imgs[2],nombreCarreras[2],facultades[2]));
+        items.add(new Carrera(imgs[3],nombreCarreras[3],facultades[3]));
+        items.add(new Carrera(imgs[4],nombreCarreras[4],facultades[4]));
+        items.add(new Carrera(imgs[5],nombreCarreras[5],facultades[5]));
+        items.add(new Carrera(imgs[6],nombreCarreras[6],facultades[6]));
         return items;
     }
 }

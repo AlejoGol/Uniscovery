@@ -17,9 +17,9 @@ public class AdaptadorCarrera extends BaseAdapter {
     private Context Contexto;
     public ArrayList<Carrera> MiListaCarreras;
 
-    public AdaptadorCarrera(BuscarInformacion miListaCarreras, ArrayList<Carrera> context) {
+    public AdaptadorCarrera(ArrayList<Carrera> miListaCarreras,Context context) {
         this.MiListaCarreras = miListaCarreras;
-        this.Contexto=context;
+        Contexto=context;
     }
     public int getCount(){
         return MiListaCarreras.size();

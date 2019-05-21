@@ -6,19 +6,18 @@ public class Carrera {
     public int IDImagen;
     public String NombreCarrera;
     public String NombreFacultad;
-    public List<String> Tags;
 
-    public Carrera(int IDImagen, String nombreCarrera, String nombreFacultad, List<String> tags) {
+    public Carrera(int IDImagen, String nombreCarrera, String nombreFacultad) {
         this.IDImagen = IDImagen;
         NombreCarrera = nombreCarrera;
         NombreFacultad = nombreFacultad;
-        Tags = tags;
+
     }
     public Carrera() {
         this.IDImagen = IDImagen;
         NombreCarrera = "";
         NombreFacultad = "";
-        Tags = null;
+
     }
     public int getIDImagen(){return IDImagen; }
     public String getNombreCarrera(){return NombreCarrera;}
