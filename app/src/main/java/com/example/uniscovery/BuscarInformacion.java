@@ -20,6 +20,7 @@ BuscarInformacion extends AppCompatActivity {
     String [] NombreCarreras;
     String [] Facultades;
     Adapter adapter;
+    ArrayList<Carrera> listaDeCarreras;
     int[] imgs={R.drawable.uba,R.drawable.utn,R.drawable.uca,R.drawable.belgrano,R.drawable.moron,R.drawable.emba,R.drawable.untref};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ BuscarInformacion extends AppCompatActivity {
         NombreCarreras=res.getStringArray(R.array.ArrayDeString);
         Facultades=res.getStringArray(R.array.Facultades);
         lista=findViewById(R.id.ListaDeInformacion);
-        ArrayList<Carrera> listaDeCarreras=new ArrayList<>();
+        final ArrayList<Carrera> listaDeCarreras=new ArrayList<>();
         listaDeCarreras=getItemEnElArray(NombreCarreras,Facultades,imgs);
         adapter=new AdaptadorCarrera(this,listaDeCarreras);
         searchView=findViewById(R.id.SearchBuscar);
@@ -46,6 +47,19 @@ BuscarInformacion extends AppCompatActivity {
             }
             @Override
             public boolean onQueryTextChange(String newText) {
+                int cantidad =listaDeCarreras.size();
+                for(int i=0;i<=cantidad;i++)
+                {
+
+
+                    if (!listaDeCarreras.get(i).NombreCarrera.contains(newText))
+                    {
+                        listaDeCarreras.remove(i);
+                    }
+                }
+                adapter.notify();
+
+
                 return true;
             }
 
