@@ -29,7 +29,7 @@ BuscarInformacion extends AppCompatActivity {
         lista=findViewById(R.id.ListaDeInformacion);
         ArrayList<Carrera> listaDeCarreras=new ArrayList<>();
         listaDeCarreras=getItemEnElArray(NombreCarreras,Facultades,imgs);
-        adapter=new AdaptadorCarrera(this,R.layout.diseniolistview,listaDeCarreras);
+        adapter=new AdaptadorCarrera(this,listaDeCarreras);
         lista.setAdapter((ListAdapter) adapter);
     }
 
