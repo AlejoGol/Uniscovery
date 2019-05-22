@@ -13,15 +13,14 @@ import android.widget.SearchView;
 
 import java.util.ArrayList;
 
-public class
-BuscarInformacion extends AppCompatActivity {
+public class BuscarInformacion extends AppCompatActivity {
     SearchView searchView;
     ListView lista;
     String [] NombreCarreras;
     String [] Facultades;
     Adapter adapter;
-    ArrayList<Carrera> listaDeCarreras;
     int[] imgs={R.drawable.uba,R.drawable.utn,R.drawable.uca,R.drawable.belgrano,R.drawable.moron,R.drawable.emba,R.drawable.untref};
+    ArrayList<Carrera> listaDeCarreras=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +29,7 @@ BuscarInformacion extends AppCompatActivity {
         NombreCarreras=res.getStringArray(R.array.ArrayDeString);
         Facultades=res.getStringArray(R.array.Facultades);
         lista=findViewById(R.id.ListaDeInformacion);
-        final ArrayList<Carrera> listaDeCarreras=new ArrayList<>();
-        listaDeCarreras=getItemEnElArray(NombreCarreras,Facultades,imgs);
+        listaDeCarreras = getItemEnElArray(NombreCarreras, Facultades, imgs);
         adapter=new AdaptadorCarrera(this,listaDeCarreras);
         searchView=findViewById(R.id.SearchBuscar);
         lista.setAdapter((ListAdapter) adapter);
@@ -39,12 +37,7 @@ BuscarInformacion extends AppCompatActivity {
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
-
-
-
-                return true;
-            }
+            public boolean onQueryTextSubmit(String query) {return true; }
             @Override
             public boolean onQueryTextChange(String newText) {
                 int cantidad =listaDeCarreras.size();
@@ -67,6 +60,8 @@ BuscarInformacion extends AppCompatActivity {
 
 
 
+
+}
     private ArrayList<Carrera> getItemEnElArray(String[] nombreCarreras, String[] facultades, int[] imgs)
     {
         ArrayList<Carrera> items=new ArrayList<Carrera>();
