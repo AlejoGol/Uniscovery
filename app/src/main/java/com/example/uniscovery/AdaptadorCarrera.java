@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.uniscovery.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AdaptadorCarrera extends BaseAdapter {
     private Context Contexto;
@@ -20,6 +21,11 @@ public class AdaptadorCarrera extends BaseAdapter {
     public AdaptadorCarrera(Context context,ArrayList<Carrera> miListaCarreras) {
         this.MiListaCarreras = miListaCarreras;
         Contexto=context;
+    }
+    public void updateCarrera(ArrayList<Carrera> newlist) {
+        MiListaCarreras.clear();
+        MiListaCarreras.addAll(newlist);
+        this.notifyDataSetChanged();
     }
     public int getCount(){
         return MiListaCarreras.size();

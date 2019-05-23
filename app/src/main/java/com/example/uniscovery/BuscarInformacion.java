@@ -4,6 +4,7 @@ import android.content.res.Resources;
 import android.database.DataSetObserver;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
@@ -12,6 +13,7 @@ import android.widget.ListView;
 import android.widget.SearchView;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class BuscarInformacion extends AppCompatActivity {
     SearchView searchView;
@@ -40,7 +42,7 @@ public class BuscarInformacion extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {return true; }
             @Override
             public boolean onQueryTextChange(String newText) {
-                int cantidad =listaDeCarreras.size();
+                /*int cantidad =listaDeCarreras.size();
                 for(int i=0;i<=cantidad;i++)
                 {
 
@@ -52,16 +54,26 @@ public class BuscarInformacion extends AppCompatActivity {
                 }
                 adapter.notify();
 
-
+                */
+                ArrayList<Carrera> Eliminar=new ArrayList<>();
+                Iterator<Carrera> it = listaDeCarreras.iterator();
+                while (it.hasNext()) {
+                    Log.d("Que tienes",it.next().NombreCarrera);
+                    if (!it.next().NombreCarrera.contains(newText))
+                    {
+                        Eliminar.add(it.next());
+                    }
+                }
+                //adapter.
                 return true;
             }
 
-    });
+        });
 
 
 
 
-}
+    }
     private ArrayList<Carrera> getItemEnElArray(String[] nombreCarreras, String[] facultades, int[] imgs)
     {
         ArrayList<Carrera> items=new ArrayList<Carrera>();
