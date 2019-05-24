@@ -23,8 +23,9 @@ public class AdaptadorCarrera extends BaseAdapter {
         Contexto=context;
     }
     public void updateCarrera(ArrayList<Carrera> newlist) {
-        MiListaCarreras.clear();
-        MiListaCarreras.addAll(newlist);
+
+        MiListaCarreras = newlist;
+
         this.notifyDataSetChanged();
     }
     public int getCount(){

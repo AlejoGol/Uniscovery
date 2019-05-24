@@ -5,6 +5,7 @@ import android.database.DataSetObserver;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Size;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
@@ -24,7 +25,7 @@ public class BuscarInformacion extends AppCompatActivity {
     int[] imgs={R.drawable.uba,R.drawable.utn,R.drawable.uca,R.drawable.belgrano,R.drawable.moron,R.drawable.emba,R.drawable.untref};
     ArrayList<Carrera> listaDeCarreras=new ArrayList<>();
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscar_informacion);
         Resources res=getResources();
@@ -39,32 +40,46 @@ public class BuscarInformacion extends AppCompatActivity {
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String query) {return true; }
-            @Override
-            public boolean onQueryTextChange(String newText) {
+            public boolean onQueryTextSubmit(String query) {
                 /*int cantidad =listaDeCarreras.size();
                 for(int i=0;i<=cantidad;i++)
                 {
 
-
-                    if (!listaDeCarreras.get(i).NombreCarrera.contains(newText))
+                    if (!listaDeCarreras.get(i).NombreCarrera.contains(query))
                     {
                         listaDeCarreras.remove(i);
                     }
                 }
-                adapter.notify();
-
-                */
-                ArrayList<Carrera> Eliminar=new ArrayList<>();
-                Iterator<Carrera> it = listaDeCarreras.iterator();
-                while (it.hasNext()) {
-                    Log.d("Que tienes",it.next().NombreCarrera);
-                    if (!it.next().NombreCarrera.contains(newText))
+                    /*for (int i=0;i<cantidad;i++)
                     {
-                        Eliminar.add(it.next());
+                        for (Carrera actual:listaDeCarreras)
+                        {
+
+                        }
+                        for (int e=0;e<Eliminar.size();e++)
+                        {
+                            if(listaDeCarreras.get(i)==Eliminar.get(e))
+                            {
+                                listaDeCarreras.remove(i);
+                            }
+                        }
+                    }*/
+                    //listaDeCarreras.removeAll(Eliminar);
+
+                return true; }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                ArrayList<Carrera> ListaFiltrada=new ArrayList<>();
+                for (Carrera carrera:listaDeCarreras) {
+
+                    if (carrera.NombreCarrera.contains(newText)){
+                        ListaFiltrada.add(carrera);
                     }
                 }
-                //adapter.
+                ModificarLista(ListaFiltrada);
+
+
+
                 return true;
             }
 
@@ -73,6 +88,10 @@ public class BuscarInformacion extends AppCompatActivity {
 
 
 
+    }
+    public void ModificarLista(ArrayList<Carrera> ListaFiltrada){
+        AdaptadorCarrera adaptadorCarrera=new AdaptadorCarrera(this,ListaFiltrada);
+        lista.setAdapter(adaptadorCarrera);
     }
     private ArrayList<Carrera> getItemEnElArray(String[] nombreCarreras, String[] facultades, int[] imgs)
     {

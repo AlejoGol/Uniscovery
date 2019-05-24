@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">Uniscovery</string>
     <string-array name="ArrayDeString">
-        <item>Ingenieria informatica</item>
-        <item>Ciencias de la computacion</item>
-        <item>Ingenieria Ambiental</item>
-        <item>Ingenieria Aeroespacial</item>
-        <item>Ingenieria Aeronáutica</item>
-        <item>Musico Profesional</item>
-        <item>Licenciatura en filosofia</item>
+        <item>ingenieria informatica</item>
+        <item>ciencias de la computacion</item>
+        <item>ingenieria Ambiental</item>
+        <item>ingenieria Aeroespacial</item>
+        <item>ingenieria Aeronáutica</item>
+        <item>musico Profesional</item>
+        <item>licenciatura en filosofia</item>
     </string-array>
     <string-array name="Facultades">
         <item>UBA</item>
