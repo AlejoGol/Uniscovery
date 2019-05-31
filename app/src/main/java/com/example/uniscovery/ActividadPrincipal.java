@@ -19,6 +19,11 @@ public class ActividadPrincipal extends Activity {
         Boton1=findViewById(R.id.BotonIrAlTest);
         Boton2=findViewById(R.id.BotonBuscarInformacion);
     }
+    public void IrAAboutUS(View vista)
+    {
+        Intent AboutUs=new Intent(this,AboutUs.class);
+        startActivity(AboutUs);
+    }
     public void IrANuevaPantalla(View vista)
     {
         int id =vista.getId();

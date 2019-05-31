@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Uniscovery</string>
+    <string name="creado_por">Creado por</string>
+    <string name="igal_pisterman_rozenek_y_alejo_goltzman">Igal Pisterman Rozenek y Alejo Goltzman</string>
+    <string name="igal_pisterman_rozenek" />
+    <string name="y" />
+    <string name="alejo_goltzman" />
     <string-array name="ArrayDeString">
         <item>ingenieria informatica</item>
         <item>ciencias de la computacion</item>

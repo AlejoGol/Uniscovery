@@ -41,31 +41,6 @@ public class BuscarInformacion extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                /*int cantidad =listaDeCarreras.size();
-                for(int i=0;i<=cantidad;i++)
-                {
-
-                    if (!listaDeCarreras.get(i).NombreCarrera.contains(query))
-                    {
-                        listaDeCarreras.remove(i);
-                    }
-                }
-                    /*for (int i=0;i<cantidad;i++)
-                    {
-                        for (Carrera actual:listaDeCarreras)
-                        {
-
-                        }
-                        for (int e=0;e<Eliminar.size();e++)
-                        {
-                            if(listaDeCarreras.get(i)==Eliminar.get(e))
-                            {
-                                listaDeCarreras.remove(i);
-                            }
-                        }
-                    }*/
-                    //listaDeCarreras.removeAll(Eliminar);
-
                 return true; }
             @Override
             public boolean onQueryTextChange(String newText) {
