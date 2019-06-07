@@ -5,29 +5,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.uniscovery.R;
-
 import java.util.ArrayList;
-import java.util.List;
 
-public class AdaptadorCarrera extends BaseAdapter {
+public class Adaptador_Carrera extends BaseAdapter {
     private Context Contexto;
     public ArrayList<Carrera> MiListaCarreras;
 
-    public AdaptadorCarrera(Context context,ArrayList<Carrera> miListaCarreras) {
+    public Adaptador_Carrera(Context context, ArrayList<Carrera> miListaCarreras) {
         this.MiListaCarreras = miListaCarreras;
         Contexto=context;
     }
-    public void updateCarrera(ArrayList<Carrera> newlist) {
 
-        MiListaCarreras = newlist;
-
-        this.notifyDataSetChanged();
+    public Adaptador_Carrera(FragmentMostrarListaCarreras fragmentMostrarListaCarreras, ArrayList<Carrera> listaFiltrada) {
+        Contexto=fragmentMostrarListaCarreras.getContext();
+        MiListaCarreras=listaFiltrada;
     }
+
     public int getCount(){
         return MiListaCarreras.size();
     }

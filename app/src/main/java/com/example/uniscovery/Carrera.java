@@ -1,7 +1,5 @@
 package com.example.uniscovery;
 
-import java.util.List;
-
 public class Carrera {
     public int IDImagen;
     public String NombreCarrera;
