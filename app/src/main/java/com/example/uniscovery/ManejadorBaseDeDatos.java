@@ -271,14 +271,66 @@ public class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         InsertarCarrera(BaseDeDatos,"LICENCIATURA EN RELACIONES PUBLICAS E INSTITUCIONALES","UADE");
         InsertarCarrera(BaseDeDatos,"LICENCIATURA EN TURISMO Y HOTELERIA","UADE");
         InsertarCarrera(BaseDeDatos,"PROGRAMA CONJUNTO RELACIONES PUBLICAS E INSTITUCIONALES Y CIENCIAS DE LA COMUNICACION","UADE");
-        InsertarCarrera(BaseDeDatos,"PROGRAMA CONJUNTO RELACIONES PUBLICAS E INSTITUCIONALES Y GOBIERNO Y RELACIONES INTERNACIONALES","UADE");//SEGUIR POR INGENIERIA Y EXACTAS UADE
+        InsertarCarrera(BaseDeDatos,"PROGRAMA CONJUNTO RELACIONES PUBLICAS E INSTITUCIONALES Y GOBIERNO Y RELACIONES INTERNACIONALES","UADE");//LISTO UBA,UTN,UADE,MAIMONIDES,DI TELLA Y UCES
+        InsertarCarrera(BaseDeDatos,"INGENIERIA  ELECTROMECANICA","UADE");
+        InsertarCarrera(BaseDeDatos,"INGENIERIA ELECTRONICA","UADE");
+        InsertarCarrera(BaseDeDatos,"INGENIERIA EN ALIMENTOS","UADE");
+        InsertarCarrera(BaseDeDatos,"INGENIERIA EN TELECOMUNICACIONES","UADE");
+        InsertarCarrera(BaseDeDatos,"INGENIERIA INDUSTRIAL","UADE");
+        InsertarCarrera(BaseDeDatos,"INGENIERIA INFORMATICA ","UADE");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN BIOINFORMATICA","UADE");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN GESTION AMBIENTAL","UADE");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN GESTION DE TECNOLOGIA DE LA INFORMACION","UADE");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN NUTRICION","UADE");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN PRODUCCION Y GESTION AGROPECUARIA","UADE");
+        InsertarCarrera(BaseDeDatos,"KICENCIATURA EN TECNOLOGIA INDUUSTRIAL DE LOS ALIMENTOS","UADE");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN TECNOLOGIA INDUSTRIAL DE LOS ALIMENTOS Y LICENCIATURA EN BIOTECNOLOGIA","UADE");
+        InsertarCarrera(BaseDeDatos,"PROGRAMA CONJUNTO LICENCIATURA EN TURISMO Y HOTELERIA","UADE");
+        InsertarCarrera(BaseDeDatos,"PROGRAMA CONJUNTO INGENIERIA INDUSTRIAL E INGENIERIA ELECTROMECANICA","UADE");
+        InsertarCarrera(BaseDeDatos,"ABOGACIA","UDESA");
+        InsertarCarrera(BaseDeDatos,"ECONOMIA","UDESA");
+        InsertarCarrera(BaseDeDatos,"ADMINISTRACION DE EMPRESAS","UDESA");
+        InsertarCarrera(BaseDeDatos,"CIENCIAS DE LA EDUCACION","UDESA");
+        InsertarCarrera(BaseDeDatos,"CIENCIAS POLITICAS Y GOBIERNO","UDESA");
+        InsertarCarrera(BaseDeDatos,"CONTADOR PUBLICO","UDESA");
+        InsertarCarrera(BaseDeDatos,"DISEÑO","UDESA");
+        InsertarCarrera(BaseDeDatos,"COMUNIDAD","UDESA");
+        InsertarCarrera(BaseDeDatos,"FINANZAS","UDESA");
+        InsertarCarrera(BaseDeDatos,"HUMANIDADES","UDESA");
+        InsertarCarrera(BaseDeDatos,"RELACIONES INTERNACIONALES","UDESA");
+        InsertarCarrera(BaseDeDatos,"NEGOCIOS DIGITALES","UDESA");//LISTA UDESA(SAN MARTIN)
+        InsertarCarrera(BaseDeDatos,"ARQUITECTURA","UP");
+        InsertarCarrera(BaseDeDatos,"INGENIERIA ELECTRONICA","UP");
+        InsertarCarrera(BaseDeDatos,"INGENIERIA EN INFORMATICA","UP");
+        InsertarCarrera(BaseDeDatos,"INGENIERIA INDUSTRIAL","UP");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN INFORMATICA","UP");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN ADMINISTRACION DE SISTEMAS Y EMPRESAS","UP");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN REDES Y COMUNICACION DE DATOS","UP");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN TECNOLOGIA DE LA INFORMACION","UP");
+        InsertarCarrera(BaseDeDatos,"TELECOMUNICACIONES","UP");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA DE ADMINISTRACION","UP");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN ADMINISTRACION DE SISTEMAS Y EMPRESAS","UP");
+        InsertarCarrera(BaseDeDatos,"CONTADOR PUBLICO","UP");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN RECURSOS HUMANOS","UP");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN MARKETING","UP");
+        InsertarCarrera(BaseDeDatos,"MARKERTING Y PUBLICIDAD","UP");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN COMERCIO INTERNACIONAL","UP");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Management: Economía y Finanzas","UP");
+        InsertarCarrera(BaseDeDatos,"Programa Conjunto en Hotelería y Turismo","UP");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Gastronomía","UP");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Arte","UP");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Relaciones Internacionales y Ciencia Política","UP");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Humanidades y Ciencias Sociales","UP");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Periodismo","UP");
+        InsertarCarrera(BaseDeDatos,"Periodismo Deportivo","UP");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Psicología","UP");
 
     }
     private void InsertarCarrera(SQLiteDatabase BD,String Carreras,String Facultad)
     {
         ContentValues NuevoRegistro=new ContentValues();
-        NuevoRegistro.put("Nombre_Carrera",Carreras);
-        NuevoRegistro.put("Nombre_Facultad",Facultad);
+        NuevoRegistro.put("Nombre_Carrera",Carreras.toUpperCase());
+        NuevoRegistro.put("Nombre_Facultad",Facultad.toUpperCase());
         BD.insert("Carerras",null,NuevoRegistro);
     }
 }
