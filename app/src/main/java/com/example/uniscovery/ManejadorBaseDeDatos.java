@@ -324,6 +324,71 @@ public class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         InsertarCarrera(BaseDeDatos,"Licenciatura en Periodismo","UP");
         InsertarCarrera(BaseDeDatos,"Periodismo Deportivo","UP");
         InsertarCarrera(BaseDeDatos,"Licenciatura en Psicología","UP");
+        InsertarCarrera(BaseDeDatos,"Arte Multimedial","UP");
+        InsertarCarrera(BaseDeDatos,"Actuación Profesional","UP");
+        InsertarCarrera(BaseDeDatos,"Comunicación de Moda","UP");
+        InsertarCarrera(BaseDeDatos,"Comunicación Digital","UP");
+        InsertarCarrera(BaseDeDatos,"Diseño de Calzado","UP");
+        InsertarCarrera(BaseDeDatos,"Diseño Gráfico","UP");
+        InsertarCarrera(BaseDeDatos,"Diseño Editorial","UP");
+        InsertarCarrera(BaseDeDatos,"Diseño de Imagen Empresarial","UP");
+        InsertarCarrera(BaseDeDatos,"Diseño de Joyas","UP");
+        InsertarCarrera(BaseDeDatos,"Diseño Packaging","UP");
+        InsertarCarrera(BaseDeDatos,"Dirección de Actores de Cine y TV","UP");
+        InsertarCarrera(BaseDeDatos,"Diseño de Espacios Comerciales","UP");
+        InsertarCarrera(BaseDeDatos,"Diseño de Moda","UP");
+        InsertarCarrera(BaseDeDatos,"Diseño de Imagen y Sonido","UP");
+        InsertarCarrera(BaseDeDatos,"Diseño Industrial","UP");
+        InsertarCarrera(BaseDeDatos,"Diseño de Interiores","UP");
+        InsertarCarrera(BaseDeDatos,"Diseño de Mobiliarios","UP");
+        InsertarCarrera(BaseDeDatos,"Diseño de Vidrieras","UP");
+        InsertarCarrera(BaseDeDatos,"Escenografía","UP");
+        InsertarCarrera(BaseDeDatos,"Fotografía de Moda","UP");
+        InsertarCarrera(BaseDeDatos,"Guión de Cine y TV","UP");
+        InsertarCarrera(BaseDeDatos,"Historietas","UP");
+        InsertarCarrera(BaseDeDatos,"Ilustración","UP");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Actuación","UP");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Comunicación Audiovisual","UP");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Creación Sonora","UP");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Fotografía","UP");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Dirección Cinematográfica","UP");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Diseño de Espectáculos","UP");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Dirección Teatral","UP");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Publicidad","UP");
+        InsertarCarrera(BaseDeDatos,"Marketing de la Moda","UP");
+        InsertarCarrera(BaseDeDatos,"Moldería & Confección","UP");
+        InsertarCarrera(BaseDeDatos,"Producción de Espectáculos","UP");
+        InsertarCarrera(BaseDeDatos,"Producción de Moda","UP");
+        InsertarCarrera(BaseDeDatos,"Producción Musical","UP");
+        InsertarCarrera(BaseDeDatos,"Producción de Televisión","UP");
+        InsertarCarrera(BaseDeDatos,"Relaciones Públicas","UP");
+        InsertarCarrera(BaseDeDatos,"Organización de Eventos","UP");
+        InsertarCarrera(BaseDeDatos,"Vestuario","UP");
+        InsertarCarrera(BaseDeDatos,"Abogacia","UP");//LISTO UP Y LA RE CONCHA DE TU HERMANA
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Marketing","CAECE");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Administración de Negocios","CAECE");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Administración de Recursos Humanos","CAECE");
+        InsertarCarrera(BaseDeDatos,"Ciclo de Licenciatura en Comercio Internacional","CAECE");
+        InsertarCarrera(BaseDeDatos,"Ciclo de Licenciatura en Higiene y Seguridad del Trabajo","CAECE");
+        InsertarCarrera(BaseDeDatos,"Ciclo de Licenciatura en Turismo","CAECE");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Gestión Ambiental","CAECE");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Ciencias Biológicas","CAECE");
+        InsertarCarrera(BaseDeDatos,"Tecnicatura Universitaria en Gestión, Manejo y Conservación de Biodiversidad Educación","CAECE");
+        InsertarCarrera(BaseDeDatos,"Ciclo de Licenciatura en Educación","CAECE");
+        InsertarCarrera(BaseDeDatos,"Ciclo de Licenciatura en Gestión Educativa","CAECE");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Matemática","CAECE");
+        InsertarCarrera(BaseDeDatos,"Ciclo de Licenciatura en Matemática","CAECE");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Psicología","CAECE");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Psicomotricidad","CAECE");
+        InsertarCarrera(BaseDeDatos,"Ciclo de Licenciatura en Psicomotricidad","CAECE");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Psicopedagogía","CAECE");
+        InsertarCarrera(BaseDeDatos,"Ciclo de Licenciatura en Psicopedagogía","CAECE");
+        InsertarCarrera(BaseDeDatos,"Ingeniería en Sistemas","CAECE");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Sistemas","CAECE");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Gestión de Sistemas y Negocios","CAECE");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Nanotecnología","CAECE");
+        InsertarCarrera(BaseDeDatos,"Tecnicatura Universitaria en Programación\n","CAECE");//LISTO CAECE Y +1 HORA
+
 
     }
     private void InsertarCarrera(SQLiteDatabase BD,String Carreras,String Facultad)
