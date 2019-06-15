@@ -28,7 +28,7 @@ public class ManejadorBaseDeDatos extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
-    public void InsertarValores(SQLiteDatabase BaseDeDatos)
+    private void InsertarValores(SQLiteDatabase BaseDeDatos)
     {
         InsertarCarrera(BaseDeDatos,"CARRERA DE ARQUITECTURA","DI TELLA");
         /*InsertarCarrera(BaseDeDatos,"MAESTRIA EN HISTORIA Y CULTURA DE LA ARQUITECTURA Y DE LA CIUDAD","DI TELLA");
@@ -387,9 +387,17 @@ public class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         InsertarCarrera(BaseDeDatos,"Licenciatura en Sistemas","CAECE");
         InsertarCarrera(BaseDeDatos,"Licenciatura en Gestión de Sistemas y Negocios","CAECE");
         InsertarCarrera(BaseDeDatos,"Licenciatura en Nanotecnología","CAECE");
-        InsertarCarrera(BaseDeDatos,"Tecnicatura Universitaria en Programación\n","CAECE");//LISTO CAECE Y +1 HORA
-
-
+        InsertarCarrera(BaseDeDatos,"Tecnicatura Universitaria en Programación","CAECE");//LISTO CAECE Y +1 HORA
+        InsertarCarrera(BaseDeDatos,"Licenciatura en analitica empresarial y social","ITBA");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en administracion y sistemas","ITBA");
+        InsertarCarrera(BaseDeDatos,"bioingenieria","ITBA");
+        InsertarCarrera(BaseDeDatos,"Ingenieria electronica","ITBA");
+        InsertarCarrera(BaseDeDatos,"Ingeniería industrial","ITBA");
+        InsertarCarrera(BaseDeDatos,"Ingeniería informatica","ITBA");
+        InsertarCarrera(BaseDeDatos,"ingenieria mecanica","ITBA");
+        InsertarCarrera(BaseDeDatos,"Ingeniería naval","ITBA");
+        InsertarCarrera(BaseDeDatos,"Ingeniería en petroleo","ITBA");
+        InsertarCarrera(BaseDeDatos,"Ingeniería quimica","ITBA");//LISTO ITBA +15 MIN
     }
     private void InsertarCarrera(SQLiteDatabase BD,String Carreras,String Facultad)
     {
