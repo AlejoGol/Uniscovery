@@ -2,6 +2,7 @@ package com.example.uniscovery;
 
 import android.app.Fragment;
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,10 +18,8 @@ public class FragmentMostrarListaCarreras extends Fragment {
     View VistaDevolver;
     SearchView searchView;
     ListView lista;
-    String [] NombreCarreras;
-    String [] Facultades;
-    MainActivity actividadPrincipal=(MainActivity)getActivity();
-    int[] imgs={R.drawable.uba,R.drawable.utn,R.drawable.uca,R.drawable.belgrano,R.drawable.moron,R.drawable.emba,R.drawable.untref};
+   MainActivity actividadPrincipal=(MainActivity)getActivity();
+    //int[] imgs={R.drawable.uba,R.drawable.utn,R.drawable.uca,R.drawable.belgrano,R.drawable.moron,R.drawable.emba,R.drawable.untref};
     ArrayList<Carrera> listaDeCarreras=new ArrayList<>();
     public View onCreateView(LayoutInflater inflater, ViewGroup grupoView, Bundle datosRecibidos)
     {
@@ -30,11 +29,8 @@ public class FragmentMostrarListaCarreras extends Fragment {
         searchView=VistaDevolver.findViewById(R.id.SearchBuscar);
         Resources res=getResources();
         Log.d("Mostrar","Pre cambiar contenido 1");
-        NombreCarreras=res.getStringArray(R.array.ArrayDeString);
-        Facultades=res.getStringArray(R.array.Facultades);
-        lista=VistaDevolver.findViewById(R.id.ListaDeInformacion);
         Log.d("Mostrar","Pre cambiar contenido 2");
-        listaDeCarreras = getItemEnElArray(NombreCarreras, Facultades, imgs);
+        listaDeCarreras = getItemEnElArray();
         searchView=VistaDevolver.findViewById(R.id.SearchBuscar);
         Log.d("Mostrar","Pre cambiar contenido 3"+listaDeCarreras.size());
         ModificarLista(listaDeCarreras);
@@ -96,14 +92,21 @@ public class FragmentMostrarListaCarreras extends Fragment {
     }
     public void ModificarLista(ArrayList<Carrera> ListaFiltrada){
 
-        if(ListaFiltrada.isEmpty()) {
-            Toast toast1 =Toast.makeText(actividadPrincipal.getApplicationContext(), "esta vacia", Toast.LENGTH_SHORT);
-            toast1.show();
+        if (ListaFiltrada!=null){
+            if(ListaFiltrada.size()==0) {
+                Toast toast1 =Toast.makeText(this.getActivity(), "esta vacia", Toast.LENGTH_SHORT);
+                toast1.show();
+            }else{
+                ListView lista =VistaDevolver.findViewById(R.id.ListaDeInformacion);
+                Log.d("Mostrar","Cantidad: "+ListaFiltrada.size());
+                Adaptador_Carrera adapter=new Adaptador_Carrera(this,ListaFiltrada);
+                lista.setAdapter(adapter);
+            }
+        }else{
+            Toast.makeText(this.getActivity(), "esta NULL", Toast.LENGTH_SHORT).show();
         }
-        ListView lista =VistaDevolver.findViewById(R.id.ListaDeInformacion);
-        Log.d("Mostrar","Cantidad: "+ListaFiltrada.size());
-        Adaptador_Carrera adapter=new Adaptador_Carrera(this,ListaFiltrada);
-        lista.setAdapter(adapter);
+
+
 
     }
     public ArrayList<Carrera> getListaDeCarreras()
@@ -113,16 +116,28 @@ public class FragmentMostrarListaCarreras extends Fragment {
     public ListView getLista(){
         return lista;
     }
-    private ArrayList<Carrera> getItemEnElArray(String[] nombreCarreras, String[] facultades, int[] imgs)
+    private ArrayList<Carrera> getItemEnElArray()
     {
-        ArrayList<Carrera> items=new ArrayList<Carrera>();
-        items.add(new Carrera(imgs[0],nombreCarreras[0],facultades[0]));
-        items.add(new Carrera(imgs[1],nombreCarreras[1],facultades[1]));
-        items.add(new Carrera(imgs[2],nombreCarreras[2],facultades[2]));
-        items.add(new Carrera(imgs[3],nombreCarreras[3],facultades[3]));
-        items.add(new Carrera(imgs[4],nombreCarreras[4],facultades[4]));
-        items.add(new Carrera(imgs[5],nombreCarreras[5],facultades[5]));
-        items.add(new Carrera(imgs[6],nombreCarreras[6],facultades[6]));
+        Log.d("BD","getItemEnElArray");
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null, 2);
+        ArrayList<Carrera> items= new ArrayList<>();
+        Cursor RegistrosLeidos;
+        String SqlConsulta="select Nombre_Carrera,Nombre_Facultad from Carerras" ;
+        RegistrosLeidos=DB.CargarInformacion(SqlConsulta);
+        // Recorrosad
+        Log.d("BD","cargo la informacion,puede ser");
+
+        if (RegistrosLeidos.moveToFirst()) {
+            do {
+                String Nombre=RegistrosLeidos.getString(0);
+                String Facultad=RegistrosLeidos.getString(1);
+                Carrera item=new Carrera(0,Nombre,Facultad);
+                items.add(item);
+            }while(RegistrosLeidos.moveToNext());
+        }
+
+        RegistrosLeidos.close();
+
         return items;
     }
 }

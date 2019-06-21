@@ -46,10 +46,31 @@ public class Adaptador_Carrera extends BaseAdapter {
         ImageView imagen=convertView.findViewById(R.id.ImagenFacultad);
         TextView NombreCarrera=convertView.findViewById(R.id.NombreCarrera);
         TextView NombreFacultad=convertView.findViewById(R.id.NombreFacultad);
-        imagen.setImageResource(item.getIDImagen());
+        if(validarImagen(item.IDImagen))
+        {
+            imagen.setImageResource(item.getIDImagen());
+        }
+        else{
+                imagen.setImageResource(R.drawable.sinimagen);
+        }
         NombreCarrera.setText(item.getNombreCarrera());
         NombreFacultad.setText(item.getNombreFacultad());
 
         return convertView;
+    }
+    private boolean validarImagen(int idImagen)
+    {   Boolean retornar=false;
+    int c=0;
+        int[] imgs={R.drawable.uba,R.drawable.utn,R.drawable.uca,R.drawable.belgrano,R.drawable.moron,R.drawable.emba,R.drawable.untref};
+        do {
+            c++;
+            for (int idactual:imgs) {
+                if(idImagen==idactual)
+                {
+                    retornar=true;
+                }
+            }
+        }while (!retornar&&imgs.length >= c);
+            return retornar;
     }
 }

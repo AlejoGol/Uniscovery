@@ -2,31 +2,56 @@ package com.example.uniscovery;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
-public class ManejadorBaseDeDatos extends SQLiteOpenHelper {
+public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
 
-    public ManejadorBaseDeDatos(Context context,String name, SQLiteDatabase.CursorFactory factory, int version) {
+    SQLiteDatabase DB;
+    public  ManejadorBaseDeDatos(Context context,String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
+        Log.d("BD","creada");
+    }
+
+    private void DropTables(SQLiteDatabase db){
+        Log.d("BD","DropTables");
+        db.execSQL("DROP TABLE IF EXISTS Carerras");
+        db.execSQL("DROP TABLE IF EXISTS Relacion_Carrera_Tag");
+        db.execSQL("DROP TABLE IF EXISTS Tags");
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        Log.d("BD","onCreate");
+        DropTables(db);
         String SQLliteTabla="create table Carerras (ID_carrera INTEGER PRIMARY KEY AUTOINCREMENT, Nombre_Carrera TEXT, Nombre_Facultad TEXT);";
         db.execSQL(SQLliteTabla);
         SQLliteTabla="create table Relacion_Carrera_Tag (ID_Carrera INTEGER, ID_Tag INTEGER)";
         db.execSQL(SQLliteTabla);
         SQLliteTabla="create table Tags (ID_Tag INTEGER PRIMARY KEY AUTOINCREMENT, Nombre_Tag TEXT)";
         db.execSQL(SQLliteTabla);
+        DB=db;
         InsertarValores(db);
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        Log.d("BD","onUpgrade");
+        onCreate( db);
+    }
+    public Cursor CargarInformacion(String Consulta)
+    {
+        SQLiteDatabase midb;
+        midb = this.getReadableDatabase();
 
+        Cursor RegistrosLeidos;
+        Log.d("BD","CargarInformacion:" + Consulta);
+        RegistrosLeidos=midb.rawQuery(Consulta,null);
+        return RegistrosLeidos;
     }
     private void InsertarValores(SQLiteDatabase BaseDeDatos)
     {
@@ -127,7 +152,7 @@ public class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         InsertarCarrera(BaseDeDatos,"PROFESORADO DE ENSEÑANZA MEDIA Y SUPERIOR EN GEOGRAFÍA","UBA");
         InsertarCarrera(BaseDeDatos,"PROFESORADO DE ENSEÑANZA MEDIA Y SUPERIOR EN HISTORIA","UBA");
         InsertarCarrera(BaseDeDatos,"PROFESORADO DE ENSEÑANZA MEDIA Y SUPERIOR EN LETRAS\n","UBA");
-        InsertarCarrera(BaseDeDatos,"EDICION","UBA");
+        /*InsertarCarrera(BaseDeDatos,"EDICION","UBA");
         InsertarCarrera(BaseDeDatos,"INGENIERÍA CIVIL","UBA");
         InsertarCarrera(BaseDeDatos,"INGENIERÍA DE ALIMENTOS","UBA");
         InsertarCarrera(BaseDeDatos,"INGENIERÍA ELECTRICISTA","UBA");
@@ -398,6 +423,366 @@ public class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         InsertarCarrera(BaseDeDatos,"Ingeniería naval","ITBA");
         InsertarCarrera(BaseDeDatos,"Ingeniería en petroleo","ITBA");
         InsertarCarrera(BaseDeDatos,"Ingeniería quimica","ITBA");//LISTO ITBA +15 MIN
+        InsertarCarrera(BaseDeDatos,"Arquitectura Naval","UNQ");
+        InsertarCarrera(BaseDeDatos,"Ingeniería en Alimentos","UNQ");
+        InsertarCarrera(BaseDeDatos,"Ingeniería en Automatización y Control Industrial","UNQ");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Bioinformática","UNQ");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Biotecnología","UNQ");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Informática","UNQ");
+        InsertarCarrera(BaseDeDatos,"Tecnicatura Universitaria en Biotecnología","UNQ");
+        InsertarCarrera(BaseDeDatos,"Tecnicatura Universitaria en Programación Informática","UNQ");
+        InsertarCarrera(BaseDeDatos,"Tecnicatura Universitaria en Química","UNQ");
+        InsertarCarrera(BaseDeDatos,"Tecnicatura Universitaria en Tecnología Ambiental y Petroquímica","UNQ");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Ciencias Sociales","UNQ");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Comunicación Social","UNQ");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Educación","UNQ");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Educación ","UNQ");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Enfermería","UNQ");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Historia","UNQ");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Terapia Ocupacional","UNQ");
+        InsertarCarrera(BaseDeDatos,"Profesorado de Ciencias Sociales","UNQ");
+        InsertarCarrera(BaseDeDatos,"Profesorado de Comunicación Social","UNQ");
+        InsertarCarrera(BaseDeDatos,"Profesorado de Educación","UNQ");
+        InsertarCarrera(BaseDeDatos,"Profesorado de Historia","UNQ");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Ciencias Sociales y Humanidades","UNQ");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Educación","UNQ");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Geografía","UNQ");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Terapia Ocupacional","UNQ");
+        InsertarCarrera(BaseDeDatos,"Tecnicatura en Gestión de Medios Comunitarios","UNQ");
+        InsertarCarrera(BaseDeDatos,"Economía y Administración","UNQ");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Administración Hotelera","UNQ");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Comercio Internacional","UNQ");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Economía del Desarrollo","UNQ");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Gestión de Recursos Humanos y Relaciones Laborales","UNQ");
+        InsertarCarrera(BaseDeDatos,"Tecnicatura Universitaria en Economía Social y Solidaria","UNQ");
+        InsertarCarrera(BaseDeDatos,"Tecnicatura Universitaria en Gestión de Pequeñas y Medianas Empresas","UNQ");
+        InsertarCarrera(BaseDeDatos,"Contador Público","UNQ");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Administración","UNQ");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Comercio Internacional","UNQ");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Turismo y Hotelería","UNQ");
+        InsertarCarrera(BaseDeDatos,"Tecnicatura Universitaria en Ciencias Empresariales","UNQ");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Artes Digitales","UNQ");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Composición con Medios Electroacústico","UNQ");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Música y Tecnología","UNQ");
+        InsertarCarrera(BaseDeDatos,"Tecnicatura Universitaria en Creación Musical","UNQ");
+        InsertarCarrera(BaseDeDatos,"Tecnicatura Universitaria en Producción Digital","UNQ");
+        InsertarCarrera(BaseDeDatos,"Tecnicatura Universitaria en Producción Musical y Nuevas Tecnologías","UNQ");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Artes y Tecnologías","UNQ");//LISTO UNQ FALTAN BELGRANO UNLAM UCEMA
+        InsertarCarrera(BaseDeDatos,"ARQUITECTURA","UB");
+        InsertarCarrera(BaseDeDatos,"DISEÑO GRÁFICO","UB");
+        InsertarCarrera(BaseDeDatos,"PUBLICIDAD","UB");
+        InsertarCarrera(BaseDeDatos,"DISEÑO DE INTERIORES","UB");
+        InsertarCarrera(BaseDeDatos,"CIENCIAS QUÍMICAS","UB");
+        InsertarCarrera(BaseDeDatos,"CIENCIAS BIOLÓGICAS","UB");
+        InsertarCarrera(BaseDeDatos,"TECNOLOGÍA DE ALIMENTOS","UB");
+        InsertarCarrera(BaseDeDatos,"FARMACIA","UB");
+        InsertarCarrera(BaseDeDatos,"ABOGACÍA","UB");
+        InsertarCarrera(BaseDeDatos,"RELACIONES INTERNACIONALES","UB");
+        InsertarCarrera(BaseDeDatos,"CIENCIA POLÍTICA, GOBIERNO Y ADMINISTRACIÓN","UB");
+        InsertarCarrera(BaseDeDatos,"CIENCIAS DE LA COMUNICACIÓN","UB");
+        InsertarCarrera(BaseDeDatos,"ADMINISTRACIÓN Y GESTIÓN DE AGRONEGOCIOS","UB");
+        InsertarCarrera(BaseDeDatos,"CONTADOR PÚBLICO","UB");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN ECONOMÍA","UB");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN ADMINISTRACIÓN","UB");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN COMERCIO EXTERIOR","UB");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN COMERCIALIZACIÓN","UB");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN ADMINISTRACIÓN DE RECURSOS HUMANOS","UB");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN HOTELERÍA","UB");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN TURISMO","UB");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN GASTRONOMÍA","UB");
+        InsertarCarrera(BaseDeDatos,"INGENIERÍA CIVIL","UB");
+        InsertarCarrera(BaseDeDatos,"INGENIERÍA INDUSTRIAL","UB");
+        InsertarCarrera(BaseDeDatos,"INGENIERÍA EN INFORMÁTICA","UB");
+        InsertarCarrera(BaseDeDatos,"SISTEMAS DE INFORMACIÓN","UB");
+        InsertarCarrera(BaseDeDatos,"NUTRICIÓN","UB");
+        InsertarCarrera(BaseDeDatos,"PSICOLOGÍA","UB");
+        InsertarCarrera(BaseDeDatos,"RELACIONES PÚBLICAS E INSTITUCIONALES","UB");
+        InsertarCarrera(BaseDeDatos,"PRODUCCIÓN Y DIRECCIÓN DE TV, CINE Y RADIO","UB");
+        InsertarCarrera(BaseDeDatos,"TRADUCTORADO PÚBLICO, LITERARIO Y CIENTÍFICO-TÉCNICO DE INGLÉS","UB");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN LENGUA INGLESA","UB");
+        InsertarCarrera(BaseDeDatos,"Contador Público","UNLAM");
+        InsertarCarrera(BaseDeDatos,"Lic. Administración","UNLAM");
+        InsertarCarrera(BaseDeDatos,"Lic. Economía","UNLAM");
+        InsertarCarrera(BaseDeDatos,"Lic. Comercio Internacional","UNLAM");
+        InsertarCarrera(BaseDeDatos,"Ing. en Informática","UNLAM");
+        InsertarCarrera(BaseDeDatos,"Ing. en Electrónica","UNLAM");
+        InsertarCarrera(BaseDeDatos,"Ing. Industrial","UNLAM");
+        InsertarCarrera(BaseDeDatos,"Ing. Civil","UNLAM");
+        InsertarCarrera(BaseDeDatos,"Ing. Mecánica","UNLAM");
+        InsertarCarrera(BaseDeDatos,"Arquitectura","UNLAM");
+        InsertarCarrera(BaseDeDatos,"Lic. en Trabajo Social","UNLAM");
+        InsertarCarrera(BaseDeDatos,"Lic. en Comunicación Social","UNLAM");
+        InsertarCarrera(BaseDeDatos,"Lic. en Relaciones Laborales","UNLAM");
+        InsertarCarrera(BaseDeDatos,"Lic. en Relaciones Públicas","UNLAM");
+        InsertarCarrera(BaseDeDatos,"Lic. en Educación Física","UNLAM");
+        InsertarCarrera(BaseDeDatos,"Prof. en Educación Física","UNLAM");
+        InsertarCarrera(BaseDeDatos,"Tecnicatura Deportiva","UNLAM");
+        InsertarCarrera(BaseDeDatos,"Abogacía ","UNLAM");
+        InsertarCarrera(BaseDeDatos,"Lic. Ciencia Política","UNLAM");
+        InsertarCarrera(BaseDeDatos,"Procurador","UNLAM");
+        InsertarCarrera(BaseDeDatos,"Lic. en Enfermería","UNLAM");
+        InsertarCarrera(BaseDeDatos,"Lic. en Nutrición","UNLAM");
+        InsertarCarrera(BaseDeDatos,"Lic. en Kinesiología y Fisiatría","UNLAM");
+        InsertarCarrera(BaseDeDatos,"Medicina","UNLAM");
+        InsertarCarrera(BaseDeDatos,"Abogacía","UCA");
+        InsertarCarrera(BaseDeDatos,"Administración de Empresas","UCA");
+        InsertarCarrera(BaseDeDatos,"Ciencias Políticas","UCA");
+        InsertarCarrera(BaseDeDatos,"Composición","UCA");
+        InsertarCarrera(BaseDeDatos,"Comunicación Digital e Interactiva","UCA");
+        InsertarCarrera(BaseDeDatos,"Comunicación Periodística","UCA");
+        InsertarCarrera(BaseDeDatos,"Comunicación Publicitaria e Institucional","UCA");
+        InsertarCarrera(BaseDeDatos,"Contador Público","UCA");
+        InsertarCarrera(BaseDeDatos,"Dirección y Gestión de Bienes","UCA");
+        InsertarCarrera(BaseDeDatos,"Dirección Orquestal","UCA");
+        InsertarCarrera(BaseDeDatos,"Economía","UCA");
+        InsertarCarrera(BaseDeDatos,"Prof.Educación Inicial","UCA");
+        InsertarCarrera(BaseDeDatos,"Prof.Educación Primaria","UCA");
+        InsertarCarrera(BaseDeDatos,"LIC.FILOSOFIA","UCA");
+        InsertarCarrera(BaseDeDatos,"Prof.FILOSOFIA","UCA");
+        InsertarCarrera(BaseDeDatos,"LIC.HISTORIA","UCA");
+        InsertarCarrera(BaseDeDatos,"Prof.HISTORIA","UCA");
+        InsertarCarrera(BaseDeDatos,"Ingeniería Agronómica","UCA");
+        InsertarCarrera(BaseDeDatos,"Ingeniería Ambiental","UCA");
+        InsertarCarrera(BaseDeDatos,"ING en Alimentos","UCA");
+        InsertarCarrera(BaseDeDatos,"ING Civil","UCA");
+        InsertarCarrera(BaseDeDatos,"ING Electrónica","UCA");
+        InsertarCarrera(BaseDeDatos,"ING Industrial","UCA");
+        InsertarCarrera(BaseDeDatos,"ING en Informática","UCA");
+        InsertarCarrera(BaseDeDatos,"LIC.Inglés","UCA");
+        InsertarCarrera(BaseDeDatos,"PROF.Inglés","UCA");
+        InsertarCarrera(BaseDeDatos,"TRADUC.Inglés","UCA");
+        InsertarCarrera(BaseDeDatos,"Kinesiología y Fisiatría","UCA");
+        InsertarCarrera(BaseDeDatos,"LIC.Letras","UCA");
+        InsertarCarrera(BaseDeDatos,"PROF.Letras","UCA");
+        InsertarCarrera(BaseDeDatos,"Marketing","UCA");
+        InsertarCarrera(BaseDeDatos,"Medicina","UCA");
+        InsertarCarrera(BaseDeDatos,"LIC.Música Cinematográfica","UCA");
+        InsertarCarrera(BaseDeDatos,"LIC.Musicología, Crítica, Teoría y Cognición Musical","UCA");
+        InsertarCarrera(BaseDeDatos,"LIC.Música Popular","UCA");
+        InsertarCarrera(BaseDeDatos,"LIC.Nutrición","UCA");
+        InsertarCarrera(BaseDeDatos,"Odontología","UCA");
+        InsertarCarrera(BaseDeDatos,"LIC.Piano","UCA");
+        InsertarCarrera(BaseDeDatos,"Psicopedagogía","UCA");
+        InsertarCarrera(BaseDeDatos,"Psicología","UCA");
+        InsertarCarrera(BaseDeDatos,"Recursos Humanos","UCA");
+        InsertarCarrera(BaseDeDatos,"Relaciones Internacionales","UCA");
+        InsertarCarrera(BaseDeDatos,"PROF.Teología","UCA");
+        InsertarCarrera(BaseDeDatos,"LIC.Teología Sistemática","UCA");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Enfermería","UCA");
+        InsertarCarrera(BaseDeDatos,"Abogacía","AUSTRAL");
+        InsertarCarrera(BaseDeDatos,"Administración de Empresas","AUSTRAL");
+        InsertarCarrera(BaseDeDatos,"Agronegocios","AUSTRAL");
+        InsertarCarrera(BaseDeDatos,"Ciencia Política","AUSTRAL");
+        InsertarCarrera(BaseDeDatos,"Comunicación Social","AUSTRAL");
+        InsertarCarrera(BaseDeDatos,"Ingeniería Industrial","AUSTRAL");
+        InsertarCarrera(BaseDeDatos,"Ingeniería Biomédica","AUSTRAL");
+        InsertarCarrera(BaseDeDatos,"Lic. en Enfermería","AUSTRAL");
+        InsertarCarrera(BaseDeDatos,"DISEÑO","AUSTRAL");
+        InsertarCarrera(BaseDeDatos,"Contador Público","AUSTRAL");
+        InsertarCarrera(BaseDeDatos,"Ingeniería en Informática","AUSTRAL");
+        InsertarCarrera(BaseDeDatos,"Medicina","AUSTRAL");
+        InsertarCarrera(BaseDeDatos,"Nutrición","AUSTRAL");
+        InsertarCarrera(BaseDeDatos,"Relaciones Internacionales","AUSTRAL");
+        InsertarCarrera(BaseDeDatos,"Psicología","AUSTRAL");
+        InsertarCarrera(BaseDeDatos,"Arquitectura Naval","UNQ");
+        InsertarCarrera(BaseDeDatos,"Robótica Diseño","Image Campus");
+        InsertarCarrera(BaseDeDatos,"Robótica Electrónica","Image Campus");
+        InsertarCarrera(BaseDeDatos,"Robótica Programación","Image Campus");
+        InsertarCarrera(BaseDeDatos,"Game Design","Image Campus");
+        InsertarCarrera(BaseDeDatos,"Introduccion a la programacion de videojuegos","Image Campus");
+        InsertarCarrera(BaseDeDatos,"Game Art","Image Campus");
+        InsertarCarrera(BaseDeDatos,"Desarrollo de videojuegos con Unity","Image Campus");
+        InsertarCarrera(BaseDeDatos,"Introduccion a Game Audio","Image Campus");
+        InsertarCarrera(BaseDeDatos,"Game Audio","Image Campus");
+        InsertarCarrera(BaseDeDatos,"Testing y Technical QA","Image Campus");
+        InsertarCarrera(BaseDeDatos,"Programacion Avanzada de videojuegos","Image Campus");
+        InsertarCarrera(BaseDeDatos,"Environment para videojuegos con unreal engine","Image Campus");
+        InsertarCarrera(BaseDeDatos,"Concept art","Image Campus");
+        InsertarCarrera(BaseDeDatos,"Carrera corta de produccion multimedia","Image Campus");
+        InsertarCarrera(BaseDeDatos,"tecnicas de animacion tradicional","Image Campus");
+        InsertarCarrera(BaseDeDatos,"animacion digital 2D CUT OUT","Image Campus");
+        InsertarCarrera(BaseDeDatos,"Animacion profesional 3D","Image Campus");
+        InsertarCarrera(BaseDeDatos,"motion graphics","Image Campus");
+        InsertarCarrera(BaseDeDatos,"modelado profesional 3D","Image Campus");
+        InsertarCarrera(BaseDeDatos,"animacion profesional 3D","Image Campus");
+        InsertarCarrera(BaseDeDatos,"visualizacion arquitectonica","Image Campus");
+        InsertarCarrera(BaseDeDatos,"Unreal engine 4 para arquitectura","Image Campus");
+        InsertarCarrera(BaseDeDatos,"efectos visuales (VFX)","Image Campus");
+        InsertarCarrera(BaseDeDatos,"Motion Graphics","Image Campus");
+        InsertarCarrera(BaseDeDatos,"Produccion de historietas","Image Campus");
+        InsertarCarrera(BaseDeDatos,"Manga","Image Campus");
+        InsertarCarrera(BaseDeDatos,"Manga Avanzado","Image Campus");
+        InsertarCarrera(BaseDeDatos,"Realidad virtual diseño de contenidos","Image Campus");
+        InsertarCarrera(BaseDeDatos,"Realidad aumentada","Image Campus");//Listo Image Campus
+        InsertarCarrera(BaseDeDatos,"Medicina","Favaloro");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Kinesiología y Fisiatría","Favaloro");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Nutrición","Favaloro");
+        InsertarCarrera(BaseDeDatos,"Enfermería","Favaloro");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Producción de Bioimágenes","Favaloro");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Instrumentación Quirúrgica","Favaloro");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Instrumentación Quirúrgica – Ciclo de Complementación Curricular","Favaloro");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Psicologia","Favaloro");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Psicopedagogía","Favaloro");
+        InsertarCarrera(BaseDeDatos,"Ingeniería Biomédica","Favaloro");
+        InsertarCarrera(BaseDeDatos,"Ingeniería en Física Médica","Favaloro");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Ciencias Biológicas","Favaloro");//Listo Favaloro
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN Economía","UCEMA");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN Negocios Digitales","UCEMA");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN Administración de Empresas","UCEMA");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN Marketing","UCEMA");
+        InsertarCarrera(BaseDeDatos,"Contador Público","UCEMA");
+        InsertarCarrera(BaseDeDatos,"Abogacía","UCEMA");
+        InsertarCarrera(BaseDeDatos,"INGENIERÍA EN Informática","UCEMA");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN Ciencias Políticas","UCEMA");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN Relaciones Internacionales","UCEMA");//Listo UCEMA
+        InsertarCarrera(BaseDeDatos,"CONTADOR PÚBLICO","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN CIENCIAS DE LA EDUCACIÓN","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN OBSTETRICIA","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN TRABAJO SOCIAL","UM");
+        InsertarCarrera(BaseDeDatos,"INGENIERÍA EN MECANIZACIÓN DE LA PRODUCCIÓN AGROPECUARIA","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN ADMINISTRACIÓN","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN COMERCIALIZACIÓN A DISTANCIA","UM");
+        InsertarCarrera(BaseDeDatos,"ABOGACÍA","UM");
+        InsertarCarrera(BaseDeDatos,"ARQUITECTURA","UM");
+        InsertarCarrera(BaseDeDatos,"BIOQUÍMICA","UM");
+        InsertarCarrera(BaseDeDatos,"FARMACIA","UM");
+        InsertarCarrera(BaseDeDatos,"INGENIERÍA AGRONÓMICA","UM");
+        InsertarCarrera(BaseDeDatos,"INGENIERÍA CIVIL","UM");
+        InsertarCarrera(BaseDeDatos,"INGENIERÍA ELECTRÓNICA","UM");
+        InsertarCarrera(BaseDeDatos,"INGENIERÍA ELECTROMECÁNICA","UM");
+        InsertarCarrera(BaseDeDatos,"INGENIERÍA EN ALIMENTOS","UM");
+        InsertarCarrera(BaseDeDatos,"INGENIERÍA EN INFORMÁTICA","UM");
+        InsertarCarrera(BaseDeDatos,"INGENIERÍA INDUSTRIAL","UM");
+        InsertarCarrera(BaseDeDatos,"INGENIERO AGRIMENSOR","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN ADMINISTRACIÓN","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN ÓPTICA OFTÁLMICA","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN BIOLOGÍA","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN BIOTECNOLOGÍA","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN CIENCIAS DE LA EDUCACIÓN","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN CIENCIAS QUÍMICAS","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN COMERCIALIZACIÓN","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN COMERCIO INTERNACIONAL","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN CRIMINALÍSTICA","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN DISEÑO DE INDUMENTARIA","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN DISEÑO DE INTERIORES ","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN DISEÑO GRÁFICO MULTIMEDIAL","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN DISEÑO GRÁFICO PUBLICITARIO","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN DISEÑO Y PRODUCCIÓN EN COMUNICACIÓN MULTIMEDIAL","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN ECONOMÍA","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN ENFERMERÍA","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN FILOSOFÍA","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN GENÉTICA","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN GESTIÓN HOTELERA","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN HIGIENE Y SEGURIDAD EN EL TRABAJO","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN HISTORIA","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN INSTRUMENTACIÓN QUIRÚRGICA","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN KINESIOLOGÍA Y FISIATRÍA","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN LETRAS","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN NUTRICIÓN","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN PERIODISMO","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN PREVENCIÓN VIAL Y TRANSPORTE","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN PSICOLOGÍA","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN PSICOPEDAGOGÍA","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN PUBLICIDAD","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN RECURSOS HUMANOS","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN RELACIONES PÚBLICAS","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN SEGURIDAD","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN SISTEMAS","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN TASACIÓN, CORREDURÍA Y GESTIÓN DE BIENES (MOD.PRES)","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN TASACIÓN, CORREDURÍA Y GESTIÓN DE BIENES - MOD.A DIST.","UM");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN TURISMO","UM");
+        InsertarCarrera(BaseDeDatos,"MEDICINA","UM");
+        InsertarCarrera(BaseDeDatos,"MEDICINA - RM 1230/17 - Resolución CONEAU 1220/14","UM");
+        InsertarCarrera(BaseDeDatos,"PROFESORADO DE PSICOLOGÍA","UM");
+        InsertarCarrera(BaseDeDatos,"PROFESORADO EN CIENCIAS DE LA EDUCACIÓN","UM");
+        InsertarCarrera(BaseDeDatos,"PROFESORADO EN FILOSOFÍA","UM");
+        InsertarCarrera(BaseDeDatos,"PROFESORADO EN HISTORIA","UM");
+        InsertarCarrera(BaseDeDatos,"PROFESORADO EN LETRAS","UM");
+        InsertarCarrera(BaseDeDatos,"PROFESORADO EN PSICOPEDAGOGÍA","UM");
+        InsertarCarrera(BaseDeDatos,"TRADUCTORADO PÚBLICO DE INGLÉS","UM");//Listo UM
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Nutrición","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Música Autóctona, Clásica y Popular de América","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Protección Civil y Emergencias","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Gestión del Arte y la Cultura","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Artes Electrónicas","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Higiene y Seguridad del Trabajo","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Profesorado en Historia","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Artes del Circo","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Sistemas de Información Geográfica","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Relaciones Comerciales Internacionales","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Psicomotricidad","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Música","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Historia","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Enfermería","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Administración y Gestión de Políticas Sociales","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Geografía","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Estadística","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Administración Pública","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Administración de Empresas","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Producción Audiovisual","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Logística","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Ingeniería de Sonido","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Ingeniería en Computación","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Ingeniería Ambiental","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Instrumentación Quirúrgica","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Enfermería","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Educación Secundaria","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Historia","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Gestión Educativa","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Gestión del Deporte","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Profesorado en Geografía","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Ciencias de la Educación","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Licenciatura en Resolución de Conflictos y Mediación","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Diplomatura en Marketing Deportivo","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Enseñanza de Baile de Tango","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Diplomatura en Inclusión Escolar, con orientación en TES","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Diplomatura Universitaria en Enseñanza del Ajedrez","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Educación Intercultural","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Dirección de Instituciones Educativas","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Diplomatura en Psicomotricidad y Medio Acúatico","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Diplomatura en Psicomotricidad en Educación","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Diplomatura en Relaciones Sindicales Internacionales","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Diplomatura en Psicomotricidad y Educación Especial","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Diplomatura en Organización de Eventos","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Diplomatura Universitaria en Gestión del Deporte y Entrenamiento Deportivo","UNTREF");
+        InsertarCarrera(BaseDeDatos,"Diplomatura en Liderazgo Público","UNTREF");//Listo UNTREF
+        InsertarCarrera(BaseDeDatos,"LIC. en Artes Musicales con orientación en Composición","UNA");
+        InsertarCarrera(BaseDeDatos,"LIC. en Música con orientación en Instrumento","UNA");
+        InsertarCarrera(BaseDeDatos,"LIC. en Actuación","UNA");
+        InsertarCarrera(BaseDeDatos,"LIC. en Administración y Gestión Universitaria","UNA");
+        InsertarCarrera(BaseDeDatos,"LIC. en Artes Audiovisuales","UNA");
+        InsertarCarrera(BaseDeDatos,"LIC. en Artes de la Escritura","UNA");
+        InsertarCarrera(BaseDeDatos,"LIC. en Artes Multimediales","UNA");
+        InsertarCarrera(BaseDeDatos,"LIC. en Artes Musicales con orientación en Dirección Coral","UNA");
+        InsertarCarrera(BaseDeDatos,"LIC. en Artes Musicales con orientación en Dirección Orquestal","UNA");
+        InsertarCarrera(BaseDeDatos,"LIC. en Artes Visuales ","UNA");
+        InsertarCarrera(BaseDeDatos,"LIC. en Artes Visuales orientación artes del fuego","UNA");
+        InsertarCarrera(BaseDeDatos,"LIC. en Composición con Medios Electroacústicos","UNA");
+        InsertarCarrera(BaseDeDatos,"LIC. en Composición Coreográfica","UNA");
+        InsertarCarrera(BaseDeDatos,"LIC. en Conservación-Restauración de Bienes Culturales","UNA");
+        InsertarCarrera(BaseDeDatos,"LIC. en Crítica de Artes","UNA");
+        InsertarCarrera(BaseDeDatos,"LIC. en Curaduría en Artes","UNA");
+        InsertarCarrera(BaseDeDatos,"LIC. en Dirección Escénica","UNA");
+        InsertarCarrera(BaseDeDatos,"LIC. en Diseño de Iluminación de Espectáculos","UNA");
+        InsertarCarrera(BaseDeDatos,"LIC. en Escenografía","UNA");
+        InsertarCarrera(BaseDeDatos,"LIC. en Folklore mención culturas tradicionales","UNA");
+        InsertarCarrera(BaseDeDatos,"LIC. en Folklore mención danzas folklóricas y tango","UNA");
+        InsertarCarrera(BaseDeDatos,"LIC. en Folklore mención instrumentos criollos","UNA");
+        InsertarCarrera(BaseDeDatos,"LIC. en Folklore mención tango","UNA");
+        InsertarCarrera(BaseDeDatos,"LIC. en Música con orientación en Canto","UNA");
+        InsertarCarrera(BaseDeDatos,"Prof. de Artes en Artes Visuales con orientación en cerámica","UNA");
+        InsertarCarrera(BaseDeDatos,"Prof. de Artes en Artes Visuales","UNA");
+        InsertarCarrera(BaseDeDatos,"Prof. de Artes en Danza","UNA");
+        InsertarCarrera(BaseDeDatos,"Prof. de Artes en Danza con orientación en expresión corporal","UNA");
+        InsertarCarrera(BaseDeDatos,"Prof. de Artes en Danza con orientación en folklore","UNA");
+        InsertarCarrera(BaseDeDatos,"Prof. de Artes en Música","UNA");
+        InsertarCarrera(BaseDeDatos,"Prof. de Artes en Música con orientación en folklore","UNA");
+        InsertarCarrera(BaseDeDatos,"Prof. de Artes en Teatro","UNA");
+        InsertarCarrera(BaseDeDatos,"Instrumentista Orquestal","UNA");
+        InsertarCarrera(BaseDeDatos,"Interpretación de danzas folklóricas y tango","UNA");
+        InsertarCarrera(BaseDeDatos,"Interpretación de instrumentos criollos","UNA");
+        InsertarCarrera(BaseDeDatos,"Interpretación de tango","UNA");
+        InsertarCarrera(BaseDeDatos,"Tecnicatura en Interpretación en Danza","UNA")*/;//FALTAN USAL UAI UMSA FUC KENNEDY UdeMM UFLO ISALUD Atlántida Argentina UNDEF ENZEÑANZAS LOLA MORA
     }
     private void InsertarCarrera(SQLiteDatabase BD,String Carreras,String Facultad)
     {
@@ -406,4 +791,9 @@ public class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         NuevoRegistro.put("Nombre_Facultad",Facultad.toUpperCase());
         BD.insert("Carerras",null,NuevoRegistro);
     }
+    public SQLiteDatabase getDB()
+    {
+        return DB;
+    }
+
 }
