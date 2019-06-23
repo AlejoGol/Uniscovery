@@ -3,6 +3,7 @@ package com.example.uniscovery;
 import android.app.Fragment;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FragmentMostrarListaCarreras extends Fragment {
     View VistaDevolver;
@@ -53,6 +55,7 @@ public class FragmentMostrarListaCarreras extends Fragment {
                     ModificarLista(ListaFiltrada);
                 }
                 ModificarLista(ListaFiltrada);
+
                 return true; }
             @Override
             public boolean onQueryTextChange(String newText) {
@@ -69,10 +72,14 @@ public class FragmentMostrarListaCarreras extends Fragment {
                     Log.d("entro","SI");
                     ListaFiltrada.addAll(listaDeCarreras);
                 }
+                ArrayList<Carrera> ConTags=VerificarTags(newText);
+                for (Carrera Tags:ConTags) {
+                    if(!ListaFiltrada.contains(Tags))
+                    {
+                        ListaFiltrada.add(Tags);
+                    }
+                }
                 ModificarLista(ListaFiltrada);
-
-
-
                 return true;
             }
 
@@ -119,11 +126,11 @@ public class FragmentMostrarListaCarreras extends Fragment {
     private ArrayList<Carrera> getItemEnElArray()
     {
         Log.d("BD","getItemEnElArray");
-        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null, 2);
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null, 3);
         ArrayList<Carrera> items= new ArrayList<>();
         Cursor RegistrosLeidos;
         String SqlConsulta="select Nombre_Carrera,Nombre_Facultad from Carerras" ;
-        RegistrosLeidos=DB.CargarInformacion(SqlConsulta);
+        RegistrosLeidos=DB.EjecutarConsulta(SqlConsulta);
         // Recorrosad
         Log.d("BD","cargo la informacion,puede ser");
 
@@ -139,5 +146,87 @@ public class FragmentMostrarListaCarreras extends Fragment {
         RegistrosLeidos.close();
 
         return items;
+    }
+    private ArrayList<Carrera> VerificarTags(String query)//me fijo en la tabla de tags cuales contienen la query y con el id de esos me fijo en la tabla cuales carreras tienen ese como tag asignado y los cargo
+    {
+        ArrayList<Integer> IDTags=BuscarPorIdTag(query);
+        Log.d("Tags","Cargo Primera Lista");
+        ArrayList<Integer> IdCarreras=BuscarCarrerasPorTag(IDTags);
+        Log.d("Tags","Cargo Segunda Lista");
+        ArrayList<Carrera> CarrerasConTags =BuscarCarrerasPorId(IdCarreras);
+        Log.d("Tags","Cargo Ultima Lista");
+        return CarrerasConTags;
+    }
+    private ArrayList<Carrera>  BuscarCarrerasPorId(ArrayList<Integer>IdCarreras)
+    {
+        ArrayList<Carrera> CarrerasConTags=new ArrayList<>();
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null, 3);
+
+        Cursor RegistrosLeidos;
+        String SqlConsulta="select ID_carrera, Nombre_Carrera, Nombre_Facultad from Carerras" ;
+        RegistrosLeidos=DB.EjecutarConsulta(SqlConsulta);
+        Log.d("Tags","Ejecuto consulta a BD");
+        if (RegistrosLeidos.moveToFirst()) {
+            Log.d("Tags","Pre while");
+            do {
+                int idTag=RegistrosLeidos.getInt(0);
+                String NombreCarrera =RegistrosLeidos.getString(0);
+                String NombreFacultad=RegistrosLeidos.getString(1);
+                if (IdCarreras.equals(idTag))
+                {
+                    Carrera item=new Carrera(0,NombreCarrera,NombreFacultad);
+                    CarrerasConTags.add(item);
+                }
+            }while(RegistrosLeidos.moveToNext());
+            Log.d("Tags","Salio del while");
+        }
+        RegistrosLeidos.close();
+        return CarrerasConTags;
+    }
+    private ArrayList<Integer> BuscarCarrerasPorTag(ArrayList<Integer> IDTags)
+    {
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null, 3);
+
+        Cursor RegistrosLeidos;
+        String SqlConsulta="select * from Relacion_Carrera_Tag" ;
+        RegistrosLeidos=DB.EjecutarConsulta(SqlConsulta);
+        // Recorrosad
+        Log.d("BD","cargo la informacion,puede ser");
+        ArrayList<Integer>ListaCarrera=new ArrayList<>();
+        if (RegistrosLeidos.moveToFirst()) {
+            do {
+                int idCarrera =RegistrosLeidos.getInt(0);
+                int idTag=RegistrosLeidos.getInt(1);
+                if (IDTags.contains(idTag))
+                {
+                    ListaCarrera.add(idCarrera);
+                }
+            }while(RegistrosLeidos.moveToNext());
+        }
+        RegistrosLeidos.close();
+       return  ListaCarrera;
+    }
+    private ArrayList<Integer> BuscarPorIdTag(String query)
+    {
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null, 3);
+
+        Cursor RegistrosLeidos;
+        String SqlConsulta="select * from Tags" ;
+        RegistrosLeidos=DB.EjecutarConsulta(SqlConsulta);
+        // Recorrosad
+        Log.d("BD","cargo la informacion,puede ser");
+        ArrayList<Integer> IDTags=new ArrayList<>();
+        if (RegistrosLeidos.moveToFirst()) {
+            do {
+                int id =RegistrosLeidos.getInt(0);
+                String nombre=RegistrosLeidos.getString(1);
+                if(nombre.contains(query))
+                {
+                    IDTags.add(id);
+                }
+            }while(RegistrosLeidos.moveToNext());
+        }
+        RegistrosLeidos.close();
+        return IDTags;
     }
 }

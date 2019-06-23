@@ -35,6 +35,9 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         db.execSQL(SQLliteTabla);
         DB=db;
         InsertarValores(db);
+        Tags(db);
+
+
 
     }
 
@@ -43,7 +46,7 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         Log.d("BD","onUpgrade");
         onCreate( db);
     }
-    public Cursor CargarInformacion(String Consulta)
+    public Cursor EjecutarConsulta(String Consulta)
     {
         SQLiteDatabase midb;
         midb = this.getReadableDatabase();
@@ -75,7 +78,7 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         InsertarCarrera(BaseDeDatos,"LICENCIATURA EN CIENCIAS AMBIENTALES","UBA");
         InsertarCarrera(BaseDeDatos,"AGRONOMIA","UBA");
         InsertarCarrera(BaseDeDatos,"BACHILLERATO UNIVERSITARIO EN AGRONOMIA","UBA");
-        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN ECONOMÍA Y ADMINISTRACIÓN AGRARIAS","UBA");
+        /*InsertarCarrera(BaseDeDatos,"LICENCIATURA EN ECONOMÍA Y ADMINISTRACIÓN AGRARIAS","UBA");
         InsertarCarrera(BaseDeDatos,"LICENCIATURA EN GESTIÓN DE AGROALIMENTOS","UBA");
         InsertarCarrera(BaseDeDatos,"LICENCIATURA EN PLANIFICACIÓN Y DISEÑO DEL PAISAJE","UBA");
         InsertarCarrera(BaseDeDatos,"FLORICULTURA","UBA");
@@ -152,7 +155,7 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         InsertarCarrera(BaseDeDatos,"PROFESORADO DE ENSEÑANZA MEDIA Y SUPERIOR EN GEOGRAFÍA","UBA");
         InsertarCarrera(BaseDeDatos,"PROFESORADO DE ENSEÑANZA MEDIA Y SUPERIOR EN HISTORIA","UBA");
         InsertarCarrera(BaseDeDatos,"PROFESORADO DE ENSEÑANZA MEDIA Y SUPERIOR EN LETRAS\n","UBA");
-        /*InsertarCarrera(BaseDeDatos,"EDICION","UBA");
+        InsertarCarrera(BaseDeDatos,"EDICION","UBA");
         InsertarCarrera(BaseDeDatos,"INGENIERÍA CIVIL","UBA");
         InsertarCarrera(BaseDeDatos,"INGENIERÍA DE ALIMENTOS","UBA");
         InsertarCarrera(BaseDeDatos,"INGENIERÍA ELECTRICISTA","UBA");
@@ -584,7 +587,6 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         InsertarCarrera(BaseDeDatos,"Nutrición","AUSTRAL");
         InsertarCarrera(BaseDeDatos,"Relaciones Internacionales","AUSTRAL");
         InsertarCarrera(BaseDeDatos,"Psicología","AUSTRAL");
-        InsertarCarrera(BaseDeDatos,"Arquitectura Naval","UNQ");
         InsertarCarrera(BaseDeDatos,"Robótica Diseño","Image Campus");
         InsertarCarrera(BaseDeDatos,"Robótica Electrónica","Image Campus");
         InsertarCarrera(BaseDeDatos,"Robótica Programación","Image Campus");
@@ -784,6 +786,36 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         InsertarCarrera(BaseDeDatos,"Interpretación de tango","UNA");
         InsertarCarrera(BaseDeDatos,"Tecnicatura en Interpretación en Danza","UNA")*/;//FALTAN USAL UAI UMSA FUC KENNEDY UdeMM UFLO ISALUD Atlántida Argentina UNDEF ENZEÑANZAS LOLA MORA
     }
+    private void Tags(SQLiteDatabase BaseDeDatos)
+    {
+        InsertarTags(BaseDeDatos,"Ingenieria");
+        InsertarTags(BaseDeDatos,"Profesorado");
+        InsertarTags(BaseDeDatos,"Matematica");
+        InsertarTags(BaseDeDatos,"Nutricion");
+        InsertarTags(BaseDeDatos,"Leyes");
+        InsertarTags(BaseDeDatos,"Arquitectura");
+        InsertarTags(BaseDeDatos,"Economicas");
+        InsertarTags(BaseDeDatos,"Tecnicatura");
+        InsertarTags(BaseDeDatos,"Sociales");
+        InsertarTags(BaseDeDatos,"Administracion");
+        InsertarTags(BaseDeDatos,"Diseño");
+        InsertarTags(BaseDeDatos,"Diplomacia");
+        InsertarTags(BaseDeDatos,"Ciencias naturales");
+        InsertarTags(BaseDeDatos,"Agronomia");
+        InsertarRelacionTags(BaseDeDatos,1,6);
+        InsertarRelacionTags(BaseDeDatos,2,5);
+        InsertarRelacionTags(BaseDeDatos,3,10);
+        InsertarRelacionTags(BaseDeDatos,4,7);
+        InsertarRelacionTags(BaseDeDatos,5,7);
+        InsertarRelacionTags(BaseDeDatos,6,11);
+        InsertarRelacionTags(BaseDeDatos,7,12);
+        InsertarRelacionTags(BaseDeDatos,8,12);
+        InsertarRelacionTags(BaseDeDatos,9,9);
+        InsertarRelacionTags(BaseDeDatos,10,9);
+        InsertarRelacionTags(BaseDeDatos,11,13);
+        InsertarRelacionTags(BaseDeDatos,12,14);
+        InsertarRelacionTags(BaseDeDatos,13,14);
+    }
     private void InsertarCarrera(SQLiteDatabase BD,String Carreras,String Facultad)
     {
         ContentValues NuevoRegistro=new ContentValues();
@@ -794,6 +826,19 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
     public SQLiteDatabase getDB()
     {
         return DB;
+    }
+    private void InsertarTags(SQLiteDatabase BD,String Tags)
+    {
+        ContentValues NuevoRegistro=new ContentValues();
+        NuevoRegistro.put("Nombre_Tag",Tags.toUpperCase());
+        BD.insert("Tags",null,NuevoRegistro);
+    }
+    private void InsertarRelacionTags(SQLiteDatabase BD,int ID_Carrera,int Id_Tags)
+    {
+        ContentValues NuevoRegistro=new ContentValues();
+        NuevoRegistro.put("ID_Carrera",ID_Carrera);
+        NuevoRegistro.put("ID_Tag",Id_Tags);
+        BD.insert("Relacion_Carrera_Tag",null,NuevoRegistro);
     }
 
 }
