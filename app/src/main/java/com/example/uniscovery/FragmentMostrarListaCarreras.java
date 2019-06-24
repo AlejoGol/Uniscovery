@@ -170,9 +170,9 @@ public class FragmentMostrarListaCarreras extends Fragment {
             Log.d("Tags","Pre while");
             do {
                 int idTag=RegistrosLeidos.getInt(0);
-                String NombreCarrera =RegistrosLeidos.getString(0);
-                String NombreFacultad=RegistrosLeidos.getString(1);
-                if (IdCarreras.equals(idTag))
+                String NombreCarrera =RegistrosLeidos.getString(1);
+                String NombreFacultad=RegistrosLeidos.getString(2);
+                if (IdCarreras.contains(idTag))
                 {
                     Carrera item=new Carrera(0,NombreCarrera,NombreFacultad);
                     CarrerasConTags.add(item);
