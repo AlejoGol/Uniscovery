@@ -1,42 +1,42 @@
 package com.example.uniscovery;
 
+
 import android.app.Fragment;
 import android.content.res.Resources;
 import android.database.Cursor;
-import android.nfc.Tag;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class FragmentMostrarListaCarreras extends Fragment {
     View VistaDevolver;
     SearchView searchView;
-    ListView lista;
-   MainActivity actividadPrincipal=(MainActivity)getActivity();
+    Adaptador_Carrera adapter;
     //int[] imgs={R.drawable.uba,R.drawable.utn,R.drawable.uca,R.drawable.belgrano,R.drawable.moron,R.drawable.emba,R.drawable.untref};
     ArrayList<Carrera> listaDeCarreras=new ArrayList<>();
+    public RecyclerView recyclerView;
     public View onCreateView(LayoutInflater inflater, ViewGroup grupoView, Bundle datosRecibidos)
     {
-        Log.d("Entro","Al create");
-        VistaDevolver=inflater.inflate(R.layout.mostrar_listado_carreras,grupoView,false);
-        Log.d("Mostrar","Logro inflar");
+        Log.d("onCreateView","entro");
+        VistaDevolver=inflater.inflate(R.layout.mostrar_listado_carreras,grupoView);
+        Log.d("onCreateView","se inflo");
+        recyclerView=VistaDevolver.findViewById(R.id.ListaDeInformacion);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         searchView=VistaDevolver.findViewById(R.id.SearchBuscar);
-        Resources res=getResources();
-        Log.d("Mostrar","Pre cambiar contenido 1");
-        Log.d("Mostrar","Pre cambiar contenido 2");
         listaDeCarreras = getItemEnElArray();
-        searchView=VistaDevolver.findViewById(R.id.SearchBuscar);
-        Log.d("Mostrar","Pre cambiar contenido 3"+listaDeCarreras.size());
+        Log.d("onCreateView","array con informacion :"+listaDeCarreras.size());
+        adapter=new Adaptador_Carrera(getContext(),listaDeCarreras);
+        recyclerView.setAdapter(adapter);
+        Log.d("onCreateView","adapter set");
         ModificarLista(listaDeCarreras);
-        Log.d("Mostrar","Paso el cambiar contenido");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -104,10 +104,13 @@ public class FragmentMostrarListaCarreras extends Fragment {
                 Toast toast1 =Toast.makeText(this.getActivity(), "esta vacia", Toast.LENGTH_SHORT);
                 toast1.show();
             }else{
-                ListView lista =VistaDevolver.findViewById(R.id.ListaDeInformacion);
-                Log.d("Mostrar","Cantidad: "+ListaFiltrada.size());
-                Adaptador_Carrera adapter=new Adaptador_Carrera(this,ListaFiltrada);
-                lista.setAdapter(adapter);
+
+                Log.d("ModificarLista","Cantidad: "+ListaFiltrada.size());
+                adapter=new Adaptador_Carrera(getContext(),ListaFiltrada);
+                Log.d("ModificarLista","por setear");
+                adapter.notifyDataSetChanged();
+                Log.d("ModificarLista","notificado");
+                recyclerView.setAdapter(adapter);
             }
         }else{
             Toast.makeText(this.getActivity(), "esta NULL", Toast.LENGTH_SHORT).show();
@@ -115,13 +118,6 @@ public class FragmentMostrarListaCarreras extends Fragment {
 
 
 
-    }
-    public ArrayList<Carrera> getListaDeCarreras()
-    {
-        return listaDeCarreras;
-    }
-    public ListView getLista(){
-        return lista;
     }
     private ArrayList<Carrera> getItemEnElArray()
     {

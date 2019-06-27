@@ -15,8 +15,6 @@ public class MainActivity extends AppCompatActivity {
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
-    Adaptador_Carrera adaptadorCarrera;
-    ArrayList<Carrera> Lista;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
