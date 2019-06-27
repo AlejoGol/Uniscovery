@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -26,9 +25,9 @@ public class FragmentMostrarListaCarreras extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup grupoView, Bundle datosRecibidos)
     {
         Log.d("onCreateView","entro");
-        VistaDevolver=inflater.inflate(R.layout.mostrar_listado_carreras,grupoView);
+        VistaDevolver=inflater.inflate(R.layout.mostrar_listado_carreras,grupoView,true);
         Log.d("onCreateView","se inflo");
-        recyclerView=VistaDevolver.findViewById(R.id.ListaDeInformacion);
+        recyclerView=VistaDevolver.findViewById(R.id.ListaCarreras);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         searchView=VistaDevolver.findViewById(R.id.SearchBuscar);
         listaDeCarreras = getItemEnElArray();
@@ -36,7 +35,7 @@ public class FragmentMostrarListaCarreras extends Fragment {
         adapter=new Adaptador_Carrera(getContext(),listaDeCarreras);
         recyclerView.setAdapter(adapter);
         Log.d("onCreateView","adapter set");
-        ModificarLista(listaDeCarreras);
+        //ModificarLista(listaDeCarreras);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -94,7 +93,7 @@ public class FragmentMostrarListaCarreras extends Fragment {
                 return false;
             }
         });
-
+        Log.d("onCreateView","pre-return");
         return VistaDevolver;
     }
     public void ModificarLista(ArrayList<Carrera> ListaFiltrada){

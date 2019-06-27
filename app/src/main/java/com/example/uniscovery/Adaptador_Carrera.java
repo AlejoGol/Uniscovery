@@ -1,5 +1,4 @@
 package com.example.uniscovery;
-
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,15 +17,18 @@ public class Adaptador_Carrera extends RecyclerView.Adapter {
     public ArrayList<Carrera> MiListaCarreras;
 
 
+
     public Adaptador_Carrera(Context context, ArrayList<Carrera> listaFiltrada) {
         Contexto=context;
         MiListaCarreras=listaFiltrada;
     }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         Log.d("onCreateViewHolder","se creo");
-        View contentView=LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.diseniolistview,null,false);
+
+        View contentView=LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.diseniolistview,viewGroup).getRootView();
         Log.d("onCreateViewHolder","se creo");
         return new Holder(contentView);
     }
@@ -53,7 +56,7 @@ public class Adaptador_Carrera extends RecyclerView.Adapter {
             ImageView imagen;
             TextView NombreCarrera;
             TextView NombreFacultad;
-            public Holder(@NonNull View itemView) {
+            Holder(@NonNull View itemView) {
                 super(itemView);
                 imagen=itemView.findViewById(R.id.ImagenFacultad);
                 NombreCarrera=itemView.findViewById(R.id.NombreCarrera);
