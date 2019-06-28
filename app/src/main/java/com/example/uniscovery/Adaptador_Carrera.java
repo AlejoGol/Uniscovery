@@ -8,15 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class Adaptador_Carrera extends RecyclerView.Adapter {
+public class Adaptador_Carrera extends RecyclerView.Adapter<Adaptador_Carrera.Holder> implements View.OnClickListener {
     public Context Contexto;
     public ArrayList<Carrera> MiListaCarreras;
-
-
 
     public Adaptador_Carrera(Context context, ArrayList<Carrera> listaFiltrada) {
         Contexto=context;
@@ -25,16 +24,17 @@ public class Adaptador_Carrera extends RecyclerView.Adapter {
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public Holder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         Log.d("onCreateViewHolder","se creo");
+        LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
+        View v = inflater.inflate(R.layout.diseniolistview, null);
+        Holder vh = new Holder( v );
+        return vh;
 
-        View contentView=LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.diseniolistview,viewGroup).getRootView();
-        Log.d("onCreateViewHolder","se creo");
-        return new Holder(contentView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull Holder viewHolder, int i) {
        Carrera carrera=MiListaCarreras.get(i);
        Holder Holder=(Holder) viewHolder;
        Holder.imagen.setImageResource(R.drawable.sinimagen);
@@ -48,11 +48,23 @@ public class Adaptador_Carrera extends RecyclerView.Adapter {
         return 0;
     }
 
+    public void updateData(ArrayList<Carrera> data) {
+        this.MiListaCarreras.clear();
+
+        this.MiListaCarreras.addAll(data);
+        this.notifyDataSetChanged();
+    }
     @Override
     public int getItemCount() {
         return MiListaCarreras.size();
     }
-        public static class Holder extends RecyclerView.ViewHolder{
+
+    @Override
+    public void onClick(View v) {
+
+    }
+
+    public  class Holder extends RecyclerView.ViewHolder{
             ImageView imagen;
             TextView NombreCarrera;
             TextView NombreFacultad;
@@ -63,7 +75,13 @@ public class Adaptador_Carrera extends RecyclerView.Adapter {
                 NombreFacultad=itemView.findViewById(R.id.NombreFacultad);
 
             }
-            private static int validarImagen(String Facultad)
+            public void bindData(final Holder holder) {
+
+                imagen.setImageResource(R.drawable.sinimagen);
+                NombreCarrera.setText(holder.NombreCarrera.toString());
+                NombreFacultad.setText(holder.NombreFacultad.toString());
+            }
+            private  int validarImagen(String Facultad)
             {   int valorADevolver=-1;
                 switch(Facultad.toLowerCase())
                 {

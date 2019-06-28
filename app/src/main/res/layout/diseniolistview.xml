@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:textSize="20dp"
             android:textStyle="bold|italic"
+            android:paddingTop="10sp"
             android:id="@+id/NombreCarrera"/>
         <TextView
             android:layout_width="wrap_content"

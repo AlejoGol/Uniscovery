@@ -15,27 +15,22 @@ import android.widget.SearchView;
 import android.widget.Toast;
 import java.util.ArrayList;
 
-public class FragmentMostrarListaCarreras extends Fragment {
+public class FragmentMostrarListaCarreras extends Fragment implements View.OnClickListener{
     View VistaDevolver;
     SearchView searchView;
     Adaptador_Carrera adapter;
+    int PaginaActual=1;
     //int[] imgs={R.drawable.uba,R.drawable.utn,R.drawable.uca,R.drawable.belgrano,R.drawable.moron,R.drawable.emba,R.drawable.untref};
     ArrayList<Carrera> listaDeCarreras=new ArrayList<>();
+    ArrayList<Carrera> ListaFiltrada=new ArrayList<>();
     public RecyclerView recyclerView;
     public View onCreateView(LayoutInflater inflater, ViewGroup grupoView, Bundle datosRecibidos)
     {
         Log.d("onCreateView","entro");
-        VistaDevolver=inflater.inflate(R.layout.mostrar_listado_carreras,grupoView,true);
+        VistaDevolver=inflater.inflate(R.layout.mostrar_listado_carreras,null,true);
         Log.d("onCreateView","se inflo");
-        recyclerView=VistaDevolver.findViewById(R.id.ListaCarreras);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         searchView=VistaDevolver.findViewById(R.id.SearchBuscar);
-        listaDeCarreras = getItemEnElArray();
-        Log.d("onCreateView","array con informacion :"+listaDeCarreras.size());
-        adapter=new Adaptador_Carrera(getContext(),listaDeCarreras);
-        recyclerView.setAdapter(adapter);
-        Log.d("onCreateView","adapter set");
-        //ModificarLista(listaDeCarreras);
+        construirRecycler();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -58,7 +53,7 @@ public class FragmentMostrarListaCarreras extends Fragment {
                 return true; }
             @Override
             public boolean onQueryTextChange(String newText) {
-                ArrayList<Carrera> ListaFiltrada=new ArrayList<>();
+                ListaFiltrada.clear();
                 newText=newText.toUpperCase();
                 for (Carrera carrera:listaDeCarreras) {
 
@@ -96,6 +91,15 @@ public class FragmentMostrarListaCarreras extends Fragment {
         Log.d("onCreateView","pre-return");
         return VistaDevolver;
     }
+    private void construirRecycler() {
+        listaDeCarreras=new ArrayList<>();
+        recyclerView= (RecyclerView)VistaDevolver.findViewById(R.id.ListaCarreras);
+        listaDeCarreras=getItemEnElArray();
+        ListaFiltrada=PrimerFiltro();
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        Adaptador_Carrera adapter=new Adaptador_Carrera(getContext(),ListaFiltrada);
+        recyclerView.setAdapter(adapter);
+    }
     public void ModificarLista(ArrayList<Carrera> ListaFiltrada){
 
         if (ListaFiltrada!=null){
@@ -105,9 +109,10 @@ public class FragmentMostrarListaCarreras extends Fragment {
             }else{
 
                 Log.d("ModificarLista","Cantidad: "+ListaFiltrada.size());
-                adapter=new Adaptador_Carrera(getContext(),ListaFiltrada);
+                //adapter.updateData(ListaFiltrada);
+                adapter=new Adaptador_Carrera(this.getActivity(),ListaFiltrada);
                 Log.d("ModificarLista","por setear");
-                adapter.notifyDataSetChanged();
+
                 Log.d("ModificarLista","notificado");
                 recyclerView.setAdapter(adapter);
             }
@@ -126,7 +131,6 @@ public class FragmentMostrarListaCarreras extends Fragment {
         Cursor RegistrosLeidos;
         String SqlConsulta="select Nombre_Carrera,Nombre_Facultad from Carerras" ;
         RegistrosLeidos=DB.EjecutarConsulta(SqlConsulta);
-        // Recorrosad
         Log.d("BD","cargo la informacion,puede ser");
 
         if (RegistrosLeidos.moveToFirst()) {
@@ -223,5 +227,28 @@ public class FragmentMostrarListaCarreras extends Fragment {
         }
         RegistrosLeidos.close();
         return IDTags;
+    }
+    public ArrayList<Carrera> PrimerFiltro()
+    {
+        Paginado paginado=new Paginado(listaDeCarreras,listaDeCarreras.size());
+        ArrayList<Carrera> paginada=new ArrayList<>();
+        paginada=paginado.setPaginaActual(PaginaActual);
+        return paginada;
+    }
+    @Override
+    public void onClick(View v) {
+        Paginado paginado=new Paginado(ListaFiltrada,listaDeCarreras.size());
+        ArrayList<Carrera> paginada=new ArrayList<>();
+        if(v.getId()==R.id.anterior)
+        {
+            paginado.paginaActual--;
+            paginada=paginado.setPaginaActual(PaginaActual);
+        }
+        else
+        {
+            paginado.paginaActual++;
+            paginada=paginado.setPaginaActual(PaginaActual);
+        }
+        ModificarLista(paginada);
     }
 }

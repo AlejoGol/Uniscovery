@@ -788,20 +788,20 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
     }
     private void Tags(SQLiteDatabase BaseDeDatos)
     {
-        InsertarTags(BaseDeDatos,"Ingenieria");
-        InsertarTags(BaseDeDatos,"Profesorado");
-        InsertarTags(BaseDeDatos,"Matematica");
-        InsertarTags(BaseDeDatos,"Nutricion");
-        InsertarTags(BaseDeDatos,"Leyes");
-        InsertarTags(BaseDeDatos,"Arquitectura");
-        InsertarTags(BaseDeDatos,"Economicas");
-        InsertarTags(BaseDeDatos,"Tecnicatura");
-        InsertarTags(BaseDeDatos,"Sociales");
-        InsertarTags(BaseDeDatos,"Administracion");
-        InsertarTags(BaseDeDatos,"Diseño");
-        InsertarTags(BaseDeDatos,"Diplomacia");
-        InsertarTags(BaseDeDatos,"Ciencias naturales");
-        InsertarTags(BaseDeDatos,"Agronomia");
+        InsertarTags(BaseDeDatos,"Ingenieria");//0
+        InsertarTags(BaseDeDatos,"Profesorado");//1
+        InsertarTags(BaseDeDatos,"Matematica");//2
+        InsertarTags(BaseDeDatos,"Nutricion");//3
+        InsertarTags(BaseDeDatos,"Leyes");//4
+        InsertarTags(BaseDeDatos,"Arquitectura");//5
+        InsertarTags(BaseDeDatos,"Economicas");//6
+        InsertarTags(BaseDeDatos,"Tecnicatura");//7
+        InsertarTags(BaseDeDatos,"Sociales");//8
+        InsertarTags(BaseDeDatos,"Administracion");//9
+        InsertarTags(BaseDeDatos,"Diseño");//10
+        InsertarTags(BaseDeDatos,"Diplomacia");//11
+        InsertarTags(BaseDeDatos,"Ciencias naturales");//12
+        InsertarTags(BaseDeDatos,"Agronomia");//13
         InsertarRelacionTags(BaseDeDatos,1,6);
         InsertarRelacionTags(BaseDeDatos,2,5);
         InsertarRelacionTags(BaseDeDatos,3,10);
