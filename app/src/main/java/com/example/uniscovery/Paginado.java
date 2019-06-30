@@ -1,5 +1,7 @@
 package com.example.uniscovery;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class Paginado {
@@ -20,21 +22,22 @@ public class Paginado {
         }
         return numPaginas;
     }
-    public ArrayList<Carrera> setPaginaActual(int paginaActual){
+    public ArrayList<Carrera> setPaginaActual(int valorPagina){
         ArrayList<Carrera> paginada=new ArrayList<>();
+        this.paginaActual = valorPagina;
         if(paginaActual==-1)
         {
             paginaActual=0;
         }
-        else
-        {
-            this.paginaActual = paginaActual;
-        }
+        Log.d("setPaginaActual","valor de pagina actual "+valorPagina);
+
         for(int i=0;i<10;i++){
             if(i+(paginaActual*10)<ListaDeElementos.size()){
+                Log.d("setPaginaActual",""+ListaDeElementos.get(i+(paginaActual*10)).NombreCarrera);
                 paginada.add(ListaDeElementos.get(i+(paginaActual*10)));
             }
         }
+        Log.d("paginada",""+paginada.size());
         return paginada;
     }
 

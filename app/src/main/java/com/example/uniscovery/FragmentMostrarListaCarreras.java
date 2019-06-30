@@ -11,15 +11,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Toast;
 import java.util.ArrayList;
 
 public class FragmentMostrarListaCarreras extends Fragment implements View.OnClickListener{
     View VistaDevolver;
+    Paginado paginado;
     SearchView searchView;
     Adaptador_Carrera adapter;
-    int PaginaActual=1;
+    Button Anterior;
+    Button siguiente;
+    int PaginaActual=0;
     //int[] imgs={R.drawable.uba,R.drawable.utn,R.drawable.uca,R.drawable.belgrano,R.drawable.moron,R.drawable.emba,R.drawable.untref};
     ArrayList<Carrera> listaDeCarreras=new ArrayList<>();
     ArrayList<Carrera> ListaFiltrada=new ArrayList<>();
@@ -30,6 +34,9 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
         VistaDevolver=inflater.inflate(R.layout.mostrar_listado_carreras,null,true);
         Log.d("onCreateView","se inflo");
         searchView=VistaDevolver.findViewById(R.id.SearchBuscar);
+        Anterior=VistaDevolver.findViewById(R.id.anterior);
+        siguiente=VistaDevolver.findViewById(R.id.Siguiente);
+
         construirRecycler();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -91,13 +98,77 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
         Log.d("onCreateView","pre-return");
         return VistaDevolver;
     }
+    public void onClick(View v) {
+        ArrayList<Carrera> paginada;
+        Log.d("OnClick","entro");
+
+
+
+        if(v.getId()==R.id.anterior)
+        {
+            Log.d("OnClick","anterior");
+            paginado.paginaActual--;
+            paginada=paginado.setPaginaActual(paginado.paginaActual);
+            if(paginado.paginaActual==0) {
+                Anterior.setEnabled(false);
+            }
+            else{
+                Anterior.setEnabled(true);
+            }
+            if(paginado.paginaActual==paginado.numPaginas(listaDeCarreras.size())-1)
+            {
+                siguiente.setEnabled(false);
+            }
+            if(paginado.paginaActual!=paginado.numPaginas(listaDeCarreras.size()))
+            {
+                siguiente.setEnabled(true);
+            }
+        }
+        else
+        {
+            Log.d("OnClick","siguiente");
+            paginado.paginaActual=paginado.paginaActual+1;
+            Log.d("OnClick",""+paginado.paginaActual);
+            paginada=paginado.setPaginaActual(paginado.paginaActual);
+            if(paginado.paginaActual==0) {
+                Anterior.setEnabled(false);
+            }
+            else{
+                Anterior.setEnabled(true);
+            }
+            Log.d("cant",""+paginado.numPaginas(listaDeCarreras.size()));
+            int pag=paginado.paginaActual+1;
+            Log.d("paginado",""+pag);
+            if(pag==paginado.numPaginas(listaDeCarreras.size()))
+            {
+                siguiente.setEnabled(true);
+            }
+            if(paginado.paginaActual!=paginado.numPaginas(listaDeCarreras.size()))
+            {
+                siguiente.setEnabled(false);
+            }
+        }
+        ModificarLista(paginada);
+    }
     private void construirRecycler() {
         listaDeCarreras=new ArrayList<>();
         recyclerView= (RecyclerView)VistaDevolver.findViewById(R.id.ListaCarreras);
         listaDeCarreras=getItemEnElArray();
+        ArrayList<Carrera> Eliminar=new ArrayList<>();
+        for (Carrera Actual:listaDeCarreras)
+        {
+            if(VerificarSiEstaEnLaLista(Actual)==true)
+            {
+                Eliminar.add(Actual);
+            }
+        }
+        Eliminar(Eliminar);
+        paginado=new Paginado(listaDeCarreras,listaDeCarreras.size());
         ListaFiltrada=PrimerFiltro();
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         Adaptador_Carrera adapter=new Adaptador_Carrera(getContext(),ListaFiltrada);
+        Anterior.setOnClickListener(this);
+        siguiente.setOnClickListener(this);
         recyclerView.setAdapter(adapter);
     }
     public void ModificarLista(ArrayList<Carrera> ListaFiltrada){
@@ -106,6 +177,9 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
             if(ListaFiltrada.size()==0) {
                 Toast toast1 =Toast.makeText(this.getActivity(), "esta vacia", Toast.LENGTH_SHORT);
                 toast1.show();
+                ListaFiltrada.clear();
+                adapter=new Adaptador_Carrera(this.getActivity(),ListaFiltrada);
+                recyclerView.setAdapter(adapter);
             }else{
 
                 Log.d("ModificarLista","Cantidad: "+ListaFiltrada.size());
@@ -230,25 +304,36 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
     }
     public ArrayList<Carrera> PrimerFiltro()
     {
-        Paginado paginado=new Paginado(listaDeCarreras,listaDeCarreras.size());
-        ArrayList<Carrera> paginada=new ArrayList<>();
+        ArrayList<Carrera> paginada;
         paginada=paginado.setPaginaActual(PaginaActual);
-        return paginada;
-    }
-    @Override
-    public void onClick(View v) {
-        Paginado paginado=new Paginado(ListaFiltrada,listaDeCarreras.size());
-        ArrayList<Carrera> paginada=new ArrayList<>();
-        if(v.getId()==R.id.anterior)
-        {
-            paginado.paginaActual--;
-            paginada=paginado.setPaginaActual(PaginaActual);
+            Anterior.setEnabled(false);
+            Log.d("PrimerFiltro",""+listaDeCarreras.size());
+            Log.d("PrimerFiltro",""+paginada.size());
+            return paginada;
         }
-        else
+        public void Eliminar(ArrayList<Carrera> Eliminar)
+    {
+        for (Carrera Actual:Eliminar)
         {
-            paginado.paginaActual++;
-            paginada=paginado.setPaginaActual(PaginaActual);
+            listaDeCarreras.remove(Actual);
         }
-        ModificarLista(paginada);
     }
+    public boolean VerificarSiEstaEnLaLista(Carrera ElementoActual)
+    {
+        boolean veracidad=false;
+        int contador=0;
+        for (Carrera Actual:listaDeCarreras)
+        {
+            if(Actual.equals(ElementoActual))
+            {
+                contador++;
+            }
+        }
+        if(contador!=1){
+            veracidad=true;
+        }
+        return veracidad;
+    }
+
+
 }
