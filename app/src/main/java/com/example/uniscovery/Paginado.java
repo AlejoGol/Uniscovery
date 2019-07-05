@@ -22,6 +22,13 @@ public class Paginado {
         }
         return numPaginas;
     }
+    public void ActualizarValores(ArrayList<Carrera> nueva,int nuevolargo)
+    {
+        ListaDeElementos.clear();
+        ListaDeElementos.addAll(nueva);
+        cantidadItems=nuevolargo;
+        paginaActual=0;
+    }
     public ArrayList<Carrera> setPaginaActual(int valorPagina){
         ArrayList<Carrera> paginada=new ArrayList<>();
         this.paginaActual = valorPagina;
