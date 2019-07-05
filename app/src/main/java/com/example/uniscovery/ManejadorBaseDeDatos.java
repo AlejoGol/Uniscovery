@@ -21,6 +21,7 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS Carerras");
         db.execSQL("DROP TABLE IF EXISTS Relacion_Carrera_Tag");
         db.execSQL("DROP TABLE IF EXISTS Tags");
+        db.execSQL("DROP TABLE IF EXISTS Materias");
     }
 
     @Override
