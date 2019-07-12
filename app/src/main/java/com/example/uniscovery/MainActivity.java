@@ -15,6 +15,16 @@ public class MainActivity extends AppCompatActivity   {
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
+    private Carrera Seleccion=null;
+
+    public Carrera getSeleccion() {
+        return Seleccion;
+    }
+
+    public void setSeleccion(Carrera seleccion) {
+        Seleccion = seleccion;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +33,15 @@ public class MainActivity extends AppCompatActivity   {
         fragmentManager=getFragmentManager();
         fragmentTransaction=fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.FrameLayoutPrincipal,fragmentMenu);
+        fragmentTransaction.commit();
+    }
+
+    public void RemplazarPorViewPrivada(Carrera seleccionada)
+    {
+     Seleccion=seleccionada;
+        FragmentMostrarInformacionUnaCarrera fragmentMostrarInformacionUnaCarrera=new FragmentMostrarInformacionUnaCarrera();
+        fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.FrameLayoutPrincipal,fragmentMostrarInformacionUnaCarrera);
         fragmentTransaction.commit();
     }
     public void RemplazarPorListado()

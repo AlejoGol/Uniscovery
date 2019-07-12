@@ -64,7 +64,7 @@ public class Adaptador_Carrera extends RecyclerView.Adapter<Adaptador_Carrera.Ho
 
     }
 
-    public  class Holder extends RecyclerView.ViewHolder{
+    public  class Holder extends RecyclerView.ViewHolder  {
             ImageView imagen;
             TextView NombreCarrera;
             TextView NombreFacultad;
@@ -157,7 +157,9 @@ public class Adaptador_Carrera extends RecyclerView.Adapter<Adaptador_Carrera.Ho
 
                 return valorADevolver;
             }
-        }
+
+
+    }
 
 
 }
