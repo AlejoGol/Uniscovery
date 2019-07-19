@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity   {
 
     public void RemplazarPorViewPrivada(Carrera seleccionada)
     {
-     Seleccion=seleccionada;
+        Seleccion=seleccionada;
         FragmentMostrarInformacionUnaCarrera fragmentMostrarInformacionUnaCarrera=new FragmentMostrarInformacionUnaCarrera();
         fragmentTransaction=fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.FrameLayoutPrincipal,fragmentMostrarInformacionUnaCarrera);

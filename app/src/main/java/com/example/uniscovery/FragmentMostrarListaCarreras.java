@@ -112,14 +112,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
         });
         Log.d("onCreateView","pre-return");
 
-    recyclerView.setOnClickListener(new View.OnClickListener() {
-        public void onClick(View v) {
-            int position=listaDeCarreras.indexOf(v);
-            Log.d("Click","Se apreto");
-            MainActivity IrAPrincipal=(MainActivity)getActivity();
-            IrAPrincipal.RemplazarPorViewPrivada(listaDeCarreras.get(position));
-        }
-    });
+
         return VistaDevolver;
     }
     public void onClick(View v) {
@@ -197,6 +190,18 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
         Anterior.setOnClickListener(this);
         siguiente.setOnClickListener(this);
         recyclerView.setAdapter(adapter);
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this.getContext(), recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+            @Override public void onItemClick(View view, int position) {
+                ArrayList<Carrera> ElementoCompleto=Adaptador_Carrera.getMiListaCarreras();
+                MainActivity main=(MainActivity)getActivity();
+                main.RemplazarPorViewPrivada(ElementoCompleto.get(position));
+
+            }
+
+            @Override public void onLongItemClick(View view, int position) {
+                // do whatever
+            }
+        }));
     }
     public void ModificarLista(ArrayList<Carrera> ListaFiltrada){
 
@@ -232,19 +237,21 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
         ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,5);
         ArrayList<Carrera> items= new ArrayList<>();
         Cursor RegistrosLeidos;
-        String SqlConsulta="select Nombre_Carrera,Nombre_Facultad,Descripcion from Carerras" ;
+        String SqlConsulta="select ID_carrera,Nombre_Carrera,Nombre_Facultad,Descripcion from Carerras" ;
         RegistrosLeidos=DB.EjecutarConsulta(SqlConsulta);
         Log.d("BD","cargo la informacion,puede ser");
 
         if (RegistrosLeidos.moveToFirst()) {
             do {
                 Log.d("BD","entra");
-                String Nombre=RegistrosLeidos.getString(0);
+                int id=RegistrosLeidos.getInt(0);
+                String Nombre=RegistrosLeidos.getString(1);
                 Log.d("BD",""+Nombre);
-                String Facultad=RegistrosLeidos.getString(1);
+                String Facultad=RegistrosLeidos.getString(2);
                 Log.d("BD",""+Facultad);
-                String descripcion=RegistrosLeidos.getString(2);
+                String descripcion=RegistrosLeidos.getString(3);
                 Carrera item=new Carrera(0,Nombre,Facultad,descripcion);
+                item.setIDCarrera(id);
                 items.add(item);
             }while(RegistrosLeidos.moveToNext());
         }
@@ -282,6 +289,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
                 if (IdCarreras.contains(idTag))
                 {
                     Carrera item=new Carrera(0,NombreCarrera,NombreFacultad,descripcion);
+                    item.setIDCarrera(idTag);
                     CarrerasConTags.add(item);
                 }
             }while(RegistrosLeidos.moveToNext());

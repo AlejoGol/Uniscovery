@@ -5,6 +5,8 @@
     <string name="igal_pisterman_rozenek" />
     <string name="y" />
     <string name="alejo_goltzman" />
+    <string name="pagina_anterior">pagina anterior</string>
+    <string name="siguiente_pagina">siguiente Pagina</string>
     <string-array name="ArrayDeString">
         <item>INGENIERIA INFORMATICA</item>
         <item>CIENCIAS DE LA COMPUTACION</item>

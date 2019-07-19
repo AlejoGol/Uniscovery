@@ -5,30 +5,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="20sp"
         android:id="@+id/ImagenDeLaFacultadCarreraViewPrivada"/>
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="200sp"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
+        android:textSize="25sp"
+        android:layout_marginStart="20sp"
         android:text="Nombre de la carrera"
+        app:layout_constraintBottom_toBottomOf="@id/ImagenDeLaFacultadCarreraViewPrivada"
         app:layout_constraintTop_toTopOf="@id/ImagenDeLaFacultadCarreraViewPrivada"
         android:layout_marginTop="5sp"
         android:id="@+id/NombreDeLaCarreraViewPrivada"
-        android:layout_marginLeft="20sp"
+        android:layout_marginLeft="40sp"
         app:layout_constraintLeft_toRightOf="@id/ImagenDeLaFacultadCarreraViewPrivada"
         />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
+        android:textSize="10sp"
         android:text="aca va la descripcion"
         android:id="@+id/DescripcionCarreraViewPrivada"
         android:layout_marginTop="30sp"
+        android:layout_marginLeft="10sp"
         app:layout_constraintTop_toBottomOf="@id/ImagenDeLaFacultadCarreraViewPrivada"/>
     <Spinner
         android:layout_width="match_parent"

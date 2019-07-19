@@ -5,16 +5,28 @@ public class Carrera {
     public String NombreCarrera;
     public String NombreFacultad;
     public String Descipcion;
+    private int IDCarrera;
 
+    public int getIDCarrera() {
+        return IDCarrera;
+    }
 
-    public Carrera(int IDImagen, String nombreCarrera, String nombreFacultad,String descipcion) {
+    public void setIDCarrera(int IDCarrera) {
+        this.IDCarrera = IDCarrera;
+    }
+
+    public void setIDImagen(int IDImagen) {
+        this.IDImagen = IDImagen;
+    }
+
+    public Carrera(int IDImagen, String nombreCarrera, String nombreFacultad, String descipcion) {
         this.IDImagen = IDImagen;
         NombreCarrera = nombreCarrera;
         NombreFacultad = nombreFacultad;
         Descipcion=descipcion;
     }
     public Carrera() {
-        this.IDImagen = IDImagen;
+        this.IDImagen = 0;
         NombreCarrera = "";
         NombreFacultad = "";
         Descipcion="";

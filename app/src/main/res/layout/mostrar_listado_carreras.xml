@@ -19,7 +19,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="pagina anterior"
+        android:text="@string/pagina_anterior"
         app:layout_constraintTop_toBottomOf="@id/SearchBuscar"
         app:layout_constraintLeft_toRightOf="parent"
         app:layout_constraintRight_toLeftOf="@id/Siguiente"
@@ -30,7 +30,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="siguiente Pagina"
+        android:text="@string/siguiente_pagina"
         app:layout_constraintTop_toBottomOf="@id/SearchBuscar"
         app:layout_constraintLeft_toRightOf="@id/anterior"
         app:layout_constraintRight_toLeftOf="parent"
