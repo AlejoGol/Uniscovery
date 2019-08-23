@@ -1,6 +1,8 @@
 package com.example.uniscovery;
 import android.content.Context;
 import android.database.Observable;
+import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,13 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class Adaptador_Carrera extends RecyclerView.Adapter<Adaptador_Carrera.Holder> implements View.OnClickListener {
+/*public class Adaptador_Carrera extends RecyclerView.Adapter<Adaptador_Carrera.Holder> implements View.OnClickListener {
     public Context Contexto;
     public static ArrayList<Carrera> MiListaCarreras;
 
@@ -163,7 +166,6 @@ public class Adaptador_Carrera extends RecyclerView.Adapter<Adaptador_Carrera.Ho
                 super(itemView);
                 imagen=itemView.findViewById(R.id.ImagenFacultad);
                 NombreCarrera=itemView.findViewById(R.id.NombreCarrera);
-                NombreFacultad=itemView.findViewById(R.id.NombreFacultad);
 
             }
             public void bindData(final Holder holder) {
@@ -178,4 +180,154 @@ public class Adaptador_Carrera extends RecyclerView.Adapter<Adaptador_Carrera.Ho
 
     }
 
+}*/
+public class Adaptador_Carrera extends BaseAdapter
+{
+    public Context Contexto;
+    public static ArrayList<Carrera> MiListaCarreras;
+    ImageView LogoFacultad;
+    ArrayList<String> ListaFacultades=new ArrayList<>();
+    public Adaptador_Carrera(Context context, ArrayList<Carrera> listaFiltrada) {
+        Contexto=context;
+        MiListaCarreras=listaFiltrada;
+    }
+    public static ArrayList<Carrera> getMiListaCarreras() {
+        return MiListaCarreras;
+    }
+
+    @Override
+    public int getCount() {
+        return MiListaCarreras.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return MiListaCarreras.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return 0;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        LayoutInflater inflador=(LayoutInflater) Contexto.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View VistaDevolver= inflador.inflate(R.layout.diseniolistview,parent,false);
+        LogoFacultad=VistaDevolver.findViewById(R.id.ImagenFacultad);
+        TextView NombreCarrera=VistaDevolver.findViewById(R.id.NombreCarrera);
+        NombreCarrera.setText(MiListaCarreras.get(position).NombreCarrera);
+
+        for (Carrera Facultad:MiListaCarreras) {
+            ListaFacultades.add(Facultad.NombreFacultad);
+        }
+        class CargarImagenes extends AsyncTask<String,Void, Bitmap>
+        {
+            ArrayList<Integer> IdImagenes;
+            @Override
+            protected Bitmap doInBackground(String... Carreras) {
+                IdImagenes=new ArrayList<>();
+                try {
+                    for (String NombreCarrera : ListaFacultades) {
+                        IdImagenes.add(validarImagen(NombreCarrera));
+                    }
+                }catch (Exception e)
+                {
+
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Bitmap bitmap) {
+                super.onPostExecute(bitmap);
+                for (int Id:IdImagenes)
+                {
+                    LogoFacultad.setImageResource(Id);
+                }
+
+            }
+        }
+        CargarImagenes TareaAsyncronica=new CargarImagenes();
+        TareaAsyncronica.execute();
+        return VistaDevolver;
+    }
+
+    private  int validarImagen(String Facultad)
+    {   int valorADevolver=-1;
+        Log.d("validarImagen",Facultad);
+        switch(Facultad.toLowerCase())
+        {
+            case "utn":
+                valorADevolver=R.drawable.utn;
+                break;
+            case "uba":
+                valorADevolver=R.drawable.uba;
+                break;
+            case "emba":
+                valorADevolver=R.drawable.emba;
+                break;
+            case "di tella":
+                valorADevolver=R.drawable.ditella;
+                break;
+            case "uces":
+                valorADevolver=R.drawable.uces;
+                break;
+            case "umai":
+                valorADevolver=R.drawable.umai;
+                break;
+            case "uade":
+                valorADevolver=R.drawable.uade;
+                break;
+            case "udesa":
+                valorADevolver=R.drawable.udesa;
+                break;
+            case "up":
+                valorADevolver=R.drawable.up;
+                break;
+            case "caece":
+                valorADevolver=R.drawable.caece;
+                break;
+            case "itba":
+                valorADevolver=R.drawable.itba;
+                break;
+            case "unq":
+                valorADevolver=R.drawable.unq;
+                break;
+            case "ub":
+                valorADevolver=R.drawable.belgrano;
+                break;
+            case "unlam":
+                valorADevolver=R.drawable.unlam;
+                break;
+            case "uca":
+                valorADevolver=R.drawable.uca;
+                break;
+            case "austral":
+                valorADevolver=R.drawable.austral;
+                break;
+            case "image campus":
+                valorADevolver=R.drawable.imagecampus;
+                break;
+            case "favaloro":
+                valorADevolver=R.drawable.favaloro;
+                break;
+            case "ucema":
+                valorADevolver=R.drawable.ucema;
+                break;
+            case "um":
+                valorADevolver=R.drawable.moron;
+                break;
+            case "untref":
+                valorADevolver=R.drawable.untref;
+                break;
+            case "una":
+                valorADevolver=R.drawable.una;
+                break;
+            default:
+                break;
+        }
+
+        return valorADevolver;
+    }
 }

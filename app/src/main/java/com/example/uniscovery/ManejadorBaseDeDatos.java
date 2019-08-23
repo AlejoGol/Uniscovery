@@ -22,6 +22,7 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS Relacion_Carrera_Tag");
         db.execSQL("DROP TABLE IF EXISTS Tags");
         db.execSQL("DROP TABLE IF EXISTS Materias");
+        db.execSQL("DROP TABLE IF EXISTS Preguntas");
     }
 
     @Override
@@ -36,10 +37,13 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         db.execSQL(SQLliteTabla);
         SQLliteTabla="create table Materias (ID_Materia INTEGER PRIMARY KEY AUTOINCREMENT, ID_Carrera INTEGER, Nombre_Materia TEXT, Anio INTEGER,Opcionalidad INTEGER)";
         db.execSQL(SQLliteTabla);
+        SQLliteTabla="create table Preguntas (ID_Pregunta INTEGER PRIMARY KEY AUTOINCREMENT, TextoPregunta TEXT, InteligenciaMultiple TEXT)";
+        db.execSQL(SQLliteTabla);
         DB=db;
         InsertarValores(db);
         Tags(db);
         MateriasDeCarrera(db);
+        Preguntas(db);
 
 
 
@@ -798,6 +802,38 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         InsertarTags(BaseDeDatos,"Diplomacia");//11
         InsertarTags(BaseDeDatos,"Ciencias naturales");//12
         InsertarTags(BaseDeDatos,"Agronomia");//13
+        InsertarTags(BaseDeDatos,"Diseño");//14
+        InsertarTags(BaseDeDatos,"Construccion");//15
+        InsertarTags(BaseDeDatos,"Visual");//16
+        InsertarTags(BaseDeDatos,"Espacial");//17
+        InsertarTags(BaseDeDatos,"Humanidades");//18
+        InsertarTags(BaseDeDatos,"Intrapersonal");//19
+        InsertarTags(BaseDeDatos,"Sistemas");//20
+        InsertarTags(BaseDeDatos,"Analisis");//21
+        InsertarTags(BaseDeDatos,"Numeros");//22
+        InsertarTags(BaseDeDatos,"Matematica");//23
+        InsertarTags(BaseDeDatos,"Logico");//24
+        InsertarTags(BaseDeDatos,"ritmo");//25
+        InsertarTags(BaseDeDatos,"melodia");//26
+        InsertarTags(BaseDeDatos,"emociones");//27
+        InsertarTags(BaseDeDatos,"componer");//28
+        InsertarTags(BaseDeDatos,"baile");//29
+        InsertarTags(BaseDeDatos,"Musical");//30
+        InsertarTags(BaseDeDatos,"negocios");//31
+        InsertarTags(BaseDeDatos,"relaciones");//32
+        InsertarTags(BaseDeDatos,"Interpersonal");//33
+        InsertarTags(BaseDeDatos,"escribir");//34
+        InsertarTags(BaseDeDatos,"redactar");//35
+        InsertarTags(BaseDeDatos,"leer");//36
+        InsertarTags(BaseDeDatos,"idiomas");//38
+        InsertarTags(BaseDeDatos,"Linguisticas");//38
+        /*InsertarTags(BaseDeDatos,"");//39
+        InsertarTags(BaseDeDatos,"");//40
+        InsertarTags(BaseDeDatos,"");//41
+        InsertarTags(BaseDeDatos,"");//42
+        InsertarTags(BaseDeDatos,"");//43
+        InsertarTags(BaseDeDatos,"");//44
+        InsertarTags(BaseDeDatos,"");//45*/
         InsertarRelacionTags(BaseDeDatos,1,6);
         InsertarRelacionTags(BaseDeDatos,2,5);
         InsertarRelacionTags(BaseDeDatos,3,10);
@@ -811,6 +847,17 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         InsertarRelacionTags(BaseDeDatos,11,13);
         InsertarRelacionTags(BaseDeDatos,12,14);
 
+    }
+    private void Preguntas(SQLiteDatabase BaseDeDatos)
+    {
+        InsertarPreguntas(BaseDeDatos,"","");
+    }
+    private void InsertarPreguntas(SQLiteDatabase BD,String TextoPreg,String Inteligencia)
+    {
+        ContentValues NuevoRegistro=new ContentValues();
+        NuevoRegistro.put("TextoPregunta",TextoPreg.toUpperCase());
+        NuevoRegistro.put("InteligenciaMultiple",Inteligencia.toUpperCase());
+        BD.insert("Preguntas",null,NuevoRegistro);
     }
     private void MateriasDeCarrera(SQLiteDatabase BD)
     {

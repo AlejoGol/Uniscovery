@@ -2,16 +2,15 @@ package com.example.uniscovery;
 
 
 import android.app.Fragment;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.SearchView;
 import android.widget.Toast;
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
     //int[] imgs={R.drawable.uba,R.drawable.utn,R.drawable.uca,R.drawable.belgrano,R.drawable.moron,R.drawable.emba,R.drawable.untref};
     ArrayList<Carrera> listaDeCarreras=new ArrayList<>();
     ArrayList<Carrera> ListaFiltrada=new ArrayList<>();
-    public RecyclerView recyclerView;
+    public GridView gridView;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup grupoView, Bundle datosRecibidos)
     {
@@ -171,7 +170,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
     }
     private void construirRecycler() {
         listaDeCarreras=new ArrayList<>();
-        recyclerView= (RecyclerView)VistaDevolver.findViewById(R.id.ListaCarreras);
+        gridView= (GridView) VistaDevolver.findViewById(R.id.ListaACargar);
         listaDeCarreras=getItemEnElArray();
         ArrayList<Carrera> Eliminar=new ArrayList<>();
         for (Carrera Actual:listaDeCarreras)
@@ -185,23 +184,19 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
         ListaFiltrada.addAll(listaDeCarreras);
         paginado=new Paginado(ListaFiltrada,ListaFiltrada.size());
         ListaFiltrada=PrimerFiltro();
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+
         Adaptador_Carrera adapter=new Adaptador_Carrera(getContext(),ListaFiltrada);
         Anterior.setOnClickListener(this);
         siguiente.setOnClickListener(this);
-        recyclerView.setAdapter(adapter);
-        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this.getContext(), recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
-            @Override public void onItemClick(View view, int position) {
+        gridView.setAdapter(adapter);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ArrayList<Carrera> ElementoCompleto=Adaptador_Carrera.getMiListaCarreras();
                 MainActivity main=(MainActivity)getActivity();
                 main.RemplazarPorViewPrivada(ElementoCompleto.get(position));
-
             }
-
-            @Override public void onLongItemClick(View view, int position) {
-                // do whatever
-            }
-        }));
+        });
     }
     public void ModificarLista(ArrayList<Carrera> ListaFiltrada){
 
@@ -211,7 +206,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
                 toast1.show();
                 ListaFiltrada.clear();
                 adapter=new Adaptador_Carrera(this.getActivity(),ListaFiltrada);
-                recyclerView.setAdapter(adapter);
+                gridView.setAdapter(adapter);
             }else{
 
                 Log.d("ModificarLista","Cantidad: "+ListaFiltrada.size());
@@ -222,7 +217,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
                 Log.d("ModificarLista","por setear");
 
                 Log.d("ModificarLista","notificado");
-                recyclerView.setAdapter(adapter);
+                gridView.setAdapter(adapter);
             }
         }else{
             Toast.makeText(this.getActivity(), "esta NULL", Toast.LENGTH_SHORT).show();
