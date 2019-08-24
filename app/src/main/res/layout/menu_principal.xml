@@ -14,7 +14,7 @@
         android:layout_marginTop="28dp"
         android:backgroundTint="@color/cardview_light_background"
         android:minHeight="150dp"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         android:src="@drawable/logoconnombre"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

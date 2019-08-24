@@ -229,10 +229,10 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
     private ArrayList<Carrera> getItemEnElArray()
     {
         Log.d("BD","getItemEnElArray");
-        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,5);
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,6);
         ArrayList<Carrera> items= new ArrayList<>();
         Cursor RegistrosLeidos;
-        String SqlConsulta="select ID_carrera,Nombre_Carrera,Nombre_Facultad,Descripcion from Carerras" ;
+        String SqlConsulta="select ID_carrera,Nombre_Carrera,Nombre_Facultad,LinkImagen,Descripcion from Carerras" ;
         RegistrosLeidos=DB.EjecutarConsulta(SqlConsulta);
         Log.d("BD","cargo la informacion,puede ser");
 
@@ -244,8 +244,9 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
                 Log.d("BD",""+Nombre);
                 String Facultad=RegistrosLeidos.getString(2);
                 Log.d("BD",""+Facultad);
-                String descripcion=RegistrosLeidos.getString(3);
-                Carrera item=new Carrera(0,Nombre,Facultad,descripcion);
+                String Link=RegistrosLeidos.getString(3);
+                String descripcion=RegistrosLeidos.getString(4);
+                Carrera item=new Carrera(0,Nombre,Facultad,descripcion,Link);
                 item.setIDCarrera(id);
                 items.add(item);
             }while(RegistrosLeidos.moveToNext());
@@ -268,10 +269,10 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
     private ArrayList<Carrera>  BuscarCarrerasPorId(ArrayList<Integer>IdCarreras)
     {
         ArrayList<Carrera> CarrerasConTags=new ArrayList<>();
-        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null, 5);
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null, 6);
 
         Cursor RegistrosLeidos;
-        String SqlConsulta="select ID_carrera, Nombre_Carrera, Nombre_Facultad,Descripcion from Carerras" ;
+        String SqlConsulta="select ID_carrera, Nombre_Carrera, Nombre_Facultad,LinkImagen,Descripcion from Carerras" ;
         RegistrosLeidos=DB.EjecutarConsulta(SqlConsulta);
         Log.d("Tags","Ejecuto consulta a BD");
         if (RegistrosLeidos.moveToFirst()) {
@@ -280,10 +281,11 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
                 int idTag=RegistrosLeidos.getInt(0);
                 String NombreCarrera =RegistrosLeidos.getString(1);
                 String NombreFacultad=RegistrosLeidos.getString(2);
-                String descripcion=RegistrosLeidos.getString(3);
+                String Link=RegistrosLeidos.getString(3);
+                String descripcion=RegistrosLeidos.getString(4);
                 if (IdCarreras.contains(idTag))
                 {
-                    Carrera item=new Carrera(0,NombreCarrera,NombreFacultad,descripcion);
+                    Carrera item=new Carrera(0,NombreCarrera,NombreFacultad,descripcion,Link);
                     item.setIDCarrera(idTag);
                     CarrerasConTags.add(item);
                 }
@@ -295,7 +297,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
     }
     private ArrayList<Integer> BuscarCarrerasPorTag(ArrayList<Integer> IDTags)
     {
-        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(),  "Universidades.db", null, 5);
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(),  "Universidades.db", null, 6);
 
         Cursor RegistrosLeidos;
         String SqlConsulta="select * from Relacion_Carrera_Tag" ;
@@ -318,7 +320,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
     }
     private ArrayList<Integer> BuscarPorIdTag(String query)
     {
-        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null, 5);
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null, 6);
 
         Cursor RegistrosLeidos;
         String SqlConsulta="select * from Tags" ;

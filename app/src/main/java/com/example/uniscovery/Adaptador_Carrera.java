@@ -2,6 +2,7 @@ package com.example.uniscovery;
 import android.content.Context;
 import android.database.Observable;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 /*public class Adaptador_Carrera extends RecyclerView.Adapter<Adaptador_Carrera.Holder> implements View.OnClickListener {
@@ -185,7 +190,7 @@ public class Adaptador_Carrera extends BaseAdapter
 {
     public Context Contexto;
     public static ArrayList<Carrera> MiListaCarreras;
-    ImageView LogoFacultad;
+
     ArrayList<String> ListaFacultades=new ArrayList<>();
     public Adaptador_Carrera(Context context, ArrayList<Carrera> listaFiltrada) {
         Contexto=context;
@@ -201,7 +206,7 @@ public class Adaptador_Carrera extends BaseAdapter
     }
 
     @Override
-    public Object getItem(int position) {
+    public Carrera getItem(int position) {
         return MiListaCarreras.get(position);
     }
 
@@ -211,10 +216,10 @@ public class Adaptador_Carrera extends BaseAdapter
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflador=(LayoutInflater) Contexto.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View VistaDevolver= inflador.inflate(R.layout.diseniolistview,parent,false);
-        LogoFacultad=VistaDevolver.findViewById(R.id.ImagenFacultad);
+        final ImageView LogoFacultad=VistaDevolver.findViewById(R.id.ImagenFacultad);
         TextView NombreCarrera=VistaDevolver.findViewById(R.id.NombreCarrera);
         NombreCarrera.setText(MiListaCarreras.get(position).NombreCarrera);
 
@@ -223,33 +228,57 @@ public class Adaptador_Carrera extends BaseAdapter
         }
         class CargarImagenes extends AsyncTask<String,Void, Bitmap>
         {
-            ArrayList<Integer> IdImagenes;
             @Override
-            protected Bitmap doInBackground(String... Carreras) {
-                IdImagenes=new ArrayList<>();
+            protected Bitmap doInBackground(String... Ruta) {
+
+                Bitmap ImagenConvertida=null;
                 try {
-                    for (String NombreCarrera : ListaFacultades) {
-                        IdImagenes.add(validarImagen(NombreCarrera));
+                    for (String ruta:Ruta) {
+                        URL Rutas=new URL(ruta);
+                        HttpURLConnection httpURLConnection=(HttpURLConnection)Rutas.openConnection();
+                        if(httpURLConnection.getResponseCode()==200)
+                        {
+                            InputStream stream=httpURLConnection.getInputStream();
+                            BufferedInputStream lectorEntrada=new BufferedInputStream(stream);
+                            ImagenConvertida= BitmapFactory.decodeStream(lectorEntrada);
+                            httpURLConnection.disconnect();
+                        }
                     }
-                }catch (Exception e)
-                {
 
+                }catch (Exception error)
+                {
+                    Log.d("Error","Codigo:"+error.getLocalizedMessage());
                 }
-                return null;
+
+
+                return ImagenConvertida;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            super.onPostExecute(bitmap);
+
+            if(bitmap!=null)
+            {
+                MiListaCarreras.get(position).IDImagen=validarImagen(MiListaCarreras.get(position).NombreFacultad);
+                LogoFacultad.setImageBitmap(bitmap);
             }
-
-            @Override
-            protected void onPostExecute(Bitmap bitmap) {
-                super.onPostExecute(bitmap);
-                for (int Id:IdImagenes)
-                {
-                    LogoFacultad.setImageResource(Id);
-                }
-
+            else
+            {
+                MiListaCarreras.get(position).IDImagen=R.drawable.sinimagen;
+                LogoFacultad.setImageResource(R.drawable.sinimagen);
             }
         }
-        CargarImagenes TareaAsyncronica=new CargarImagenes();
-        TareaAsyncronica.execute();
+    }
+        if (MiListaCarreras.get(position).IDImagen!=0)
+        {
+            LogoFacultad.setImageResource(getItem(position).IDImagen);
+        }
+        else
+        {
+            CargarImagenes TareaAsyncronica=new CargarImagenes();
+            TareaAsyncronica.execute(MiListaCarreras.get(position).LinkImagen);
+        }
         return VistaDevolver;
     }
 
