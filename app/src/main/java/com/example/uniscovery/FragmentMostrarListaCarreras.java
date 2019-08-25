@@ -1,6 +1,4 @@
 package com.example.uniscovery;
-
-
 import android.app.Fragment;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -39,6 +37,13 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
         siguiente=VistaDevolver.findViewById(R.id.Siguiente);
 
         construirRecycler();
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchView.setIconified(false);
+            }
+        });
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
