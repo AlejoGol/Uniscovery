@@ -35,7 +35,7 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         db.execSQL(SQLliteTabla);
         SQLliteTabla="create table Tags (ID_Tag INTEGER PRIMARY KEY AUTOINCREMENT, Nombre_Tag TEXT)";
         db.execSQL(SQLliteTabla);
-        SQLliteTabla="create table Materias (ID_Materia INTEGER PRIMARY KEY AUTOINCREMENT, ID_Carrera INTEGER, Nombre_Materia TEXT, Anio INTEGER,Opcionalidad INTEGER)";
+        SQLliteTabla="create table Materias (ID_Materia INTEGER PRIMARY KEY AUTOINCREMENT, ID_Carrera INTEGER, Nombre_Materia TEXT, Anio INTEGER,Descripcion_Materia TEXT,Opcionalidad INTEGER)";
         db.execSQL(SQLliteTabla);
         SQLliteTabla="create table Preguntas (ID_Pregunta INTEGER PRIMARY KEY AUTOINCREMENT, TextoPregunta TEXT, InteligenciaMultiple TEXT)";
         db.execSQL(SQLliteTabla);
@@ -788,52 +788,52 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
     }
     private void Tags(SQLiteDatabase BaseDeDatos)
     {
-        InsertarTags(BaseDeDatos,"Ingenieria");//0
-        InsertarTags(BaseDeDatos,"Profesorado");//1
-        InsertarTags(BaseDeDatos,"Matematica");//2
-        InsertarTags(BaseDeDatos,"Nutricion");//3
-        InsertarTags(BaseDeDatos,"Leyes");//4
-        InsertarTags(BaseDeDatos,"Arquitectura");//5
-        InsertarTags(BaseDeDatos,"Economicas");//6
-        InsertarTags(BaseDeDatos,"Tecnicatura");//7
-        InsertarTags(BaseDeDatos,"Sociales");//8
-        InsertarTags(BaseDeDatos,"Administracion");//9
-        InsertarTags(BaseDeDatos,"Diseño");//10
-        InsertarTags(BaseDeDatos,"Diplomacia");//11
-        InsertarTags(BaseDeDatos,"Ciencias naturales");//12
-        InsertarTags(BaseDeDatos,"Agronomia");//13
-        InsertarTags(BaseDeDatos,"Diseño");//14
-        InsertarTags(BaseDeDatos,"Construccion");//15
-        InsertarTags(BaseDeDatos,"Visual");//16
-        InsertarTags(BaseDeDatos,"Espacial");//17
-        InsertarTags(BaseDeDatos,"Humanidades");//18
-        InsertarTags(BaseDeDatos,"Intrapersonal");//19
-        InsertarTags(BaseDeDatos,"Sistemas");//20
-        InsertarTags(BaseDeDatos,"Analisis");//21
-        InsertarTags(BaseDeDatos,"Numeros");//22
-        InsertarTags(BaseDeDatos,"Matematica");//23
-        InsertarTags(BaseDeDatos,"Logico");//24
-        InsertarTags(BaseDeDatos,"ritmo");//25
-        InsertarTags(BaseDeDatos,"melodia");//26
-        InsertarTags(BaseDeDatos,"emociones");//27
-        InsertarTags(BaseDeDatos,"componer");//28
-        InsertarTags(BaseDeDatos,"baile");//29
-        InsertarTags(BaseDeDatos,"Musical");//30
-        InsertarTags(BaseDeDatos,"negocios");//31
-        InsertarTags(BaseDeDatos,"relaciones");//32
-        InsertarTags(BaseDeDatos,"Interpersonal");//33
-        InsertarTags(BaseDeDatos,"escribir");//34
-        InsertarTags(BaseDeDatos,"redactar");//35
-        InsertarTags(BaseDeDatos,"leer");//36
+        InsertarTags(BaseDeDatos,"Ingenieria");//1
+        InsertarTags(BaseDeDatos,"Profesorado");//2
+        InsertarTags(BaseDeDatos,"Matematica");//3
+        InsertarTags(BaseDeDatos,"Nutricion");//4
+        InsertarTags(BaseDeDatos,"Leyes");//5
+        InsertarTags(BaseDeDatos,"Arquitectura");//6
+        InsertarTags(BaseDeDatos,"Economicas");//7
+        InsertarTags(BaseDeDatos,"Tecnicatura");//8
+        InsertarTags(BaseDeDatos,"Sociales");//9
+        InsertarTags(BaseDeDatos,"Administracion");//10
+        InsertarTags(BaseDeDatos,"Diseño");//11
+        InsertarTags(BaseDeDatos,"Diplomacia");//12
+        InsertarTags(BaseDeDatos,"Ciencias naturales");//13
+        InsertarTags(BaseDeDatos,"Agronomia");//14
+        InsertarTags(BaseDeDatos,"Diseño");//15
+        InsertarTags(BaseDeDatos,"Construccion");//16
+        InsertarTags(BaseDeDatos,"Visual");//17
+        InsertarTags(BaseDeDatos,"Espacial");//18
+        InsertarTags(BaseDeDatos,"Humanidades");//19
+        InsertarTags(BaseDeDatos,"Intrapersonal");//20
+        InsertarTags(BaseDeDatos,"Sistemas");//21
+        InsertarTags(BaseDeDatos,"Analisis");//22
+        InsertarTags(BaseDeDatos,"Numeros");//23
+        InsertarTags(BaseDeDatos,"Matematica");//24
+        InsertarTags(BaseDeDatos,"Logico");//25
+        InsertarTags(BaseDeDatos,"ritmo");//26
+        InsertarTags(BaseDeDatos,"melodia");//27
+        InsertarTags(BaseDeDatos,"emociones");//28
+        InsertarTags(BaseDeDatos,"componer");//29
+        InsertarTags(BaseDeDatos,"baile");//30
+        InsertarTags(BaseDeDatos,"Musical");//31
+        InsertarTags(BaseDeDatos,"negocios");//32
+        InsertarTags(BaseDeDatos,"relaciones");//33
+        InsertarTags(BaseDeDatos,"Interpersonal");//34
+        InsertarTags(BaseDeDatos,"escribir");//35
+        InsertarTags(BaseDeDatos,"redactar");//36
+        InsertarTags(BaseDeDatos,"leer");//37
         InsertarTags(BaseDeDatos,"idiomas");//38
-        InsertarTags(BaseDeDatos,"Linguisticas");//38
-        /*InsertarTags(BaseDeDatos,"");//39
-        InsertarTags(BaseDeDatos,"");//40
-        InsertarTags(BaseDeDatos,"");//41
-        InsertarTags(BaseDeDatos,"");//42
-        InsertarTags(BaseDeDatos,"");//43
-        InsertarTags(BaseDeDatos,"");//44
-        InsertarTags(BaseDeDatos,"");//45*/
+        InsertarTags(BaseDeDatos,"Linguisticas");//39
+        InsertarTags(BaseDeDatos,"Uba");//40
+        InsertarTags(BaseDeDatos,"universidad de buenos aires");//41
+        InsertarTags(BaseDeDatos,"ditella");//42
+        InsertarTags(BaseDeDatos,"di tella");//43
+        /*InsertarTags(BaseDeDatos,"");//44
+        InsertarTags(BaseDeDatos,"");//45
+        InsertarTags(BaseDeDatos,"");//46*/
         InsertarRelacionTags(BaseDeDatos,1,6);
         InsertarRelacionTags(BaseDeDatos,2,5);
         InsertarRelacionTags(BaseDeDatos,3,10);
@@ -846,6 +846,30 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         InsertarRelacionTags(BaseDeDatos,10,9);
         InsertarRelacionTags(BaseDeDatos,11,13);
         InsertarRelacionTags(BaseDeDatos,12,14);
+        InsertarRelacionTags(BaseDeDatos,1,43);
+        InsertarRelacionTags(BaseDeDatos,2,43);
+        InsertarRelacionTags(BaseDeDatos,3,43);
+        InsertarRelacionTags(BaseDeDatos,4,43);
+        InsertarRelacionTags(BaseDeDatos,5,43);
+        InsertarRelacionTags(BaseDeDatos,6,43);
+        InsertarRelacionTags(BaseDeDatos,7,43);
+        InsertarRelacionTags(BaseDeDatos,8,43);
+        InsertarRelacionTags(BaseDeDatos,9,43);
+        InsertarRelacionTags(BaseDeDatos,10,43);
+        InsertarRelacionTags(BaseDeDatos,1,42);
+        InsertarRelacionTags(BaseDeDatos,2,42);
+        InsertarRelacionTags(BaseDeDatos,3,42);
+        InsertarRelacionTags(BaseDeDatos,4,42);
+        InsertarRelacionTags(BaseDeDatos,5,42);
+        InsertarRelacionTags(BaseDeDatos,6,42);
+        InsertarRelacionTags(BaseDeDatos,7,42);
+        InsertarRelacionTags(BaseDeDatos,8,42);
+        InsertarRelacionTags(BaseDeDatos,9,42);
+        InsertarRelacionTags(BaseDeDatos,10,42);
+        InsertarRelacionTags(BaseDeDatos,12,41);
+        InsertarRelacionTags(BaseDeDatos,11,41);
+        InsertarRelacionTags(BaseDeDatos,11,40);
+        InsertarRelacionTags(BaseDeDatos,12,40);
 
     }
     private void Preguntas(SQLiteDatabase BaseDeDatos)
