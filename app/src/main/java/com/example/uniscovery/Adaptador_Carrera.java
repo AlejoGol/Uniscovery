@@ -4,6 +4,8 @@ import android.database.Observable;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -226,7 +228,7 @@ public class Adaptador_Carrera extends BaseAdapter
         for (Carrera Facultad:MiListaCarreras) {
             ListaFacultades.add(Facultad.NombreFacultad);
         }
-        class CargarImagenes extends AsyncTask<String,Void, Bitmap>
+        /*class CargarImagenes extends AsyncTask<String,Void, Bitmap>
         {
             @Override
             protected Bitmap doInBackground(String... Ruta) {
@@ -278,7 +280,11 @@ public class Adaptador_Carrera extends BaseAdapter
         {
             CargarImagenes TareaAsyncronica=new CargarImagenes();
             TareaAsyncronica.execute(MiListaCarreras.get(position).LinkImagen);
-        }
+        }*/
+        Glide.with(Contexto).load(MiListaCarreras.get(position).getLinkImagen())
+                .apply(new RequestOptions().error(R.drawable.sinimagen))
+                .into(LogoFacultad);
+
         return VistaDevolver;
     }
 
