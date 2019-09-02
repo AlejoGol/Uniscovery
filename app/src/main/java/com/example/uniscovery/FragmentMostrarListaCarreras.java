@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
@@ -21,6 +22,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
     Button Anterior;
     Button siguiente;
     int PaginaActual=0;
+    int ultimoElemento;
     boolean SearchAbierto=false;
     //int[] imgs={R.drawable.uba,R.drawable.utn,R.drawable.uca,R.drawable.belgrano,R.drawable.moron,R.drawable.emba,R.drawable.untref};
     ArrayList<Carrera> listaDeCarreras=new ArrayList<>();
@@ -202,6 +204,27 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
                 main.RemplazarPorViewPrivada(ElementoCompleto.get(position));
             }
         });
+        ultimoElemento=gridView.getLastVisiblePosition();
+        gridView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+                Log.d("Scroll","entro al scroll");
+                int ultimo=firstVisibleItem+visibleItemCount;
+                Log.d("Scroll","ultimo elemento visible: "+ultimo);
+                Log.d("Scroll","total de items: "+totalItemCount);
+                if(firstVisibleItem+visibleItemCount==totalItemCount)
+                {
+                    ArrayList<Carrera> paginada=paginado.setPaginaActual(2);
+                    ListaFiltrada.addAll(paginada);
+                }
+            }
+        });
     }
     public void ModificarLista(ArrayList<Carrera> ListaFiltrada){
 
@@ -364,6 +387,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
     }
     public boolean VerificarSiEstaEnLaLista(Carrera ElementoActual)
     {
+
         boolean veracidad=false;
         int contador=0;
         for (Carrera Actual:listaDeCarreras)

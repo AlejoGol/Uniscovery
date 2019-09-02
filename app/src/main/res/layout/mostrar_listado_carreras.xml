@@ -43,18 +43,18 @@
         android:id="@+id/Siguiente"
         />
 
-        <GridView
-            android:layout_width="match_parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/anterior"
-            android:id="@+id/ListaACargar"
-            android:layout_height="wrap_content"
-            android:columnWidth="120sp"
-            android:numColumns="auto_fit"
-            android:orientation="vertical"
-            android:verticalSpacing="25sp"
-            android:horizontalSpacing="10sp"
-            android:gravity="start"
-            android:layout_marginBottom="50sp"/>
+    <GridView
+        android:id="@+id/ListaACargar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnWidth="120sp"
+        android:gravity="start"
+        android:horizontalSpacing="10sp"
+        android:numColumns="auto_fit"
+        android:orientation="vertical"
+        android:scrollbars="horizontal"
+        android:verticalSpacing="25sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/anterior" />
 
 </android.support.constraint.ConstraintLayout>
