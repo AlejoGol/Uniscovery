@@ -74,13 +74,14 @@ public class MainActivity extends AppCompatActivity   {
         fragmentTransaction.commit();
         ListaFragment.remove(ListaFragment.size()-1);
         Log.d("LLego","al final");
-        //super.onBackPressed();
-        //int count = getSupportFragmentManager().getBackStackEntryCount();
-        //if (count == 0) {
-        //    super.onBackPressed();
-        //    //additional code
-        //} else {
-        //    getSupportFragmentManager().popBackStack();
-        //}
+        /*super.onBackPressed();
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+        if (count == 0) {
+            super.onBackPressed();
+            //additional code
+        } else {
+            getSupportFragmentManager().popBackStack();
+        }*/
     }
+    //TODO
 }

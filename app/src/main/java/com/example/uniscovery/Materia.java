@@ -5,11 +5,21 @@ public class Materia {
     private int IDCarrera;
     private int Año;
     private String NombreMateria;
+    private String Descripcion;
+
+    public String getDescripcion() {
+        return Descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        Descripcion = descripcion;
+    }
 
     public Materia() {
         IDCarrera=0;
         Año=0;
         NombreMateria="";
+        Descripcion="";
     }
 
     public int getIDCarrera() {
