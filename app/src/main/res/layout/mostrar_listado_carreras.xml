@@ -42,6 +42,7 @@
         app:layout_constraintRight_toLeftOf="parent"
         android:id="@+id/Siguiente"
         />
+<<<<<<< HEAD
         <GridView
             android:id="@+id/ListaACargar"
             android:layout_width="match_parent"
@@ -56,5 +57,21 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/anterior"
             app:layout_constraintBottom_toBottomOf="parent"/>
+=======
+
+    <GridView
+        android:id="@+id/ListaACargar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnWidth="120sp"
+        android:gravity="start"
+        android:horizontalSpacing="10sp"
+        android:numColumns="auto_fit"
+        android:orientation="vertical"
+        android:scrollbars="horizontal"
+        android:verticalSpacing="25sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/anterior" />
+>>>>>>> 52b792de8e1e8ff45bc7396d273ddabf8ed9b6d9
 
 </android.support.constraint.ConstraintLayout>
