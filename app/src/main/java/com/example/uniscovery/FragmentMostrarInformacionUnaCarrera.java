@@ -22,6 +22,7 @@ public class FragmentMostrarInformacionUnaCarrera extends Fragment implements Vi
     Spinner Año;
     Spinner materias;
     Context ContextoGeneral;
+    TextView DescripcionMateria;
     ArrayList<Materia> Materias;
     TextView DescripcionMateria;
     public View onCreateView(LayoutInflater inflater, ViewGroup grupoView, Bundle datosRecibidos) {
@@ -31,6 +32,7 @@ public class FragmentMostrarInformacionUnaCarrera extends Fragment implements Vi
         ImageView imagen;
         ContextoGeneral=this.getContext();
         Materias=new ArrayList<>();
+        DescripcionMateria=VistaAUsar.findViewById(R.id.DescripcionMateria);
         NombreCarrera=VistaAUsar.findViewById(R.id.NombreDeLaCarreraViewPrivada);
         DescripcionCarrera=VistaAUsar.findViewById(R.id.DescripcionCarreraViewPrivada);
         imagen=VistaAUsar.findViewById(R.id.ImagenDeLaFacultadCarreraViewPrivada);
@@ -58,6 +60,7 @@ public class FragmentMostrarInformacionUnaCarrera extends Fragment implements Vi
                 public void onItemSelected(AdapterView<?> spn,View v, int posicion, long id) {
                     ArrayList<String> Listmaterias;
                     Listmaterias=LlenarInformacion(posicion);
+                    DescripcionMateria.setText(Materias.get(posicion).getDescripcion());
                     ArrayAdapter adapterAños=new ArrayAdapter(ContextoGeneral,android.R.layout.simple_spinner_item,Listmaterias);
                     adapterAños.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
 
@@ -118,7 +121,11 @@ public class FragmentMostrarInformacionUnaCarrera extends Fragment implements Vi
                     mate.setIDCarrera(RegistrosLeidos.getInt(0));
                     mate.setAño(RegistrosLeidos.getInt(1));
                     mate.setNombreMateria(RegistrosLeidos.getString(2));
+<<<<<<< HEAD
                     mate.setDescripcionMateria(RegistrosLeidos.getString(3));
+=======
+                    mate.setDescripcion(RegistrosLeidos.getString(3));
+>>>>>>> 3f9b6ee9c53b91e89400d97fcc22f297e7fcb1ad
                     Materias.add(mate);
                 }while(RegistrosLeidos.moveToNext());
                 Log.d("Tags","Salio del while");

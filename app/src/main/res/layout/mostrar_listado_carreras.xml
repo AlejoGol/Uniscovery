@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:text="@string/pagina_anterior"
         app:layout_constraintTop_toBottomOf="@id/CardViewRecipiente"
-        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/Siguiente"
         android:id="@+id/anterior"
         />
@@ -37,11 +37,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/siguiente_pagina"
-        app:layout_constraintTop_toBottomOf="@id/CardViewRecipiente"
+        app:layout_constraintTop_toBottomOf="@id/ListaACargar"
         app:layout_constraintLeft_toRightOf="@id/anterior"
         app:layout_constraintRight_toLeftOf="parent"
         android:id="@+id/Siguiente"
         />
+<<<<<<< HEAD
+        <GridView
+            android:id="@+id/ListaACargar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50sp"
+            android:columnWidth="120sp"
+            android:gravity="start"
+            android:horizontalSpacing="10sp"
+            android:numColumns="auto_fit"
+            android:orientation="vertical"
+            android:verticalSpacing="25sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/anterior"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+=======
 
     <GridView
         android:id="@+id/ListaACargar"
@@ -56,5 +72,6 @@
         android:verticalSpacing="25sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/anterior" />
+>>>>>>> 52b792de8e1e8ff45bc7396d273ddabf8ed9b6d9
 
 </android.support.constraint.ConstraintLayout>
