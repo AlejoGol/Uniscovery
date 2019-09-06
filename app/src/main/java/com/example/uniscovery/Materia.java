@@ -5,11 +5,28 @@ public class Materia {
     private int IDCarrera;
     private int Año;
     private String NombreMateria;
+    private String DescripcionMateria;
+
+    public Materia(int IDCarrera, int año, String nombreMateria, String descripcionMateria) {
+        this.IDCarrera = IDCarrera;
+        Año = año;
+        NombreMateria = nombreMateria;
+        DescripcionMateria = descripcionMateria;
+    }
+
+    public String getDescripcionMateria() {
+        return DescripcionMateria;
+    }
+
+    public void setDescripcionMateria(String descripcionMateria) {
+        DescripcionMateria = descripcionMateria;
+    }
 
     public Materia() {
         IDCarrera=0;
         Año=0;
         NombreMateria="";
+        DescripcionMateria="";
     }
 
     public int getIDCarrera() {

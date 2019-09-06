@@ -23,6 +23,7 @@ public class FragmentMostrarInformacionUnaCarrera extends Fragment implements Vi
     Spinner materias;
     Context ContextoGeneral;
     ArrayList<Materia> Materias;
+    TextView DescripcionMateria;
     public View onCreateView(LayoutInflater inflater, ViewGroup grupoView, Bundle datosRecibidos) {
 
         VistaAUsar=inflater.inflate(R.layout.activity_carrera_de_facultad,null,true);
@@ -34,12 +35,13 @@ public class FragmentMostrarInformacionUnaCarrera extends Fragment implements Vi
         DescripcionCarrera=VistaAUsar.findViewById(R.id.DescripcionCarreraViewPrivada);
         imagen=VistaAUsar.findViewById(R.id.ImagenDeLaFacultadCarreraViewPrivada);
         Año=VistaAUsar.findViewById(R.id.SpinnerAñoDeMateriasViewPrivada);
+        DescripcionMateria=VistaAUsar.findViewById(R.id.DescripcionMateria);
         materias=VistaAUsar.findViewById(R.id.SpinnerMateriasViewPrivada);
-        LlenarCampos(NombreCarrera,DescripcionCarrera,imagen);
+        LlenarCampos(NombreCarrera,DescripcionCarrera,imagen,DescripcionMateria);
 
         return VistaAUsar;
     }
-        private void LlenarCampos(TextView nombre,TextView descipcion,ImageView LogoCarrera)
+        private void LlenarCampos(TextView nombre,TextView descipcion,ImageView LogoCarrera,TextView descripcionMateria)
         {
 
             MainActivity actividadPrincipal=(MainActivity)getActivity();
@@ -58,14 +60,30 @@ public class FragmentMostrarInformacionUnaCarrera extends Fragment implements Vi
                     Listmaterias=LlenarInformacion(posicion);
                     ArrayAdapter adapterAños=new ArrayAdapter(ContextoGeneral,android.R.layout.simple_spinner_item,Listmaterias);
                     adapterAños.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+
                     materias.setAdapter(adapterAños);
                 }
                 public void onNothingSelected(AdapterView<?> spn) {
 
                 }
             });
+            //materias.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            //    @Override
+            //    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            //       LlenarDescripcion(position);
+            //    }
+//
+            //    @Override
+            //    public void onNothingSelected(AdapterView<?> parent) {
+//
+            //    }
+            //});
             descipcion.setText((DatosAUsar.Descipcion));
 
+        }
+        public void LlenarDescripcion(int position)
+        {
+            DescripcionMateria.setText(Materias.get(position).getDescripcionMateria());
         }
         private ArrayList CalcularMaximoAño(ArrayList<Materia> Materias)
         {
@@ -87,10 +105,10 @@ public class FragmentMostrarInformacionUnaCarrera extends Fragment implements Vi
         private ArrayList<Materia> TraerMaterias()
         {
             ArrayList<Materia> Materias=new ArrayList<>();
-            ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null, 6);
+            ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null, 7);
 
             Cursor RegistrosLeidos;
-            String SqlConsulta="select ID_Materia,Anio,Nombre_Materia from Materias where ID_Carrera = "+idCarrera ;
+            String SqlConsulta="select ID_Materia,Anio,Nombre_Materia,Descripcion_Materia from Materias where ID_Carrera = "+idCarrera ;
             RegistrosLeidos=DB.EjecutarConsulta(SqlConsulta);
             Log.d("Tags","Ejecuto consulta a BD");
             if (RegistrosLeidos.moveToFirst()) {
@@ -100,6 +118,7 @@ public class FragmentMostrarInformacionUnaCarrera extends Fragment implements Vi
                     mate.setIDCarrera(RegistrosLeidos.getInt(0));
                     mate.setAño(RegistrosLeidos.getInt(1));
                     mate.setNombreMateria(RegistrosLeidos.getString(2));
+                    mate.setDescripcionMateria(RegistrosLeidos.getString(3));
                     Materias.add(mate);
                 }while(RegistrosLeidos.moveToNext());
                 Log.d("Tags","Salio del while");

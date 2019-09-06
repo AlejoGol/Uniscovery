@@ -31,18 +31,19 @@ public class Paginado {
     }
     public ArrayList<Carrera> setPaginaActual(int valorPagina){
         ArrayList<Carrera> paginada=new ArrayList<>();
-        this.paginaActual = valorPagina;
-        if(paginaActual==-1)
+
+        if(valorPagina==2)
         {
-            paginaActual=0;
+            Log.d("valorpagina","estamos en problemas dios");
         }
         Log.d("setPaginaActual","valor de pagina actual "+valorPagina);
 
-        for(int i=0;i<10;i++){
-            if(i+(paginaActual*10)<ListaDeElementos.size()){
-                Log.d("setPaginaActual",""+ListaDeElementos.get(i+(paginaActual*10)).NombreCarrera);
-                paginada.add(ListaDeElementos.get(i+(paginaActual*10)));
-            }
+        int i=0,TamañoLista=ListaDeElementos.size();
+        while(i<10 &&i+(valorPagina*10)<TamañoLista)
+        {
+            Log.d("setPaginaActual",""+ListaDeElementos.get(i+(valorPagina*10)).NombreCarrera);
+            paginada.add(ListaDeElementos.get(i+(valorPagina*10)));
+            i++;
         }
         Log.d("paginada",""+paginada.size());
         return paginada;

@@ -2,7 +2,8 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:xmls="http://schemas.android.com/tools">
 
     <ImageView
         android:layout_width="150dp"
@@ -47,5 +48,23 @@
         android:id="@+id/SpinnerMateriasViewPrivada"
         android:layout_marginTop="20sp"
         />
-
+    <ScrollView
+        xmls:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Scrool"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/SpinnerMateriasViewPrivada">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="aca va la descripcion de la materia"
+            android:id="@+id/DescripcionMateria"
+            android:layout_marginTop="10sp"
+            app:layout_constraintTop_toTopOf="@id/Scrool"
+            android:layout_marginStart="10sp"
+            android:textColor="#000000"
+            />
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>

@@ -122,56 +122,62 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
         return VistaDevolver;
     }
     public void onClick(View v) {
-        ArrayList<Carrera> paginada;
+        ArrayList<Carrera> paginada=new ArrayList<>();
         Log.d("OnClick","entro");
+        Log.d("valorpagina"," "+PaginaActual);
         if(ListaFiltrada.size()<=10)
         {
-            Anterior.setEnabled(false);
-            siguiente.setEnabled(false);
+            Anterior.setEnabled(true);
+            siguiente.setEnabled(true);
+        }
+        if(PaginaActual==2)
+        {
+            Log.d("errores","error3");
         }
         if(v.getId()==R.id.anterior)
         {
             Log.d("OnClick","anterior");
-            paginado.paginaActual--;
-            paginada=paginado.setPaginaActual(paginado.paginaActual);
-            if(paginado.paginaActual==0) {
-                Anterior.setEnabled(false);
-            }
-            else{
-                Anterior.setEnabled(true);
-            }
-            if(paginado.paginaActual==paginado.numPaginas(ListaFiltrada.size())-1)
-            {
-                siguiente.setEnabled(false);
-            }
-            if(paginado.paginaActual!=paginado.numPaginas(ListaFiltrada.size()))
-            {
-                siguiente.setEnabled(true);
-            }
+            PaginaActual--;
+            Log.d("valorpagina"," "+PaginaActual);
+            paginada=paginado.setPaginaActual(PaginaActual);
+            Log.d("paginaActual","valor de pagina menos "+ PaginaActual);
+
         }
-        else
+        if(PaginaActual==2)
+        {
+            Log.d("errores","error2");
+        }
+        if(v.getId()==siguiente.getId())
         {
             Log.d("OnClick","siguiente");
-            paginado.paginaActual=paginado.paginaActual+1;
-            Log.d("OnClick",""+paginado.paginaActual);
-            paginada=paginado.setPaginaActual(paginado.paginaActual);
-            if(paginado.paginaActual==0) {
-                Anterior.setEnabled(false);
-            }
-            else{
-                Anterior.setEnabled(true);
-            }
-            Log.d("cant",""+paginado.numPaginas(ListaFiltrada.size()));
-            int pag=paginado.paginaActual+1;
-            Log.d("paginado",""+pag);
-            if(pag==paginado.numPaginas(ListaFiltrada.size()))
-            {
-                siguiente.setEnabled(true);
-            }
-            if(paginado.paginaActual!=paginado.numPaginas(ListaFiltrada.size()))
-            {
-                siguiente.setEnabled(false);
-            }
+            PaginaActual+=1;
+            Log.d("valorpagina",""+PaginaActual);
+            paginada=paginado.setPaginaActual(PaginaActual);
+        }
+        if(PaginaActual==2)
+        {
+            Log.d("errores","error1");
+        }
+        if(PaginaActual==0) {
+            Anterior.setEnabled(false);
+        }
+        else{
+            Anterior.setEnabled(true);
+        }
+        int cantidadpaginas=paginado.numPaginas(ListaFiltrada.size());
+        Log.d("paginaActual",""+PaginaActual);
+        Log.d("paginaActual"," numero de paginas "+paginado.numPaginas(ListaFiltrada.size()));
+        if(paginado.paginaActual==paginado.numPaginas(ListaFiltrada.size())-1)
+        {
+            siguiente.setEnabled(true);
+        }
+        if(paginado.paginaActual==cantidadpaginas)
+        {
+            Log.d("paginaActual","entro");
+            siguiente.setEnabled(false);
+        }
+        else {
+            siguiente.setEnabled(true);
         }
         ModificarLista(paginada);
     }
@@ -226,6 +232,10 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
             }
         });
     }
+    public void ActualizarLista(ArrayList<Carrera> listita)
+    {
+
+    }
     public void ModificarLista(ArrayList<Carrera> ListaFiltrada){
 
         if (ListaFiltrada!=null){
@@ -257,7 +267,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
     private ArrayList<Carrera> getItemEnElArray()
     {
         Log.d("BD","getItemEnElArray");
-        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,6);
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,7);
         ArrayList<Carrera> items= new ArrayList<>();
         Cursor RegistrosLeidos;
         String SqlConsulta="select ID_carrera,Nombre_Carrera,Nombre_Facultad,LinkImagen,Descripcion from Carerras" ;
@@ -372,10 +382,11 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
     public ArrayList<Carrera> PrimerFiltro()
     {
         ArrayList<Carrera> paginada;
-        paginada=paginado.setPaginaActual(PaginaActual);
+        paginada=paginado.setPaginaActual(0);
             Anterior.setEnabled(false);
             Log.d("PrimerFiltro",""+listaDeCarreras.size());
             Log.d("PrimerFiltro",""+paginada.size());
+        Log.d("cant","cantidad paginas"+paginado.numPaginas(ListaFiltrada.size()));
             return paginada;
         }
         public void Eliminar(ArrayList<Carrera> Eliminar)
