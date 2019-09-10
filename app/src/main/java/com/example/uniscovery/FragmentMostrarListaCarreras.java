@@ -141,6 +141,10 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
             Log.d("valorpagina"," "+PaginaActual);
             paginada=paginado.setPaginaActual(PaginaActual);
             Log.d("paginaActual","valor de pagina menos "+ PaginaActual);
+            if(PaginaActual==2)
+            {
+                Log.d("errores","error3.5");
+            }
 
         }
         if(PaginaActual==2)
@@ -153,6 +157,10 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
             PaginaActual+=1;
             Log.d("valorpagina",""+PaginaActual);
             paginada=paginado.setPaginaActual(PaginaActual);
+            if(PaginaActual==2)
+            {
+                Log.d("errores","error3.5");
+            }
         }
         if(PaginaActual==2)
         {

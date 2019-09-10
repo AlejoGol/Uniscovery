@@ -24,7 +24,6 @@ public class FragmentMostrarInformacionUnaCarrera extends Fragment implements Vi
     Context ContextoGeneral;
     TextView DescripcionMateria;
     ArrayList<Materia> Materias;
-    TextView DescripcionMateria;
     public View onCreateView(LayoutInflater inflater, ViewGroup grupoView, Bundle datosRecibidos) {
 
         VistaAUsar=inflater.inflate(R.layout.activity_carrera_de_facultad,null,true);
@@ -37,7 +36,6 @@ public class FragmentMostrarInformacionUnaCarrera extends Fragment implements Vi
         DescripcionCarrera=VistaAUsar.findViewById(R.id.DescripcionCarreraViewPrivada);
         imagen=VistaAUsar.findViewById(R.id.ImagenDeLaFacultadCarreraViewPrivada);
         Año=VistaAUsar.findViewById(R.id.SpinnerAñoDeMateriasViewPrivada);
-        DescripcionMateria=VistaAUsar.findViewById(R.id.DescripcionMateria);
         materias=VistaAUsar.findViewById(R.id.SpinnerMateriasViewPrivada);
         LlenarCampos(NombreCarrera,DescripcionCarrera,imagen,DescripcionMateria);
 
@@ -121,11 +119,8 @@ public class FragmentMostrarInformacionUnaCarrera extends Fragment implements Vi
                     mate.setIDCarrera(RegistrosLeidos.getInt(0));
                     mate.setAño(RegistrosLeidos.getInt(1));
                     mate.setNombreMateria(RegistrosLeidos.getString(2));
-<<<<<<< HEAD
                     mate.setDescripcionMateria(RegistrosLeidos.getString(3));
-=======
                     mate.setDescripcion(RegistrosLeidos.getString(3));
->>>>>>> 3f9b6ee9c53b91e89400d97fcc22f297e7fcb1ad
                     Materias.add(mate);
                 }while(RegistrosLeidos.moveToNext());
                 Log.d("Tags","Salio del while");

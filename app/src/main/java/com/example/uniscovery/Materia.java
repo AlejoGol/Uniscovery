@@ -5,7 +5,6 @@ public class Materia {
     private int IDCarrera;
     private int Año;
     private String NombreMateria;
-<<<<<<< HEAD
     private String DescripcionMateria;
 
     public Materia(int IDCarrera, int año, String nombreMateria, String descripcionMateria) {
@@ -21,7 +20,7 @@ public class Materia {
 
     public void setDescripcionMateria(String descripcionMateria) {
         DescripcionMateria = descripcionMateria;
-=======
+    }
     private String Descripcion;
 
     public String getDescripcion() {
@@ -30,18 +29,14 @@ public class Materia {
 
     public void setDescripcion(String descripcion) {
         Descripcion = descripcion;
->>>>>>> 3f9b6ee9c53b91e89400d97fcc22f297e7fcb1ad
     }
 
     public Materia() {
         IDCarrera=0;
         Año=0;
         NombreMateria="";
-<<<<<<< HEAD
         DescripcionMateria="";
-=======
         Descripcion="";
->>>>>>> 3f9b6ee9c53b91e89400d97fcc22f297e7fcb1ad
     }
 
     public int getIDCarrera() {
