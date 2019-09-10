@@ -226,10 +226,8 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
                 int ultimo=firstVisibleItem+visibleItemCount;
                 Log.d("Scroll","ultimo elemento visible: "+ultimo);
                 Log.d("Scroll","total de items: "+totalItemCount);
-                if(firstVisibleItem+visibleItemCount==totalItemCount)
+                if(firstVisibleItem+visibleItemCount>=totalItemCount/2)
                 {
-
-
                     if(listaDeCarreras.size()-10>=10)
                     {
                         ListaFiltrada.clear();
