@@ -32,9 +32,11 @@ public class Paginado {
     public ArrayList<Carrera> setPaginaActual(int valorPagina){
         ArrayList<Carrera> paginada=new ArrayList<>();
 
-        if(valorPagina==2)
+        if(2==valorPagina)
         {
             Log.d("valorpagina","estamos en problemas dios");
+            valorPagina=1;
+            Log.d("valorpagina","veamos");
         }
         Log.d("setPaginaActual","valor de pagina actual "+valorPagina);
 
@@ -48,6 +50,18 @@ public class Paginado {
         Log.d("paginada",""+paginada.size());
         return paginada;
     }
-
+    public ArrayList<Carrera> TraerListaPaginada(int pagina)
+    {
+        int i=0,TamañoLista=ListaDeElementos.size();
+        ArrayList<Carrera> paginada=new ArrayList<>();
+        while(i<10 &&i+(pagina*10)<TamañoLista)
+        {
+            Log.d("setPaginaActual",""+ListaDeElementos.get(i+(pagina*10)).NombreCarrera);
+            paginada.add(ListaDeElementos.get(i+(pagina*10)));
+            i++;
+        }
+        Log.d("paginada",""+paginada.size());
+        return paginada;
+    }
 
 }

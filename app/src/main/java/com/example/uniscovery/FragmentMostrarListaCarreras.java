@@ -13,6 +13,7 @@ import android.widget.GridView;
 import android.widget.SearchView;
 import android.widget.Toast;
 import java.util.ArrayList;
+import java.util.List;
 
 public class FragmentMostrarListaCarreras extends Fragment implements View.OnClickListener{
     View VistaDevolver;
@@ -24,7 +25,6 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
     int PaginaActual=0;
     int ultimoElemento;
     boolean SearchAbierto=false;
-    //int[] imgs={R.drawable.uba,R.drawable.utn,R.drawable.uca,R.drawable.belgrano,R.drawable.moron,R.drawable.emba,R.drawable.untref};
     ArrayList<Carrera> listaDeCarreras=new ArrayList<>();
     ArrayList<Carrera> ListaFiltrada=new ArrayList<>();
     public GridView gridView;
@@ -134,18 +134,11 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
         {
             Log.d("errores","error3");
         }
-        if(v.getId()==R.id.anterior)
+        if(v.getId()==Anterior.getId())
         {
             Log.d("OnClick","anterior");
             PaginaActual--;
             Log.d("valorpagina"," "+PaginaActual);
-            paginada=paginado.setPaginaActual(PaginaActual);
-            Log.d("paginaActual","valor de pagina menos "+ PaginaActual);
-            if(PaginaActual==2)
-            {
-                Log.d("errores","error3.5");
-            }
-
         }
         if(PaginaActual==2)
         {
@@ -155,8 +148,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
         {
             Log.d("OnClick","siguiente");
             PaginaActual+=1;
-            Log.d("valorpagina",""+PaginaActual);
-            paginada=paginado.setPaginaActual(PaginaActual);
+            Log.d("valorpagina"," "+PaginaActual);
             if(PaginaActual==2)
             {
                 Log.d("errores","error3.5");
@@ -175,11 +167,11 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
         int cantidadpaginas=paginado.numPaginas(ListaFiltrada.size());
         Log.d("paginaActual",""+PaginaActual);
         Log.d("paginaActual"," numero de paginas "+paginado.numPaginas(ListaFiltrada.size()));
-        if(paginado.paginaActual==paginado.numPaginas(ListaFiltrada.size())-1)
+        if(PaginaActual==paginado.numPaginas(ListaFiltrada.size())-1)
         {
             siguiente.setEnabled(true);
         }
-        if(paginado.paginaActual==cantidadpaginas)
+        if(PaginaActual==cantidadpaginas)
         {
             Log.d("paginaActual","entro");
             siguiente.setEnabled(false);
@@ -187,6 +179,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
         else {
             siguiente.setEnabled(true);
         }
+        paginada=paginado.TraerListaPaginada(PaginaActual);
         ModificarLista(paginada);
     }
     private void construirRecycler() {
@@ -206,7 +199,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
         paginado=new Paginado(ListaFiltrada,ListaFiltrada.size());
         ListaFiltrada=PrimerFiltro();
 
-        Adaptador_Carrera adapter=new Adaptador_Carrera(getContext(),ListaFiltrada);
+        adapter=new Adaptador_Carrera(getContext(),ListaFiltrada);
         Anterior.setOnClickListener(this);
         siguiente.setOnClickListener(this);
         gridView.setAdapter(adapter);
@@ -228,20 +221,50 @@ public class FragmentMostrarListaCarreras extends Fragment implements View.OnCli
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 
+
                 Log.d("Scroll","entro al scroll");
                 int ultimo=firstVisibleItem+visibleItemCount;
                 Log.d("Scroll","ultimo elemento visible: "+ultimo);
                 Log.d("Scroll","total de items: "+totalItemCount);
                 if(firstVisibleItem+visibleItemCount==totalItemCount)
                 {
-                    ArrayList<Carrera> paginada=paginado.setPaginaActual(2);
-                    ListaFiltrada.addAll(paginada);
+
+
+                    if(listaDeCarreras.size()-10>=10)
+                    {
+                        ListaFiltrada.clear();
+                        List<Carrera>sublista=listaDeCarreras.subList(0,totalItemCount+10);
+                        for (Carrera actual:sublista) {
+                            ListaFiltrada.add(actual);
+                        }
+                    }
+                    if(listaDeCarreras.size()-10<10)
+                    {
+                        ListaFiltrada.clear();
+                        List<Carrera>sublista=listaDeCarreras.subList(0,listaDeCarreras.size());
+                        for (Carrera actual:sublista) {
+                            ListaFiltrada.add(actual);
+
+                        }
+                    }
+                    ActualizarLista(firstVisibleItem);
+
                 }
             }
         });
     }
-    public void ActualizarLista(ArrayList<Carrera> listita)
+    public void ActualizarLista(int first)
     {
+        Log.d("ActualizarLista","entro");
+        if(adapter==null){
+
+            Log.d("ActualizarLista","esta vacio");
+        }
+        else
+        {
+            adapter.updateCarreraList(ListaFiltrada);
+        }
+        Log.d("ActualizarLista","elementos "+ListaFiltrada.size());
 
     }
     public void ModificarLista(ArrayList<Carrera> ListaFiltrada){

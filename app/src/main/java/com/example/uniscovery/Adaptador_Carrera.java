@@ -216,6 +216,18 @@ public class Adaptador_Carrera extends BaseAdapter
     public long getItemId(int position) {
         return 0;
     }
+    public void updateCarreraList(ArrayList<Carrera> list) {
+        //MiListaCarreras.clear();
+        for (Carrera Actual:list) {
+            if(!MiListaCarreras.contains(Actual))
+            {
+                MiListaCarreras.add(Actual);
+            }
+
+        }
+        //MiListaCarreras.addAll(list);
+        this.notifyDataSetChanged();
+    }
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
