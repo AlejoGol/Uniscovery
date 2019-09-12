@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,8 +33,10 @@ public class FragmentMostrarInformacionUnaCarrera extends Fragment implements Vi
         ContextoGeneral=this.getContext();
         Materias=new ArrayList<>();
         DescripcionMateria=VistaAUsar.findViewById(R.id.DescripcionMateria);
+        DescripcionMateria.setMovementMethod(new ScrollingMovementMethod());
         NombreCarrera=VistaAUsar.findViewById(R.id.NombreDeLaCarreraViewPrivada);
         DescripcionCarrera=VistaAUsar.findViewById(R.id.DescripcionCarreraViewPrivada);
+        DescripcionCarrera.setMovementMethod(new ScrollingMovementMethod());
         imagen=VistaAUsar.findViewById(R.id.ImagenDeLaFacultadCarreraViewPrivada);
         Año=VistaAUsar.findViewById(R.id.SpinnerAñoDeMateriasViewPrivada);
         materias=VistaAUsar.findViewById(R.id.SpinnerMateriasViewPrivada);

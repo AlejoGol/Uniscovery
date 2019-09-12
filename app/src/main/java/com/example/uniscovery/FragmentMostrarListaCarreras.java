@@ -8,32 +8,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.SearchView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentMostrarListaCarreras extends Fragment{
+public class FragmentMostrarListaCarreras extends Fragment implements AdapterView.OnItemClickListener,AbsListView.OnScrollListener, AdapterView.OnItemSelectedListener {
     View VistaDevolver;
     Paginado paginado;
     SearchView searchView;
     Adaptador_Carrera adapter;
-    //int PaginaActual=0;
-    int ultimoElemento;
     boolean SearchAbierto=false;
     ArrayList<Carrera> listaDeCarreras=new ArrayList<>();
     ArrayList<Carrera> ListaFiltrada=new ArrayList<>();
     public GridView gridView;
-
+    static MainActivity main;
     public View onCreateView(LayoutInflater inflater, ViewGroup grupoView, Bundle datosRecibidos)
     {
         Log.d("onCreateView","entro");
         VistaDevolver=inflater.inflate(R.layout.mostrar_listado_carreras,null,true);
         Log.d("onCreateView","se inflo");
         searchView=VistaDevolver.findViewById(R.id.SearchBuscar);
-
+        main=(MainActivity)getActivity();
         construirRecycler();
         searchView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,8 +93,7 @@ public class FragmentMostrarListaCarreras extends Fragment{
             @Override
             public boolean onClose() {
                 Log.d("entro","si");
-                ArrayList<Carrera> ListaFiltrada=new ArrayList<>();
-                ListaFiltrada.addAll(listaDeCarreras);
+                ArrayList<Carrera> ListaFiltrada = new ArrayList<>(listaDeCarreras);
                 ModificarLista(ListaFiltrada);
                 SearchAbierto=false;
                 return false;
@@ -110,69 +106,26 @@ public class FragmentMostrarListaCarreras extends Fragment{
     }
     private void construirRecycler() {
         listaDeCarreras=new ArrayList<>();
-        gridView= (GridView) VistaDevolver.findViewById(R.id.ListaACargar);
+        gridView= VistaDevolver.findViewById(R.id.ListaACargar);
         listaDeCarreras=getItemEnElArray();
         ArrayList<Carrera> Eliminar=new ArrayList<>();
         for (Carrera Actual:listaDeCarreras)
         {
-            if(VerificarSiEstaEnLaLista(Actual)==true)
+            if(VerificarSiEstaEnLaLista(Actual))
             {
                 Eliminar.add(Actual);
             }
         }
-        Eliminar(Eliminar);
         ListaFiltrada.addAll(listaDeCarreras);
         paginado=new Paginado(ListaFiltrada,ListaFiltrada.size());
         ListaFiltrada=PrimerFiltro();
+        Log.d("11/9"," "+ListaFiltrada.size());
         adapter=new Adaptador_Carrera(getContext(),ListaFiltrada);
         gridView.setAdapter(adapter);
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ArrayList<Carrera> ElementoCompleto=Adaptador_Carrera.getMiListaCarreras();
-                MainActivity main=(MainActivity)getActivity();
-                main.RemplazarPorViewPrivada(ElementoCompleto.get(position));
-            }
-        });
-        ultimoElemento=gridView.getLastVisiblePosition();
-        gridView.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+        gridView.setOnItemClickListener(this);
+        gridView.setOnScrollListener(this);
 
 
-                Log.d("Scroll","entro al scroll");
-                int ultimo=firstVisibleItem+visibleItemCount;
-                Log.d("Scroll","ultimo elemento visible: "+ultimo);
-                Log.d("Scroll","total de items: "+totalItemCount);
-                if(firstVisibleItem+visibleItemCount>=totalItemCount/2)
-                {
-                    if(listaDeCarreras.size()-10>=10)
-                    {
-                        ListaFiltrada.clear();
-                        List<Carrera>sublista=listaDeCarreras.subList(0,totalItemCount+10);
-                        for (Carrera actual:sublista) {
-                            ListaFiltrada.add(actual);
-                        }
-                    }
-                    if(listaDeCarreras.size()-10<10)
-                    {
-                        ListaFiltrada.clear();
-                        List<Carrera>sublista=listaDeCarreras.subList(0,listaDeCarreras.size());
-                        for (Carrera actual:sublista) {
-                            ListaFiltrada.add(actual);
-
-                        }
-                    }
-                    ActualizarLista(firstVisibleItem);
-
-                }
-            }
-        });
     }
     public void ActualizarLista(int first)
     {
@@ -188,10 +141,15 @@ public class FragmentMostrarListaCarreras extends Fragment{
         Log.d("ActualizarLista","elementos "+ListaFiltrada.size());
 
     }
-    public void ModificarLista(ArrayList<Carrera> ListaFiltrada){
+    public static void ClickListeenerPartDos(int posicion)
+    {
+        ArrayList<Carrera> ElementoCompleto=Adaptador_Carrera.getMiListaCarreras();
+        main.RemplazarPorViewPrivada(ElementoCompleto.get(posicion));
+    }
+    public void ModificarLista(ArrayList<Carrera> ListaFiltrad){
 
-        if (ListaFiltrada!=null){
-            if(ListaFiltrada.size()==0) {
+        if (ListaFiltrad!=null){
+            if(ListaFiltrad.size()==0) {
                 Toast toast1 =Toast.makeText(this.getActivity(), "esta vacia", Toast.LENGTH_SHORT);
                 toast1.show();
                 ListaFiltrada.clear();
@@ -200,13 +158,19 @@ public class FragmentMostrarListaCarreras extends Fragment{
             }else{
 
                 Log.d("ModificarLista","Cantidad: "+ListaFiltrada.size());
-                paginado.ActualizarValores(ListaFiltrada,ListaFiltrada.size());
+                paginado.ActualizarValores(ListaFiltrad,ListaFiltrad.size());
                 ArrayList<Carrera> paginada=paginado.setPaginaActual(paginado.paginaActual);
                 Log.d("ListaFiltrada","paginada:"+paginada.size());
                 adapter=new Adaptador_Carrera(this.getActivity(),paginada);
                 Log.d("ModificarLista","por setear");
-
                 Log.d("ModificarLista","notificado");
+                ArrayList<Carrera>eliminar=new ArrayList<>();
+                for (Carrera elemento:ListaFiltrad) {
+                    if(VerificarSiEstaEnLaLista(elemento)){
+                        eliminar.add(elemento);
+                        }
+                }
+                Eliminar(eliminar);
                 gridView.setAdapter(adapter);
             }
         }else{
@@ -245,6 +209,39 @@ public class FragmentMostrarListaCarreras extends Fragment{
         RegistrosLeidos.close();
 
         return items;
+    }
+    public ArrayList<Carrera> PrimerFiltro()
+    {
+        ArrayList<Carrera> paginada;
+        paginada=paginado.setPaginaActual(0);
+            Log.d("PrimerFiltro",""+listaDeCarreras.size());
+            Log.d("PrimerFiltro",""+paginada.size());
+        Log.d("cant","cantidad paginas"+paginado.numPaginas(ListaFiltrada.size()));
+            return paginada;
+        }
+        public void Eliminar(ArrayList<Carrera> Eliminar)
+    {
+        for (Carrera Actual:Eliminar)
+        {
+            listaDeCarreras.remove(Actual);
+        }
+    }
+    public boolean VerificarSiEstaEnLaLista(Carrera ElementoActual)
+    {
+
+        boolean veracidad=false;
+        int contador=0;
+        for (Carrera Actual:ListaFiltrada)
+        {
+            if(Actual.equals(ElementoActual))
+            {
+                contador++;
+            }
+        }
+        if(contador!=1){
+            veracidad=true;
+        }
+        return veracidad;
     }
     private ArrayList<Carrera> VerificarTags(String query)//me fijo en la tabla de tags cuales contienen la query y con el id de esos me fijo en la tabla cuales carreras tienen ese como tag asignado y los cargo
     {
@@ -306,7 +303,7 @@ public class FragmentMostrarListaCarreras extends Fragment{
             }while(RegistrosLeidos.moveToNext());
         }
         RegistrosLeidos.close();
-       return  ListaCarrera;
+        return  ListaCarrera;
     }
     private ArrayList<Integer> BuscarPorIdTag(String query)
     {
@@ -331,39 +328,58 @@ public class FragmentMostrarListaCarreras extends Fragment{
         RegistrosLeidos.close();
         return IDTags;
     }
-    public ArrayList<Carrera> PrimerFiltro()
-    {
-        ArrayList<Carrera> paginada;
-        paginada=paginado.setPaginaActual(0);
-            Log.d("PrimerFiltro",""+listaDeCarreras.size());
-            Log.d("PrimerFiltro",""+paginada.size());
-        Log.d("cant","cantidad paginas"+paginado.numPaginas(ListaFiltrada.size()));
-            return paginada;
-        }
-        public void Eliminar(ArrayList<Carrera> Eliminar)
-    {
-        for (Carrera Actual:Eliminar)
-        {
-            listaDeCarreras.remove(Actual);
-        }
-    }
-    public boolean VerificarSiEstaEnLaLista(Carrera ElementoActual)
-    {
 
-        boolean veracidad=false;
-        int contador=0;
-        for (Carrera Actual:listaDeCarreras)
+
+
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        ArrayList<Carrera> ElementoCompleto=Adaptador_Carrera.getMiListaCarreras();
+        MainActivity main=(MainActivity)getActivity();
+        main.RemplazarPorViewPrivada(ElementoCompleto.get(position));
+    }
+
+    @Override
+    public void onScrollStateChanged(AbsListView view, int scrollState)
+    {
+        Log.d("Scrool","onScrollStateChanged");
+    }
+
+    @Override
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+        Log.d("Scroll","entro al scroll");
+        int ultimo=firstVisibleItem+visibleItemCount;
+        Log.d("Scroll","ultimo elemento visible: "+ultimo);
+        Log.d("Scroll","total de items: "+totalItemCount);
+        if(firstVisibleItem+visibleItemCount>=totalItemCount/2)
         {
-            if(Actual.equals(ElementoActual))
-            {
-                contador++;
+            if(totalItemCount+10<=listaDeCarreras.size())
+            {   ListaFiltrada.clear();
+                List<Carrera>sublista=listaDeCarreras.subList(0,totalItemCount+10);
+                for (Carrera actual:sublista) {
+                    ListaFiltrada.add(actual);
+                }
             }
+            if(totalItemCount+10>listaDeCarreras.size())
+            {
+                ListaFiltrada.clear();
+                List<Carrera>sublista=listaDeCarreras.subList(0,listaDeCarreras.size());
+                for (Carrera actual:sublista) {
+                    ListaFiltrada.add(actual);
+
+                }
+            }
+            ActualizarLista(firstVisibleItem);
         }
-        if(contador!=1){
-            veracidad=true;
-        }
-        return veracidad;
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        ArrayList<Carrera> ElementoCompleto=Adaptador_Carrera.getMiListaCarreras();
+        MainActivity main=(MainActivity)getActivity();
+        main.RemplazarPorViewPrivada(ElementoCompleto.get(position));
+    }
 
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 }

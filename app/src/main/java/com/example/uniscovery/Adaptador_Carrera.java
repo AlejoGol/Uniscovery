@@ -1,12 +1,8 @@
 package com.example.uniscovery;
 import android.content.Context;
 import android.database.Observable;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,13 +12,9 @@ import android.view.ViewParent;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import java.io.BufferedInputStream;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 
 /*public class Adaptador_Carrera extends RecyclerView.Adapter<Adaptador_Carrera.Holder> implements View.OnClickListener {
@@ -226,7 +218,7 @@ public class Adaptador_Carrera extends BaseAdapter
 
         }
         //MiListaCarreras.addAll(list);
-        this.notifyDataSetChanged();
+        //notifyDataSetChanged();
     }
 
     @Override

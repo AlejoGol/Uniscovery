@@ -7,6 +7,7 @@
     <string name="alejo_goltzman" />
     <string name="pagina_anterior">pagina anterior</string>
     <string name="siguiente_pagina">siguiente Pagina</string>
+    <string name="nombre_de_la_carrera">Nombre de la carrera</string>
     <string-array name="ArrayDeString">
         <item>INGENIERIA INFORMATICA</item>
         <item>CIENCIAS DE LA COMPUTACION</item>
