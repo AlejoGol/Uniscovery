@@ -46,7 +46,6 @@ public class FragmentMostrarInformacionUnaCarrera extends Fragment implements Vi
     }
         private void LlenarCampos(TextView nombre,TextView descipcion,ImageView LogoCarrera,TextView descripcionMateria)
         {
-
             MainActivity actividadPrincipal=(MainActivity)getActivity();
             Carrera DatosAUsar=actividadPrincipal.getSeleccion();
             LogoCarrera.setImageResource(ObtenerImagenFacultad(DatosAUsar.NombreFacultad));
@@ -71,17 +70,17 @@ public class FragmentMostrarInformacionUnaCarrera extends Fragment implements Vi
 
                 }
             });
-            //materias.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            //    @Override
-            //    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            //       LlenarDescripcion(position);
-            //    }
+            materias.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+              @Override
+              public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                 LlenarDescripcion(position);
+              }
 //
-            //    @Override
-            //    public void onNothingSelected(AdapterView<?> parent) {
+              @Override
+              public void onNothingSelected(AdapterView<?> parent) {
 //
-            //    }
-            //});
+              }
+            });
             descipcion.setText((DatosAUsar.Descipcion));
 
         }

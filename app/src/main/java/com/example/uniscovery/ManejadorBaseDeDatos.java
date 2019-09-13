@@ -68,13 +68,16 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         InsertarCarrera(BaseDeDatos,"LICENCIATURA EN ADMINISTRACION DE EMPRESAS","DI TELLA","https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg","El Licenciado en Administración de Empresas es un profesional con ánimo emprendedor, formado para la gestión y dirección de los recursos de la empresa desde una perspectiva integral.\n" + "\n" + "Su formación le permite interactuar con todos los estamentos de la organización, con vistas a facilitar la coordinación para lograr objetivos comunes.");
         InsertarCarrera(BaseDeDatos,"LICENCIATURA EN ECONOMÍA EMPRESARIAL","DI TELLA","https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg","El Licenciado en Economía Empresarial comparte con el Licenciado en Economía, una vocación por el rigor analítico y el detalle metodológico que soportan las herramientas de decisión más modernas utilizadas en las organizaciones.\n" + "\n" +"Comparte también con el Licenciado en Administración una naturaleza emprendedora y de gestión empresarial que le permite dirigir los recursos de la empresa desde una perspectiva integral.\n" + "\n");
         InsertarCarrera(BaseDeDatos,"LICENCIATURA EN ECONOMÍA","DI TELLA","https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg","Formula diagnósticos de situaciones, escenarios micro y macroeconómicos e implementa políticas en el ámbito público o privado. Se inserta laboralmente en empresas, instituciones financieras, consultoras, ONG, organismos nacionales e internacionales, así como en instituciones de investigación y docencia de la Argentina y del exterior.");
-        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN DISEÑO","DI TELLA","https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg","La Licenciatura en Diseño de la Universidad Torcuato Di Tella conecta con su propia historia en el campo de la industria, el diseño y las artes -la de la empresa SIAM y la del Instituto Torcuato Di Tella- y retoma la experiencia académica y profesional de las últimas décadas para encarar los desafíos contemporáneos. Se trata de una propuesta innovadora para un mundo interconectado, en el que los productos, los proyectos y las ideas circulan a gran velocidad y en muy distintos soportes.");
-        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN ESTUDIOS INTERNACIONALES","DI TELLA","https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg","Durante la carrera se analizan cuestiones tales como: ¿cuáles son los principales dilemas que caracterizan a la política mundial?; ¿quiénes ganan qué y cómo en la economía política internacional?; ¿de qué manera se expresan y despliegan las políticas exteriores de los países?; ¿cómo inciden fenómenos religiosos, históricos y culturales en la identidad nacional?; ¿cuándo y cómo ascienden las naciones en términos de las relaciones internacionales?; ¿existe un nuevo modelo de cooperación Sur-Sur?");
-        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN CIENCIAS POLÍTICA Y GOBIERNO","DI TELLA","https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg","El licenciado en Ciencia Política y Gobierno recibe una formación sistemática y empírica que lo prepara para analizar y actuar profesionalmente frente a los fenómenos complejos y los dilemas que rodean la vida política y la gestión de instituciones de gobierno. Para lograr estos objetivos el plan de estudios ofrece una sólida formación multidisciplinaria a cargo de un cuerpo de profesores caracterizado por la excelencia de su investigación, una importante experiencia académica y una fuerte vocación por la innovación. Dada la complejidad de los fenómenos políticos, nuestro plan de estudios incluye materias de Teoría Política, Economía, Historia, Derecho y Estadística.");
-        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN CIENCIAS SOCIALES","DI TELLA","https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg","La Licenciatura en Ciencias Sociales se distingue por su organización en orientaciones profesionales. Cada una de ellas está coordinada por un profesor de la Di Tella. Desde el tercer año, los estudiantes eligen una entre cuatro posibilidades: Comunicación y Periodismo; Economía y Política; Historia y Cultura; Sociedad y Mercados. Las cuatro orientaciones están pensadas para diversas alternativas profesionales con perfil siglo XXI." );
-        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN HISTORIA","DI TELLA","https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg","La carrera de Historia ofrece al graduado una amplia gama de posibilidades laborales y de desarrollo profesional. Para aquellos interesados en una carrera académica, la Licenciatura les provee las herramientas necesarias para iniciarse en la investigación. Al mismo tiempo, la carrera suministra al graduado un conjunto de saberes y habilidades cuya utilidad no es exclusiva del trabajo del historiador profesional");
-        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN CIENCIAS AMBIENTALES","UBA","https://i0.wp.com/www.alevelplayingfield.group.shef.ac.uk/wp-content/uploads/2018/04/UBA-logo.jpg","Las Ciencias Ambientales reúnen la evaluación científica de las potencialidades, limitaciones y susceptibilidades del ambiente, con el desarrollo de soluciones a los problemas de deterioro de la calidad ambiental. Constituyen una respuesta a los requerimientos de armonizar el desarrollo con la preservación de la calidad de los recursos naturales renovables y con la conservación de la calidad del ambiente.");
-        InsertarCarrera(BaseDeDatos,"AGRONOMIA","UBA","https://i0.wp.com/www.alevelplayingfield.group.shef.ac.uk/wp-content/uploads/2018/04/UBA-logo.jpg","La carrera de Agronomía se dicta en Buenos Aires y tiene una duración de 5 años y medio. Su carga horaria total es de 3752 horas, que corresponden a 234,5 créditos de los cuales 218 pertenecen a 52 asignaturas obligatorias y al trabajo final, y el resto a asignaturas electivas y optativas. Al haber aprobado 28 asignaturas obligatorias correspondientes a los tres primeros años, se otorga el título intermedio de Bachiller Universitario en Agronomía.");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN DISEÑO","DI TELLA","https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg"," Su inserción profesional le permite proponer ideas, acciones y métodos del diseño para los ámbitos de la tecnología, los negocios y la cultura, en el marco de equipos de trabajo multiprofesionales, para detectar oportunidades de solución e innovación. La formación humanística y ética, proyectual y técnica, le permitirá al graduado actuar con idoneidad y eficiencia como profesional del Diseño en relación con imágenes, objetos, mensajes, información, medios tecnológicos y emprendimientos institucionales y empresariales.\n"+"\n");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN ESTUDIOS INTERNACIONALES","DI TELLA","https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg","El licenciado en Estudios Internacionales, desde su formación multidisciplinaria, aporta al análisis y comprensión de un mundo globalizado, interdependiente y pluricultural interpretando las dimensiones políticas, económicas, jurídicas, militares, ambientales y sociales de un entorno en proceso de permanente transformación. Maneja técnicas, metodologías y herramientas que le permiten una aproximación profunda y rigurosa a los complejos fenómenos internacionales");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN CIENCIAS POLÍTICA Y GOBIERNO","DI TELLA","https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg","El licenciado en Ciencia Política y Gobierno cuenta con valiosas herramientas teóricas, empíricas y metodológicas que le permiten abordar y evaluar fenómenos complejos de la vida política y la gestión de instituciones de gobierno. Posee una mirada analítica y sistemática para comprender y accionar frente a esos fenómenos, tanto en el caso argentino como en términos comparados. Propone alternativas innovadoras al nutrirse de otras áreas de conocimiento como la Economía, la Historia, las Políticas Públicas y el Derecho");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN CIENCIAS SOCIALES","DI TELLA","https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg","La formación del licenciado en Ciencias Sociales de la Universidad Torcuato Di Tella le permite comprender y analizar fenómenos sociales; generar contenidos, estrategias y acciones de impacto en la sociedad; formular, desarrollar e implementar estrategias empresariales y programas de políticas públicas y evaluar su influencia en los grupos destinatarios; y comunicar contenidos por diversas vías (informes, presentaciones, artículos periodísticos, material 2.0)." );
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN HISTORIA","DI TELLA","https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg","La carrera de Historia ofrece al graduado una amplia gama de posibilidades laborales y de desarrollo profesional. Para aquellos interesados en una carrera académica, la Licenciatura les provee las herramientas necesarias para iniciarse en la investigación. Al mismo tiempo, la carrera suministra al graduado un conjunto de saberes y habilidades cuya utilidad no es exclusiva del trabajo del historiador profesional. ");
+        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN CIENCIAS AMBIENTALES","UBA","https://i0.wp.com/www.alevelplayingfield.group.shef.ac.uk/wp-content/uploads/2018/04/UBA-logo.jpg","El ejercicio de identificar las actividades que puede llevar a cabo un profesional\n" +
+                "en las ciencias ambientales nos fuerza a definir un conjunto cuyos límites son difusos,\n" +
+                "que se superpone a las de actividades de profesionales de otras áreas y que, de hecho,\n" +
+                "incluye tareas que ni siquiera imaginamos en el presente. ");
+        InsertarCarrera(BaseDeDatos,"AGRONOMIA","UBA","https://i0.wp.com/www.alevelplayingfield.group.shef.ac.uk/wp-content/uploads/2018/04/UBA-logo.jpg","El Ingeniero Agrónomo es aquel graduado universitario con una sólida formación científica y tecnológica que le permite intervenir en las cadenas productivas de base agropecuaria, en el ambiente y en la preservación de los recursos naturales desde una visión integral y sustentable, dentro de un contexto socioeconómico con diversos niveles de innovación e incertidumbre, con el fin de promover el desarrollo nacional y el del sector agropecuario.");
         /*InsertarCarrera(BaseDeDatos,"LICENCIATURA EN ECONOMÍA Y ADMINISTRACIÓN AGRARIAS","UBA");
         InsertarCarrera(BaseDeDatos,"LICENCIATURA EN GESTIÓN DE AGROALIMENTOS","UBA");
         InsertarCarrera(BaseDeDatos,"LICENCIATURA EN PLANIFICACIÓN Y DISEÑO DEL PAISAJE","UBA");
@@ -828,6 +831,92 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         InsertarTags(BaseDeDatos,"universidad de buenos aires");//41
         InsertarTags(BaseDeDatos,"ditella");//42
         InsertarTags(BaseDeDatos,"di tella");//43
+        //TODO ahora son los tags del chaside
+        InsertarTags(BaseDeDatos,"Organizativo");//
+        InsertarTags(BaseDeDatos,"Superc}vision");//
+        InsertarTags(BaseDeDatos,"Orden");//
+        InsertarTags(BaseDeDatos,"analisis y sintesis");//
+        InsertarTags(BaseDeDatos,"colaboracion");//
+        InsertarTags(BaseDeDatos,"calculo");//
+        InsertarTags(BaseDeDatos,"persuacion");//
+        InsertarTags(BaseDeDatos,"objetivo");//
+        InsertarTags(BaseDeDatos,"practico");//
+        InsertarTags(BaseDeDatos,"tolerante");//
+        InsertarTags(BaseDeDatos,"responsable");//
+        InsertarTags(BaseDeDatos,"ambisioso");//
+        //H
+        InsertarTags(BaseDeDatos,"precision verval");//
+        InsertarTags(BaseDeDatos,"organizacion");//
+        InsertarTags(BaseDeDatos,"relacion de hechos");//
+        InsertarTags(BaseDeDatos,"linguistica");//
+        InsertarTags(BaseDeDatos,"orden");//
+        InsertarTags(BaseDeDatos,"justicia");//
+        InsertarTags(BaseDeDatos,"responsable");//
+        InsertarTags(BaseDeDatos,"justo");//
+        InsertarTags(BaseDeDatos,"Conciliador");//
+        InsertarTags(BaseDeDatos,"persuasivo");//
+        InsertarTags(BaseDeDatos,"sagaz");//
+        InsertarTags(BaseDeDatos,"imaginativo");//
+        //A
+        InsertarTags(BaseDeDatos,"esterico");//
+        InsertarTags(BaseDeDatos,"armonico");//
+        InsertarTags(BaseDeDatos,"manual");//
+        InsertarTags(BaseDeDatos,"visual");//
+        InsertarTags(BaseDeDatos,"auditivo");//
+        InsertarTags(BaseDeDatos,"sensible");//
+        InsertarTags(BaseDeDatos,"imaginativo");//
+        InsertarTags(BaseDeDatos,"creativo");//
+        InsertarTags(BaseDeDatos,"detallista");//
+        InsertarTags(BaseDeDatos,"inovador");//
+        InsertarTags(BaseDeDatos,"intuitivo");//
+        //S
+        InsertarTags(BaseDeDatos,"asistir");//
+        InsertarTags(BaseDeDatos,"investigativo");//
+        InsertarTags(BaseDeDatos,"precision");//
+        InsertarTags(BaseDeDatos,"senso-perceptivo");//
+        InsertarTags(BaseDeDatos,"analitico");//
+        InsertarTags(BaseDeDatos,"ayudar");//
+        InsertarTags(BaseDeDatos,"altruista");//
+        InsertarTags(BaseDeDatos,"solidario");//
+        InsertarTags(BaseDeDatos,"paciente");//
+        InsertarTags(BaseDeDatos,"compresivo");//
+        InsertarTags(BaseDeDatos,"respetuoso");//
+        InsertarTags(BaseDeDatos,"persuasivo");//
+        //I
+        InsertarTags(BaseDeDatos,"calculo");//
+        InsertarTags(BaseDeDatos,"cientifico");//
+        InsertarTags(BaseDeDatos,"manual");//
+        InsertarTags(BaseDeDatos,"exacto");//
+        InsertarTags(BaseDeDatos,"planificar");//
+        InsertarTags(BaseDeDatos,"preciso");//
+        InsertarTags(BaseDeDatos,"practico");//
+        InsertarTags(BaseDeDatos,"critico");//
+        InsertarTags(BaseDeDatos,"analitico");//
+        InsertarTags(BaseDeDatos,"rigido");//
+        //D
+        InsertarTags(BaseDeDatos,"justicia");//
+        InsertarTags(BaseDeDatos,"equidad");//
+        InsertarTags(BaseDeDatos,"colaboracion");//
+        InsertarTags(BaseDeDatos,"espiritu de equipo");//
+        InsertarTags(BaseDeDatos,"liderazgo");//
+        InsertarTags(BaseDeDatos,"arriesgado");//
+        InsertarTags(BaseDeDatos,"solidario");//
+        InsertarTags(BaseDeDatos,"valiente");//
+        InsertarTags(BaseDeDatos,"agresivo");//
+        InsertarTags(BaseDeDatos,"persuasivo");//
+        //E
+        InsertarTags(BaseDeDatos,"investigacion");//
+        InsertarTags(BaseDeDatos,"orden");//
+        InsertarTags(BaseDeDatos,"organizacion");//
+        InsertarTags(BaseDeDatos,"analisis y sintesis");//
+        InsertarTags(BaseDeDatos,"numerico");//
+        InsertarTags(BaseDeDatos,"clasificar");//
+        InsertarTags(BaseDeDatos,"metodico");//
+        InsertarTags(BaseDeDatos,"analitico");//
+        InsertarTags(BaseDeDatos,"observador");//
+        InsertarTags(BaseDeDatos,"introvertido");//
+        InsertarTags(BaseDeDatos,"paciente");//
+        InsertarTags(BaseDeDatos,"seguro");//
         /*InsertarTags(BaseDeDatos,"");//44
         InsertarTags(BaseDeDatos,"");//45
         InsertarTags(BaseDeDatos,"");//46*/
