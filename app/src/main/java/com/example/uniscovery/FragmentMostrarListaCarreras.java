@@ -14,7 +14,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentMostrarListaCarreras extends Fragment implements AdapterView.OnItemClickListener,AbsListView.OnScrollListener, AdapterView.OnItemSelectedListener {
+public class FragmentMostrarListaCarreras extends Fragment implements AdapterView.OnItemClickListener,AbsListView.OnScrollListener {
     View VistaDevolver;
     Paginado paginado;
     SearchView searchView;
@@ -140,11 +140,6 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
         }
         Log.d("ActualizarLista","elementos "+ListaFiltrada.size());
 
-    }
-    public static void ClickListeenerPartDos(int posicion)
-    {
-        ArrayList<Carrera> ElementoCompleto=Adaptador_Carrera.getMiListaCarreras();
-        main.RemplazarPorViewPrivada(ElementoCompleto.get(posicion));
     }
     public void ModificarLista(ArrayList<Carrera> ListaFiltrad){
 
@@ -328,18 +323,15 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
         RegistrosLeidos.close();
         return IDTags;
     }
-
-
-
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         ArrayList<Carrera> ElementoCompleto=Adaptador_Carrera.getMiListaCarreras();
         MainActivity main=(MainActivity)getActivity();
         main.RemplazarPorViewPrivada(ElementoCompleto.get(position));
     }
-
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState)
     {
+        adapter.notifyDataSetChanged();
         Log.d("Scrool","onScrollStateChanged");
     }
 
@@ -349,37 +341,29 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
         int ultimo=firstVisibleItem+visibleItemCount;
         Log.d("Scroll","ultimo elemento visible: "+ultimo);
         Log.d("Scroll","total de items: "+totalItemCount);
-        if(firstVisibleItem+visibleItemCount>=totalItemCount/2)
+        if(!SearchAbierto)
         {
-            if(totalItemCount+10<=listaDeCarreras.size())
-            {   ListaFiltrada.clear();
-                List<Carrera>sublista=listaDeCarreras.subList(0,totalItemCount+10);
-                for (Carrera actual:sublista) {
-                    ListaFiltrada.add(actual);
-                }
-            }
-            if(totalItemCount+10>listaDeCarreras.size())
+            if(firstVisibleItem+visibleItemCount>=totalItemCount/2)
             {
-                ListaFiltrada.clear();
-                List<Carrera>sublista=listaDeCarreras.subList(0,listaDeCarreras.size());
-                for (Carrera actual:sublista) {
-                    ListaFiltrada.add(actual);
-
+                if(totalItemCount+10<=listaDeCarreras.size())
+                {   ListaFiltrada.clear();
+                    List<Carrera>sublista=listaDeCarreras.subList(0,totalItemCount+10);
+                    for (Carrera actual:sublista) {
+                        ListaFiltrada.add(actual);
+                    }
                 }
+                if(totalItemCount+10>listaDeCarreras.size())
+                {
+                    ListaFiltrada.clear();
+                    List<Carrera>sublista=listaDeCarreras.subList(0,listaDeCarreras.size());
+                    for (Carrera actual:sublista) {
+                        ListaFiltrada.add(actual);
+
+                    }
+                }
+                ActualizarLista(firstVisibleItem);
             }
-            ActualizarLista(firstVisibleItem);
         }
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        ArrayList<Carrera> ElementoCompleto=Adaptador_Carrera.getMiListaCarreras();
-        MainActivity main=(MainActivity)getActivity();
-        main.RemplazarPorViewPrivada(ElementoCompleto.get(position));
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 }

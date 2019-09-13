@@ -220,7 +220,10 @@ public class Adaptador_Carrera extends BaseAdapter
         //MiListaCarreras.addAll(list);
         //notifyDataSetChanged();
     }
-
+    public void NotifyDataSetChange()
+    {
+        notifyDataSetChanged();
+    }
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflador=(LayoutInflater) Contexto.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
