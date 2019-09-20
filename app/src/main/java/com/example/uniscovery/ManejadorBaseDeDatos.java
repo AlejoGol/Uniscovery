@@ -37,7 +37,7 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         db.execSQL(SQLliteTabla);
         SQLliteTabla="create table Materias (ID_Materia INTEGER PRIMARY KEY AUTOINCREMENT, ID_Carrera INTEGER, Nombre_Materia TEXT, Anio INTEGER,Descripcion_Materia TEXT,Opcionalidad INTEGER)";
         db.execSQL(SQLliteTabla);
-        SQLliteTabla="create table Preguntas (ID_Pregunta INTEGER PRIMARY KEY AUTOINCREMENT, TextoPregunta TEXT, InteligenciaMultiple TEXT)";
+        SQLliteTabla="create table Preguntas (ID_Pregunta INTEGER PRIMARY KEY, TextoPregunta TEXT, Orientacion TEXT)";
         db.execSQL(SQLliteTabla);
         DB=db;
         InsertarValores(db);
@@ -960,13 +960,62 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
     }
     private void Preguntas(SQLiteDatabase BaseDeDatos)
     {
-        InsertarPreguntas(BaseDeDatos,"","");
+        InsertarPreguntas(BaseDeDatos,1,"¿Aceptarías trabajar escribiendo artículos en la sección económica de un diario?","Interes");
+        InsertarPreguntas(BaseDeDatos,2,"¿Te ofrecerías para organizar la despedida de soltero de uno de tus amigos?","Aptitud");
+        InsertarPreguntas(BaseDeDatos,3,"¿Te gustaría dirigir un proyecto de urbanización en tu provincia?","Interes");
+        InsertarPreguntas(BaseDeDatos,4,"A una frustración siempre opones un pensamiento positivo?","Aptitud");
+        InsertarPreguntas(BaseDeDatos,5,"¿Te dedicarías a socorrer a personas accidentadas o atacadas por asaltantes?","Interes");
+        InsertarPreguntas(BaseDeDatos,6,"¿Cuando eras chico, te interesaba saber cómo estaban construidos tus juguetes?","Interes");
+        InsertarPreguntas(BaseDeDatos,7,"¿Te interesan más los misterios de la naturaleza que los secretos de la tecnología?","Aptitud");
+        InsertarPreguntas(BaseDeDatos,8,"¿Escuchas atentamente los problemas que te plantean tus amigos?","Interes");
+        InsertarPreguntas(BaseDeDatos,9,"¿Te ofrecerías para explicar a tus compañeros un determinado tema que ellos no entendieron?","Interes");
+        InsertarPreguntas(BaseDeDatos,10,"¿Eres exigente y crítico con tu equipo de trabajo?","Aptitud");
+        InsertarPreguntas(BaseDeDatos,11,"¿Te atrae armar rompecabezas o puzzles?","Interes");
+        InsertarPreguntas(BaseDeDatos,12,"¿Puedes establecer la diferencia conceptual entre macroeconomía y microeconomía?","Interes");
+        InsertarPreguntas(BaseDeDatos,13,"¿Usar uniforme te hace sentir distinto, importante?","Interes");
+        InsertarPreguntas(BaseDeDatos,14,"¿Participarías como profesional en un espectáculo de acrobacia aérea?","Interes");
+        InsertarPreguntas(BaseDeDatos,15,"¿Organizas tu dinero de manera que te alcance hasta el próximo cobro?","");
+        InsertarPreguntas(BaseDeDatos,16,"¿Convences fácilmente a otras personas sobre la validez de tus argumentos?","");
+        InsertarPreguntas(BaseDeDatos,17,"¿Estás informado sobre los nuevos descubrimientos que se están realizando sobre la Teoría del Big-Bang?","");
+        InsertarPreguntas(BaseDeDatos,18,"¿Ante una situación de emergencia actúas rápidamente?","");
+        InsertarPreguntas(BaseDeDatos,19,"¿Cuando tienes que resolver un problema matemático, perseveras hasta encontrar la solución?","");
+        InsertarPreguntas(BaseDeDatos,20,"¿Si te convocara tu club preferido para planificar, organizar y dirigir un campo de deportes, aceptarías?","");
+        InsertarPreguntas(BaseDeDatos,21,"¿Eres el que pone un toque de alegría en las fiestas?","");
+        InsertarPreguntas(BaseDeDatos,22,"¿Crees que los detalles son tan importantes como el todo?","");
+        InsertarPreguntas(BaseDeDatos,23,"¿Te sentirías a gusto trabajando en un ámbito hospitalario?","");
+        InsertarPreguntas(BaseDeDatos,24,"¿Te gustaría participar para mantener el orden ante grandes desórdenes y cataclismos?","");
+        InsertarPreguntas(BaseDeDatos,25,"¿Pasarías varias horas leyendo algún libro de tu interés?","");
+        InsertarPreguntas(BaseDeDatos,26,"¿Planificas detalladamente tus trabajos antes de empezar?","");
+        InsertarPreguntas(BaseDeDatos,27,"¿Entablas una relación casi personal con tu computadora?","");
+        InsertarPreguntas(BaseDeDatos,28,"¿Disfrutas modelando con arcilla?","");
+        InsertarPreguntas(BaseDeDatos,29,"¿Ayudas habitualmente a los no videntes a cruzar la calle?","");
+        InsertarPreguntas(BaseDeDatos,30,"¿Consideras importante que desde la escuela primaria se fomente la actitud crítica y la participación activa?","");
+        InsertarPreguntas(BaseDeDatos,31,"¿Aceptarías que las mujeres formaran parte de las fuerzas armadas bajo las mismas normas que los hombres?","");
+        InsertarPreguntas(BaseDeDatos,32,"¿Te gustaría crear nuevas técnicas para descubrir las patologías de algunas enfermedades a través del microscopio?","");
+        InsertarPreguntas(BaseDeDatos,33,"¿Participarías en una campaña de prevención contra la enfermedad de Chagas?","");
+        InsertarPreguntas(BaseDeDatos,34,"¿Te interesan los temas relacionados al pasado y a la evolución del hombre?","");
+        InsertarPreguntas(BaseDeDatos,35,"¿Te incluirías en un proyecto de investigación de los movimientos sísmicos y sus consecuencias?","");
+        InsertarPreguntas(BaseDeDatos,36,"¿Fuera de los horarios escolares, dedicas algún día de la semana a la realización de actividades corporales?","");
+        InsertarPreguntas(BaseDeDatos,37,"¿Te interesan las actividades de mucha acción y de reacción rápida en situaciones imprevistas y de peligro?","");
+        InsertarPreguntas(BaseDeDatos,38,"¿Te ofrecerías para colaborar como voluntario en los gabinetes espaciales de la NASA?","");
+        InsertarPreguntas(BaseDeDatos,39,"¿Te gusta más el trabajo manual que el trabajo intelectual?","");
+        InsertarPreguntas(BaseDeDatos,40,"¿Estarías dispuesto a renunciar a un momento placentero para ofrecer tu servicio como profesional?","");
+        InsertarPreguntas(BaseDeDatos,41,"¿Participarías de una investigación sobre la violencia en el fútbol?","");
+        InsertarPreguntas(BaseDeDatos,42,"¿Te gustaría trabajar en un laboratorio mientras estudias?","");
+        InsertarPreguntas(BaseDeDatos,43,"¿Te gustaría trabajar en un laboratorio mientras estudias?","");
+        InsertarPreguntas(BaseDeDatos,44,"¿Te gustaría trabajar en un laboratorio mientras estudias?","");
+        InsertarPreguntas(BaseDeDatos,45,"¿Tolerarías empezar tantas veces como fuere necesario hasta obtener el logro deseado?","");
+        InsertarPreguntas(BaseDeDatos,46,"¿Distribuyes tus horarios del día adecuadamente para poder hacer todo lo planeado?","");
+        InsertarPreguntas(BaseDeDatos,47,"¿Harías un curso para aprender a fabricar los instrumentos y/o piezas de las máquinas o aparatos con que trabajas?","");
+        InsertarPreguntas(BaseDeDatos,48,"¿Elegirías una profesión en la tuvieras que estar algunos meses alejado de tu familia, por ejemplo el marino?","");
+        InsertarPreguntas(BaseDeDatos,49,"¿Te radicarías en una zona agrícola-ganadera para desarrollar tus actividades como profesional?","");
     }
-    private void InsertarPreguntas(SQLiteDatabase BD,String TextoPreg,String Inteligencia)
+    private void InsertarPreguntas(SQLiteDatabase BD,int idPregunta,String TextoPreg,String Opcionalidad)
     {
         ContentValues NuevoRegistro=new ContentValues();
         NuevoRegistro.put("TextoPregunta",TextoPreg.toUpperCase());
-        NuevoRegistro.put("InteligenciaMultiple",Inteligencia.toUpperCase());
+        NuevoRegistro.put("ID_Pregunta",idPregunta);
+        NuevoRegistro.put("InteligenciaMultiple",Opcionalidad.toUpperCase());
         BD.insert("Preguntas",null,NuevoRegistro);
     }
     private void MateriasDeCarrera(SQLiteDatabase BD)
