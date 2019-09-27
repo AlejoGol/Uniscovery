@@ -49,6 +49,28 @@ public class FragmentPreguntaChaside extends Fragment implements View.OnClickLis
                 switch(PreguntaActual.get_IdPregunta())
                 {
                     case 'C':
+                        Respuestas.setInteresC((Respuestas.getInteresC())+1);
+                        break;
+                    case 'H':
+
+                        Respuestas.setInteresH((Respuestas.getInteresH())+1);
+                        break;
+                    case 'A':
+
+                        Respuestas.setInteresA((Respuestas.getInteresA())+1);
+                        break;
+                    case 'S':
+                        Respuestas.setInteresS((Respuestas.getInteresS())+1);
+                        break;
+                    case 'D':
+                        Respuestas.setInteresD((Respuestas.getInteresD())+1);
+                        break;
+                    case 'E':
+
+                        Respuestas.setInteresE((Respuestas.getInteresE())+1);
+                        break;
+                    case 'I':
+                        Respuestas.setInteresI((Respuestas.getInteresI())+1);
                         break;
                     default:
                         break;
@@ -59,12 +81,34 @@ public class FragmentPreguntaChaside extends Fragment implements View.OnClickLis
                 switch(PreguntaActual.get_IdPregunta())
                 {
                     case 'C':
+                        Respuestas.setAptitudC((Respuestas.getAptitudC())+1);
+                        break;
+                    case 'H':
+                        Respuestas.setAptitudH((Respuestas.getAptitudH())+1);
+                        break;
+                    case 'A':
+                        Respuestas.setAptitudA((Respuestas.getAptitudA())+1);
+                        break;
+                    case 'S':
+                        Respuestas.setAptitudS((Respuestas.getAptitudS())+1);
+                        break;
+                    case 'I':
+                        Respuestas.setAptitudI((Respuestas.getAptitudI())+1);
+                        break;
+                    case 'D':
+                        Respuestas.setAptitudD((Respuestas.getAptitudD())+1);
+                        break;
+                    case 'E':
+                        Respuestas.setAptitudE((Respuestas.getAptitudE())+1);
                         break;
                     default:
                         break;
                 }
             }
         }
+        NumeropreguntaActual++;
+        CargarPreguntas();
+        SetearValores();
     }
     public void SetearValores()
     {
