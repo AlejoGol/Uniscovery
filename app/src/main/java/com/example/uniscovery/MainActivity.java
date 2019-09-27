@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity   {
         FragmentMenu fragmentMenu=new FragmentMenu();
         fragmentManager=getFragmentManager();
         ReemplazarFragment(fragmentMenu);
-        VersionBD=11;
+        VersionBD=13;
         ListaFragment=new ArrayList<>();
     }
 

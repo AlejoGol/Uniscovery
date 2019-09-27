@@ -6,7 +6,15 @@ public class Pregunta {
     private String _Objetivo;
     private String _Letra;
 
-    public Pregunta(int IdPregunta, String TextoPregunta, String Objetivo,String Letra) {
+    public String get_Letra() {
+        return _Letra;
+    }
+
+    public void set_Letra(String _Letra) {
+        this._Letra = _Letra;
+    }
+
+    public Pregunta(int IdPregunta, String TextoPregunta, String Objetivo, String Letra) {
         _IdPregunta = IdPregunta;
         _TextoPregunta = TextoPregunta;
         _Objetivo = Objetivo;

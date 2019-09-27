@@ -34,6 +34,7 @@ public class FragmentPreguntaChaside extends Fragment implements View.OnClickLis
         NumeropreguntaActual=1;
         CargarPreguntas();
         SetearValores();
+        botonSiguiente.setOnClickListener(this);
         botonSiguiente.setEnabled(false);
         radioOpcion.setOnCheckedChangeListener(this);
         Respuestas=new RespuestaTest();
@@ -44,32 +45,38 @@ public class FragmentPreguntaChaside extends Fragment implements View.OnClickLis
         int IDElegido=radioOpcion.getCheckedRadioButtonId();
         if(IDElegido==R.id.opcion_si)
         {
-            if(PreguntaActual.get_Objetivo()=="Interes")
+            Log.d("CHASIDE","entro al si ");
+            Log.d("CHASIDE"," "+PreguntaActual.get_Objetivo());
+
+            if(PreguntaActual.get_Objetivo().equals("INTERES"))
             {
-                switch(PreguntaActual.get_IdPregunta())
+                Log.d("Chaside",""+PreguntaActual.get_Letra());
+                switch(PreguntaActual.get_Letra())
                 {
-                    case 'C':
+                    case "C":
+                        Log.d("Switch","entro al switch");
                         Respuestas.setInteresC((Respuestas.getInteresC())+1);
+                        Log.d("CHASIDE"," valor respuesta " + Respuestas.getInteresC());
                         break;
-                    case 'H':
+                    case "H":
 
                         Respuestas.setInteresH((Respuestas.getInteresH())+1);
                         break;
-                    case 'A':
+                    case "A":
 
                         Respuestas.setInteresA((Respuestas.getInteresA())+1);
                         break;
-                    case 'S':
+                    case "S":
                         Respuestas.setInteresS((Respuestas.getInteresS())+1);
                         break;
-                    case 'D':
+                    case "D":
                         Respuestas.setInteresD((Respuestas.getInteresD())+1);
                         break;
-                    case 'E':
+                    case "E":
 
                         Respuestas.setInteresE((Respuestas.getInteresE())+1);
                         break;
-                    case 'I':
+                    case "I":
                         Respuestas.setInteresI((Respuestas.getInteresI())+1);
                         break;
                     default:
@@ -78,27 +85,27 @@ public class FragmentPreguntaChaside extends Fragment implements View.OnClickLis
             }
             else
             {
-                switch(PreguntaActual.get_IdPregunta())
+                switch(PreguntaActual.get_Letra())
                 {
-                    case 'C':
+                    case "C":
                         Respuestas.setAptitudC((Respuestas.getAptitudC())+1);
                         break;
-                    case 'H':
+                    case "H":
                         Respuestas.setAptitudH((Respuestas.getAptitudH())+1);
                         break;
-                    case 'A':
+                    case "A":
                         Respuestas.setAptitudA((Respuestas.getAptitudA())+1);
                         break;
-                    case 'S':
+                    case "S":
                         Respuestas.setAptitudS((Respuestas.getAptitudS())+1);
                         break;
-                    case 'I':
+                    case "I":
                         Respuestas.setAptitudI((Respuestas.getAptitudI())+1);
                         break;
-                    case 'D':
+                    case "D":
                         Respuestas.setAptitudD((Respuestas.getAptitudD())+1);
                         break;
-                    case 'E':
+                    case "E":
                         Respuestas.setAptitudE((Respuestas.getAptitudE())+1);
                         break;
                     default:
@@ -107,6 +114,7 @@ public class FragmentPreguntaChaside extends Fragment implements View.OnClickLis
             }
         }
         NumeropreguntaActual++;
+        radioOpcion.clearCheck();
         CargarPreguntas();
         SetearValores();
     }
@@ -118,7 +126,7 @@ public class FragmentPreguntaChaside extends Fragment implements View.OnClickLis
     public void CargarPreguntas()
     {
         Log.d("BD","CargarPreguntas");
-        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,MainActivity.VersionBD);
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,13);
         Cursor RegistrosLeidos;
         String SqlConsulta="select * from Preguntas where ID_Pregunta="+NumeropreguntaActual;
         RegistrosLeidos=DB.EjecutarConsulta(SqlConsulta);
@@ -126,6 +134,7 @@ public class FragmentPreguntaChaside extends Fragment implements View.OnClickLis
 
         Log.d("BD","Numero Registros: "+RegistrosLeidos.getColumnCount());
         Log.d("BD","Numero Registros: "+RegistrosLeidos.getColumnName(0));
+        Log.d("BD","Numero Registros: "+RegistrosLeidos.getColumnName(3));
         Log.d("BD","Numero Registros: "+RegistrosLeidos.getCount());
         if (RegistrosLeidos.moveToFirst()) {
              do{
@@ -134,7 +143,7 @@ public class FragmentPreguntaChaside extends Fragment implements View.OnClickLis
                 String NombrePregunta=RegistrosLeidos.getString(1);
                 Log.d("BD","Pregunta :"+NombrePregunta);
                 String Opcion=RegistrosLeidos.getString(2);
-                String Letra=RegistrosLeidos.getString(4);
+                String Letra=RegistrosLeidos.getString(3);
                 Log.d("BD","Opcion de la pregunta: "+Opcion);
                 PreguntaActual=new Pregunta(id,NombrePregunta,Opcion,Letra);
              }while(RegistrosLeidos.moveToNext());
