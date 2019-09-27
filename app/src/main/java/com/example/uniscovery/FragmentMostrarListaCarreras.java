@@ -178,7 +178,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
     private ArrayList<Carrera> getItemEnElArray()
     {
         Log.d("BD","getItemEnElArray");
-        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,7);
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,MainActivity.VersionBD);
         ArrayList<Carrera> items= new ArrayList<>();
         Cursor RegistrosLeidos;
         String SqlConsulta="select ID_carrera,Nombre_Carrera,Nombre_Facultad,LinkImagen,Descripcion from Carerras" ;
@@ -251,7 +251,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
     private ArrayList<Carrera>  BuscarCarrerasPorId(ArrayList<Integer>IdCarreras)
     {
         ArrayList<Carrera> CarrerasConTags=new ArrayList<>();
-        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null, 7);
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null, MainActivity.VersionBD);
 
         Cursor RegistrosLeidos;
         String SqlConsulta="select ID_carrera, Nombre_Carrera, Nombre_Facultad,LinkImagen,Descripcion from Carerras" ;
@@ -279,7 +279,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
     }
     private ArrayList<Integer> BuscarCarrerasPorTag(ArrayList<Integer> IDTags)
     {
-        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(),  "Universidades.db", null, 7);
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(),  "Universidades.db", null, MainActivity.VersionBD);
 
         Cursor RegistrosLeidos;
         String SqlConsulta="select * from Relacion_Carrera_Tag" ;
@@ -302,7 +302,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
     }
     private ArrayList<Integer> BuscarPorIdTag(String query)
     {
-        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null, 7);
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null, MainActivity.VersionBD);
 
         Cursor RegistrosLeidos;
         String SqlConsulta="select * from Tags" ;

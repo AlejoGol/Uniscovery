@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity   {
     FragmentTransaction fragmentTransaction;
     private ArrayList<Fragment> ListaFragment;
     private Carrera Seleccion=null;
+    public boolean VioAdvertencia;
+    public static int VersionBD;
 
     public Carrera getSeleccion() {
         return Seleccion;
@@ -36,11 +38,11 @@ public class MainActivity extends AppCompatActivity   {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        VioAdvertencia=true;
         FragmentMenu fragmentMenu=new FragmentMenu();
         fragmentManager=getFragmentManager();
-        fragmentTransaction=fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.FrameLayoutPrincipal,fragmentMenu);
-        fragmentTransaction.commit();
+        ReemplazarFragment(fragmentMenu);
+        VersionBD=11;
         ListaFragment=new ArrayList<>();
     }
 
@@ -50,22 +52,29 @@ public class MainActivity extends AppCompatActivity   {
         ListaFragment.add(ListaCarre);
         Seleccion=seleccionada;
         FragmentMostrarInformacionUnaCarrera fragmentMostrarInformacionUnaCarrera=new FragmentMostrarInformacionUnaCarrera();
-        fragmentTransaction=fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.FrameLayoutPrincipal,fragmentMostrarInformacionUnaCarrera);
-        fragmentTransaction.commit();
+        ReemplazarFragment(fragmentMostrarInformacionUnaCarrera);
     }
     public void RemplazarPorListado()
     {
         FragmentMenu menu=new FragmentMenu();
         ListaFragment.add(menu);
         FragmentMostrarListaCarreras mostrarListaCarreras=new FragmentMostrarListaCarreras();
-        fragmentTransaction=fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.FrameLayoutPrincipal,mostrarListaCarreras);
-        fragmentTransaction.commit();
+        ReemplazarFragment(mostrarListaCarreras);
+
     }
     public void RemplazarPorTest()
     {
         ListaFragment.add(new FragmentMenu());
+        Fragment Chaside=new FragmentPreguntaChaside();
+        ReemplazarFragment(Chaside);
+
+
+    }
+    public void ReemplazarFragment(Fragment FragmentAUsar)
+    {
+        fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.FrameLayoutPrincipal,FragmentAUsar);
+        fragmentTransaction.commit();
     }
     @Override
     public void onBackPressed() {
