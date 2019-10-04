@@ -25,9 +25,10 @@ public class FragmentMostrarResultados extends Fragment {
     public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
         View VistaDevolver = inflater.inflate(R.layout.mostrar_listado_carreras, null, true);
         Log.d("Resultados", "Estoy por declarar las entradas de3l grafico de barras ");
-        MiGraficoDeBarras=VistaDevolver.findViewById(R.id.MiGrafico);
+        MiGraficoDeBarras=new GraphView(this.getContext());
+        MiGraficoDeBarras=(GraphView) VistaDevolver.findViewById(R.id.MiGrafico);
 
-        List<BarEntry> entradas = new ArrayList<>();
+        //List<BarEntry> entradas = new ArrayList<>();
         /*MainActivity main = (MainActivity) getActivity();
         RespuestaTest respuestaTest = main.getResultadosUltimoTest();
         entradas.add(new BarEntry(1f, (respuestaTest.getInteresC() / 10) * 100));
@@ -58,7 +59,10 @@ public class FragmentMostrarResultados extends Fragment {
                 new DataPoint(3, 2),
                 new DataPoint(4, 6),
         });
-
+        if(MiGraficoDeBarras==null)
+        {
+            Log.d("Prueba","Esta null");
+        }
         MiGraficoDeBarras.addSeries(series);
 
         // ESTILO
