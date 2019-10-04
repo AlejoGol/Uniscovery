@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.FontRequest;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -111,7 +112,7 @@ public class FragmentMostrarInformacionUnaCarrera extends Fragment implements Vi
             ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null, MainActivity.VersionBD);
 
             Cursor RegistrosLeidos;
-            String SqlConsulta="select ID_Materia,Anio,Nombre_Materia,Descripcion_Materia from Materias where ID_Carrera = "+idCarrera ;
+            String SqlConsulta="select ID_Materia,Anio,Nombre_Materia,Descripcion_Materia from Materias where ID_Carrera = "+idCarrera + " ORDER BY Anio";
             RegistrosLeidos=DB.EjecutarConsulta(SqlConsulta);
             Log.d("Tags","Ejecuto consulta a BD");
             if (RegistrosLeidos.moveToFirst()) {
@@ -123,7 +124,23 @@ public class FragmentMostrarInformacionUnaCarrera extends Fragment implements Vi
                     mate.setNombreMateria(RegistrosLeidos.getString(2));
                     mate.setDescripcionMateria(RegistrosLeidos.getString(3));
                     mate.setDescripcion(RegistrosLeidos.getString(3));
-                    Materias.add(mate);
+                    if(Materias.size()==0)
+                    {
+                        Materias.add(mate);
+                    }else {
+                        boolean noesta=false;
+                        for (Materia m : Materias) {
+                            Log.d("Nombre Materia m: ", m.getNombreMateria());
+                            Log.d("Nombre Materia mate: ", mate.getNombreMateria());
+                            if (!m.getNombreMateria().equals(mate.getNombreMateria())) {
+                                noesta=true;
+                            }
+                        }
+                        if(noesta)
+                        {
+                            Materias.add(mate);
+                        }
+                    }
                 }while(RegistrosLeidos.moveToNext());
                 Log.d("Tags","Salio del while");
             }
@@ -137,13 +154,61 @@ public class FragmentMostrarInformacionUnaCarrera extends Fragment implements Vi
     private ArrayList LlenarInformacion(int position)
     {
         ArrayList<String> Listmaterias= new ArrayList<>();
+        Log.d("LlenarInformacion","Tamaño lista: "+Materias.size());
         for (Materia MateriaActual: Materias) {
             if(MateriaActual.getAño()==position+1)
             {
+
                 Listmaterias.add(MateriaActual.getNombreMateria());
             }
         }
+        //ModificarLista(Listmaterias);
         return  Listmaterias;
+    }
+    public void ModificarLista(ArrayList<String> ListaFiltrada)
+    {
+        ArrayList<String>eliminar=new ArrayList<>();
+        ArrayList<String>nueva=new ArrayList<>();
+        nueva.addAll(ListaFiltrada);
+        for (String elemento:ListaFiltrada) {
+            if(VerificarSiEstaEnLaLista(elemento, nueva)){
+                Log.d("ModificarLista: ",elemento);
+                eliminar.add(elemento);
+                Eliminar(eliminar, nueva);
+            }
+        }
+        ListaFiltrada.removeAll(ListaFiltrada);
+        ListaFiltrada.addAll(nueva);
+    }
+    public void Eliminar(ArrayList<String> Eliminar, ArrayList<String> ListaFiltrada)
+    {
+        ListaFiltrada.removeAll(Eliminar);
+        /*
+        for (String Actual:Eliminar)
+        {
+            Log.d("Eliminar: ",Actual);
+            ListaFiltrada.remove(Actual);
+        }*/
+    }
+    public boolean VerificarSiEstaEnLaLista(String ElementoActual, ArrayList<String> ListaFiltrada)
+    {
+
+        boolean veracidad=false;
+        int contador=0;
+        for (String Actual:ListaFiltrada)
+        {
+            if(Actual.equals(ElementoActual))
+            {
+                Log.d("VerificarSiEstaEnLaLista: ",Actual);
+                contador++;
+                Log.d("VerificarSiEstaEnLaLista: ",""+contador);
+
+            }
+        }
+        if(contador!=1){
+            veracidad=true;
+        }
+        return veracidad;
     }
     private  int ObtenerImagenFacultad(String Facultad)
     {   int valorADevolver=-1;

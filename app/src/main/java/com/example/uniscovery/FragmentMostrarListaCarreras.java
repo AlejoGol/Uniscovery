@@ -213,8 +213,8 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
             Log.d("PrimerFiltro",""+paginada.size());
         Log.d("cant","cantidad paginas"+paginado.numPaginas(ListaFiltrada.size()));
             return paginada;
-        }
-        public void Eliminar(ArrayList<Carrera> Eliminar)
+    }
+    public void Eliminar(ArrayList<Carrera> Eliminar)
     {
         for (Carrera Actual:Eliminar)
         {
