@@ -129,6 +129,20 @@ public class RespuestaTest {
     }
 
     public RespuestaTest() {
+        InteresC =0;
+        InteresH=0;
+        InteresA=0;
+        InteresS=0;
+        InteresI=0;
+        InteresD=0;
+        InteresE=0;
+        AptitudC=0;
+        AptitudH=0;
+        AptitudA=0;
+        AptitudS=0;
+        AptitudI=0;
+        AptitudD=0;
+        AptitudE=0;
     }
 
 

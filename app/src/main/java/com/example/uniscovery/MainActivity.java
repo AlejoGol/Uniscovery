@@ -22,6 +22,20 @@ public class MainActivity extends AppCompatActivity   {
     public boolean VioAdvertencia;
     public static int VersionBD;
 
+    public RespuestaTest getResultadosUltimoTest() {
+        return ResultadosUltimoTest;
+    }
+
+    public void setResultadosUltimoTest(RespuestaTest resultadosUltimoTest) {
+        ResultadosUltimoTest = resultadosUltimoTest;
+    }
+    public void RemplazarPorResultados()
+    {
+        Fragment FragmentAUsar=new FragmentMostrarResultados();
+        ReemplazarFragment(FragmentAUsar);
+    }
+    private RespuestaTest ResultadosUltimoTest;
+
     public Carrera getSeleccion() {
         return Seleccion;
     }

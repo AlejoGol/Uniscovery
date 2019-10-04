@@ -114,9 +114,19 @@ public class FragmentPreguntaChaside extends Fragment implements View.OnClickLis
             }
         }
         NumeropreguntaActual++;
-        radioOpcion.clearCheck();
-        CargarPreguntas();
-        SetearValores();
+        if(NumeropreguntaActual==2)
+        {
+            MainActivity main=(MainActivity)getActivity();
+            main.setResultadosUltimoTest(Respuestas);
+            main.RemplazarPorResultados();
+        }
+        else
+        {
+            radioOpcion.clearCheck();
+            CargarPreguntas();
+            SetearValores();
+        }
+
     }
     public void SetearValores()
     {
