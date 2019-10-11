@@ -64,21 +64,32 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
                 ListaFiltrada.clear();
                 newText=newText.toUpperCase();
                 for (Carrera carrera:listaDeCarreras) {
-
                     if (carrera.NombreCarrera.contains(newText)){
+                        Log.d("onQueryTextChange", carrera.NombreCarrera);
+                        Log.d("onQueryTextChange", ""+carrera.getIDCarrera());
                         ListaFiltrada.add(carrera);
                     }
                 }
                 if (newText.length()==0)
                 {
-                    Log.d("entro","SI");
+                    Log.d("onQueryTextChange",""+ listaDeCarreras.size());
                     ListaFiltrada.addAll(listaDeCarreras);
                 }
                 ArrayList<Carrera> ConTags=VerificarTags(newText);
+                boolean esta=false;
                 for (Carrera Tags:ConTags) {
-                    if(!ListaFiltrada.contains(Tags))
+                    for(Carrera uno:ListaFiltrada){
+                        if(uno.NombreCarrera.equals(Tags.NombreCarrera)){
+                            esta=true;
+                        }
+                    }
+                    //if(!ListaFiltrada.contains(Tags))
+                    if(!esta)
                     {
+                        Log.d("onQueryTextChange", Tags.NombreCarrera);
+                        Log.d("onQueryTextChange", ""+Tags.getIDCarrera());
                         ListaFiltrada.add(Tags);
+                        esta=false;
                     }
                 }
                 SearchAbierto=true;
@@ -93,7 +104,8 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
             @Override
             public boolean onClose() {
                 Log.d("entro","si");
-                ArrayList<Carrera> ListaFiltrada = new ArrayList<>(listaDeCarreras);
+                //ArrayList<Carrera> ListaFiltrada = new ArrayList<>();
+                ListaFiltrada.addAll(listaDeCarreras);
                 ModificarLista(ListaFiltrada);
                 SearchAbierto=false;
                 return false;
@@ -105,15 +117,15 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
         return VistaDevolver;
     }
     private void construirRecycler() {
-        listaDeCarreras=new ArrayList<>();
+        //listaDeCarreras=new ArrayList<>();
         gridView= VistaDevolver.findViewById(R.id.ListaACargar);
         listaDeCarreras=getItemEnElArray();
-        ArrayList<Carrera> Eliminar=new ArrayList<>();
+        ArrayList<Carrera> eliminar=new ArrayList<>();
         for (Carrera Actual:listaDeCarreras)
         {
             if(VerificarSiEstaEnLaLista(Actual))
             {
-                Eliminar.add(Actual);
+                eliminar.add(Actual);
             }
         }
         ListaFiltrada.addAll(listaDeCarreras);
@@ -228,7 +240,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
         int contador=0;
         for (Carrera Actual:ListaFiltrada)
         {
-            if(Actual.equals(ElementoActual))
+            if(Actual.NombreCarrera.equals(ElementoActual.NombreCarrera))
             {
                 contador++;
             }
