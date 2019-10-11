@@ -55,29 +55,29 @@ public class FragmentPreguntaChaside extends Fragment implements View.OnClickLis
                 {
                     case "C":
                         Log.d("Switch","entro al switch");
-                        Respuestas.setInteresC((Respuestas.getInteresC())+1);
+                        Respuestas.setInteresC((Respuestas.getInteresC())+1f);
                         Log.d("CHASIDE"," valor respuesta " + Respuestas.getInteresC());
                         break;
                     case "H":
 
-                        Respuestas.setInteresH((Respuestas.getInteresH())+1);
+                        Respuestas.setInteresH((Respuestas.getInteresH())+1f);
                         break;
                     case "A":
 
-                        Respuestas.setInteresA((Respuestas.getInteresA())+1);
+                        Respuestas.setInteresA((Respuestas.getInteresA())+1f);
                         break;
                     case "S":
-                        Respuestas.setInteresS((Respuestas.getInteresS())+1);
+                        Respuestas.setInteresS((Respuestas.getInteresS())+1f);
                         break;
                     case "D":
-                        Respuestas.setInteresD((Respuestas.getInteresD())+1);
+                        Respuestas.setInteresD((Respuestas.getInteresD())+1f);
                         break;
                     case "E":
 
-                        Respuestas.setInteresE((Respuestas.getInteresE())+1);
+                        Respuestas.setInteresE((Respuestas.getInteresE())+1f);
                         break;
                     case "I":
-                        Respuestas.setInteresI((Respuestas.getInteresI())+1);
+                        Respuestas.setInteresI((Respuestas.getInteresI())+1f);
                         break;
                     default:
                         break;
@@ -88,25 +88,25 @@ public class FragmentPreguntaChaside extends Fragment implements View.OnClickLis
                 switch(PreguntaActual.get_Letra())
                 {
                     case "C":
-                        Respuestas.setAptitudC((Respuestas.getAptitudC())+1);
+                        Respuestas.setAptitudC((Respuestas.getAptitudC())+1f);
                         break;
                     case "H":
-                        Respuestas.setAptitudH((Respuestas.getAptitudH())+1);
+                        Respuestas.setAptitudH((Respuestas.getAptitudH())+1f);
                         break;
                     case "A":
-                        Respuestas.setAptitudA((Respuestas.getAptitudA())+1);
+                        Respuestas.setAptitudA((Respuestas.getAptitudA())+1f);
                         break;
                     case "S":
-                        Respuestas.setAptitudS((Respuestas.getAptitudS())+1);
+                        Respuestas.setAptitudS((Respuestas.getAptitudS())+1f);
                         break;
                     case "I":
-                        Respuestas.setAptitudI((Respuestas.getAptitudI())+1);
+                        Respuestas.setAptitudI((Respuestas.getAptitudI())+1f);
                         break;
                     case "D":
-                        Respuestas.setAptitudD((Respuestas.getAptitudD())+1);
+                        Respuestas.setAptitudD((Respuestas.getAptitudD())+1f);
                         break;
                     case "E":
-                        Respuestas.setAptitudE((Respuestas.getAptitudE())+1);
+                        Respuestas.setAptitudE((Respuestas.getAptitudE())+1f);
                         break;
                     default:
                         break;
@@ -114,7 +114,7 @@ public class FragmentPreguntaChaside extends Fragment implements View.OnClickLis
             }
         }
         NumeropreguntaActual++;
-        if(NumeropreguntaActual==99)
+        if(NumeropreguntaActual==2)
         {
             MainActivity main=(MainActivity)getActivity();
             main.setResultadosUltimoTest(Respuestas);

@@ -1,130 +1,130 @@
 package com.example.uniscovery;
 
 public class RespuestaTest {
-    private int InteresC;
-    private int InteresH;
-    private int InteresA;
-    private int InteresS;
-    private int InteresI;
-    private int InteresD;
-    private int InteresE;
-    private int AptitudC;
-    private int AptitudH;
-    private int AptitudA;
-    private int AptitudS;
-    private int AptitudI;
-    private int AptitudD;
-    private int AptitudE;
+    private float InteresC;
+    private float InteresH;
+    private float InteresA;
+    private float InteresS;
+    private float InteresI;
+    private float InteresD;
+    private float InteresE;
+    private float AptitudC;
+    private float AptitudH;
+    private float AptitudA;
+    private float AptitudS;
+    private float AptitudI;
+    private float AptitudD;
+    private float AptitudE;
 
-    public int getInteresC() {
+    public float getInteresC() {
         return InteresC;
     }
 
-    public void setInteresC(int interesC) {
-        InteresC = interesC;
+    public void setInteresC(float InteresC) {
+        InteresC = InteresC;
     }
 
-    public int getInteresH() {
+    public float getInteresH() {
         return InteresH;
     }
 
-    public void setInteresH(int interesH) {
-        InteresH = interesH;
+    public void setInteresH(float InteresH) {
+        InteresH = InteresH;
     }
 
-    public int getInteresA() {
+    public float getInteresA() {
         return InteresA;
     }
 
-    public void setInteresA(int interesA) {
-        InteresA = interesA;
+    public void setInteresA(float InteresA) {
+        InteresA = InteresA;
     }
 
-    public int getInteresS() {
+    public float getInteresS() {
         return InteresS;
     }
 
-    public void setInteresS(int interesS) {
-        InteresS = interesS;
+    public void setInteresS(float InteresS) {
+        InteresS = InteresS;
     }
 
-    public int getInteresI() {
+    public float getInteresI() {
         return InteresI;
     }
 
-    public void setInteresI(int interesI) {
-        InteresI = interesI;
+    public void setInteresI(float InteresI) {
+        InteresI = InteresI;
     }
 
-    public int getInteresD() {
+    public float getInteresD() {
         return InteresD;
     }
 
-    public void setInteresD(int interesD) {
-        InteresD = interesD;
+    public void setInteresD(float InteresD) {
+        InteresD = InteresD;
     }
 
-    public int getInteresE() {
+    public float getInteresE() {
         return InteresE;
     }
 
-    public void setInteresE(int interesE) {
-        InteresE = interesE;
+    public void setInteresE(float InteresE) {
+        InteresE = InteresE;
     }
 
-    public int getAptitudC() {
+    public float getAptitudC() {
         return AptitudC;
     }
 
-    public void setAptitudC(int aptitudC) {
+    public void setAptitudC(float aptitudC) {
         AptitudC = aptitudC;
     }
 
-    public int getAptitudH() {
+    public float getAptitudH() {
         return AptitudH;
     }
 
-    public void setAptitudH(int aptitudH) {
+    public void setAptitudH(float aptitudH) {
         AptitudH = aptitudH;
     }
 
-    public int getAptitudA() {
+    public float getAptitudA() {
         return AptitudA;
     }
 
-    public void setAptitudA(int aptitudA) {
+    public void setAptitudA(float aptitudA) {
         AptitudA = aptitudA;
     }
 
-    public int getAptitudS() {
+    public float getAptitudS() {
         return AptitudS;
     }
 
-    public void setAptitudS(int aptitudS) {
+    public void setAptitudS(float aptitudS) {
         AptitudS = aptitudS;
     }
 
-    public int getAptitudI() {
+    public float getAptitudI() {
         return AptitudI;
     }
 
-    public void setAptitudI(int aptitudI) {
+    public void setAptitudI(float aptitudI) {
         AptitudI = aptitudI;
     }
 
-    public int getAptitudD() {
+    public float getAptitudD() {
         return AptitudD;
     }
 
-    public void setAptitudD(int aptitudD) {
+    public void setAptitudD(float aptitudD) {
         AptitudD = aptitudD;
     }
 
-    public int getAptitudE() {
+    public float getAptitudE() {
         return AptitudE;
     }
 
-    public void setAptitudE(int aptitudE) {
+    public void setAptitudE(float aptitudE) {
         AptitudE = aptitudE;
     }
 

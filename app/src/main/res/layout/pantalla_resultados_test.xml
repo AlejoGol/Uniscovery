@@ -14,8 +14,16 @@
         android:textColor="@color/cardview_dark_background"/>
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/MiGrafico"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="300sp"
+        android:layout_height="300sp"
         app:layout_constraintTop_toBottomOf="@id/RespuestasText"
+        />
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/TablaAptitudes"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="300sp"
+        android:layout_height="300sp"
+        app:layout_constraintTop_toBottomOf="@id/MiGrafico"
         />
 </android.support.constraint.ConstraintLayout>
