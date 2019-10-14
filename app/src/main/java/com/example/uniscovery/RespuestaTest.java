@@ -144,6 +144,21 @@ public class RespuestaTest {
         AptitudD=0;
         AptitudE=0;
     }
-
+    public RespuestaTest(RespuestaTest respuestas) {
+        InteresC=respuestas.getInteresC();
+        InteresH=respuestas.getInteresH();
+        InteresA=respuestas.getInteresA();
+        InteresS=respuestas.getInteresS();
+        InteresI=respuestas.getInteresI();
+        InteresD=respuestas.getInteresD();
+        InteresE=respuestas.getInteresE();
+        AptitudC=respuestas.getAptitudC();
+        AptitudH=respuestas.getAptitudH();
+        AptitudA=respuestas.getAptitudA();
+        AptitudS=respuestas.getAptitudS();
+        AptitudI=respuestas.getAptitudI();
+        AptitudD=respuestas.getAptitudD();
+        AptitudE=respuestas.getAptitudE();
+    }
 
 }
