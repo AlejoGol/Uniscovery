@@ -102,59 +102,59 @@ public class FragmentMostrarResultados extends Fragment {
     private void SetEntriesAptitudes(RespuestaTest respuestaTest) {
         if(respuestaTest.getAptitudC()!=0)
         {
-            barEntries.add(new BarEntry(1f,(respuestaTest.getAptitudC()*100)/4));
+            barEntriesAptitudes.add(new BarEntry(1f,(respuestaTest.getAptitudC()*100)/4));
         }
         else
         {
-            barEntries.add(new BarEntry(1f,1));
+            barEntriesAptitudes.add(new BarEntry(1f,1));
         }
         if(respuestaTest.getAptitudH()!=0)
         {
-            barEntries.add(new BarEntry(1f,(respuestaTest.getAptitudH()*100)/4));
+            barEntriesAptitudes.add(new BarEntry(1f,(respuestaTest.getAptitudH()*100)/4));
         }
         else
         {
-            barEntries.add(new BarEntry(1f,1));
+            barEntriesAptitudes.add(new BarEntry(1f,1));
         }
         if(respuestaTest.getAptitudA()!=0)
         {
-            barEntries.add(new BarEntry(3f,(respuestaTest.getAptitudA()*100)/4));
+            barEntriesAptitudes.add(new BarEntry(3f,(respuestaTest.getAptitudA()*100)/4));
         }
         else
         {
-            barEntries.add(new BarEntry(3f,1));
+            barEntriesAptitudes.add(new BarEntry(3f,1));
         }
         if(respuestaTest.getAptitudS()!=0)
         {
-            barEntries.add(new BarEntry(4f,(respuestaTest.getAptitudS()*100)/4));
+            barEntriesAptitudes.add(new BarEntry(4f,(respuestaTest.getAptitudS()*100)/4));
         }
         else
         {
-            barEntries.add(new BarEntry(4f,1));
+            barEntriesAptitudes.add(new BarEntry(4f,1));
         }
         if(respuestaTest.getAptitudI()!=0)
         {
-            barEntries.add(new BarEntry(5f,(respuestaTest.getAptitudI()*100)/4));
+            barEntriesAptitudes.add(new BarEntry(5f,(respuestaTest.getAptitudI()*100)/4));
         }
         else
         {
-            barEntries.add(new BarEntry(5f,1));
+            barEntriesAptitudes.add(new BarEntry(5f,1));
         }
         if(respuestaTest.getAptitudD()!=0)
         {
-            barEntries.add(new BarEntry(6f,(respuestaTest.getAptitudD()*100)/4));
+            barEntriesAptitudes.add(new BarEntry(6f,(respuestaTest.getAptitudD()*100)/4));
         }
         else
         {
-            barEntries.add(new BarEntry(6f,1));
+            barEntriesAptitudes.add(new BarEntry(6f,1));
         }
         if(respuestaTest.getAptitudE()!=0)
         {
-            barEntries.add(new BarEntry(7f,(respuestaTest.getAptitudE()*100)/4));
+            barEntriesAptitudes.add(new BarEntry(7f,(respuestaTest.getAptitudE()*100)/4));
         }
         else
         {
-            barEntries.add(new BarEntry(7f,1));
+            barEntriesAptitudes.add(new BarEntry(7f,1));
         }
     }
     private void SetEntriesIntereses(RespuestaTest respuestaTest) {
