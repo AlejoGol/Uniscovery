@@ -37,9 +37,10 @@ public class FragmentMostrarResultados extends Fragment {
         MiGraficoDeBarras=(BarChart) VistaDevolver.findViewById(R.id.MiGrafico);
 
 
-
-
-        getEntries();
+        MainActivity main = (MainActivity) getActivity();
+        RespuestaTest respuestaTest = main.getResultadosUltimoTest();
+        SetValoresDeInteres(respuestaTest);
+        SetValoresActitud();
         barDataSet = new BarDataSet(barEntries, "Mi grafico para el proyecto");
         barData = new BarData(barDataSet);
         barData.setBarWidth(0.3f);
@@ -56,9 +57,11 @@ public class FragmentMostrarResultados extends Fragment {
         MiGraficoDeBarras.moveViewToX(0);
         return VistaDevolver;
 }
-    private void getEntries() {
-        MainActivity main = (MainActivity) getActivity();
-        RespuestaTest respuestaTest = main.getResultadosUltimoTest();
+    private void SetValoresActitud(RespuestaTest respuesta) {
+
+    }
+    private void SetValoresDeInteres(RespuestaTest respuestaTest) {
+
         barEntries = new ArrayList<>();
         barEntries.add(new BarEntry(1f, 1));
         barEntries.add(new BarEntry(1,4f, 1));
