@@ -114,7 +114,7 @@ public class FragmentPreguntaChaside extends Fragment implements View.OnClickLis
             }
         }
         NumeropreguntaActual++;
-        if(NumeropreguntaActual==2)
+        if(NumeropreguntaActual==99)
         {
             MainActivity main=(MainActivity)getActivity();
             main.setResultadosUltimoTest(Respuestas);

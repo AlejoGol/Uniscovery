@@ -26,21 +26,36 @@ import java.util.Random;
 
 public class FragmentMostrarResultados extends Fragment {
 
-    BarChart MiGraficoDeBarras;
-    BarData barData;
-    BarDataSet barDataSet;
-    ArrayList <BarEntry> barEntries;
+    BarChart MiGraficoDeBarras,MiGraficoDeAptitud;
+    BarData barData,BarDataAptitud;
+    BarDataSet barDataSet,barDataSetAptitudes;
+    ArrayList <BarEntry> barEntries,barEntriesAptitudes;
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
         View VistaDevolver = inflater.inflate(R.layout.pantalla_resultados_test, null, true);
         Log.d("Resultados", "Estoy por declarar las barEntries de3l grafico de barras ");
         MiGraficoDeBarras=(BarChart) VistaDevolver.findViewById(R.id.MiGrafico);
+        MiGraficoDeAptitud=(BarChart) VistaDevolver.findViewById(R.id.TablaAptitudes);
+        MainActivity main = (MainActivity) getActivity();
+        RespuestaTest respuestaTest=new RespuestaTest(main.getResultadosUltimoTest());
+        Debug(respuestaTest);
+        SetearTablaAptitudes(respuestaTest);
+        SetearTablaIntereses(respuestaTest);
 
+<<<<<<< HEAD
 
         MainActivity main = (MainActivity) getActivity();
         RespuestaTest respuestaTest = main.getResultadosUltimoTest();
         SetValoresDeInteres(respuestaTest);
         SetValoresActitud();
+=======
+        return VistaDevolver;
+}
+    private void SetearTablaIntereses(RespuestaTest respuestaTest)
+    {
+        barEntries=new ArrayList<>();
+        SetEntriesIntereses(respuestaTest);
+>>>>>>> 34e6441bf8ac0f1f990c514f6f517044f422b254
         barDataSet = new BarDataSet(barEntries, "Mi grafico para el proyecto");
         barData = new BarData(barDataSet);
         barData.setBarWidth(0.3f);
@@ -55,6 +70,7 @@ public class FragmentMostrarResultados extends Fragment {
         MiGraficoDeBarras.invalidate();
         MiGraficoDeBarras.setVisibleXRangeMaximum(14); // allow 20 values to be displayed at once on the x-axis, not more
         MiGraficoDeBarras.moveViewToX(0);
+<<<<<<< HEAD
         return VistaDevolver;
 }
     private void SetValoresActitud(RespuestaTest respuesta) {
@@ -93,5 +109,159 @@ public class FragmentMostrarResultados extends Fragment {
         barEntries.add(new BarEntry(6f,(respuestaTest.getAptitudD()/4)*100));
         barEntries.add(new BarEntry(7f,(respuestaTest.getInteresE()/10)*100));
         barEntries.add(new BarEntry(7f,(respuestaTest.getAptitudE()/4)*100));*/
+=======
+    }
+    private void SetearTablaAptitudes(RespuestaTest respuestaTest)
+    {
+        barEntriesAptitudes=new ArrayList<>();
+        SetEntriesAptitudes(respuestaTest);
+        barDataSetAptitudes = new BarDataSet(barEntriesAptitudes, "Mi grafico para el proyecto");
+        BarDataAptitud = new BarData(barDataSetAptitudes);
+        BarDataAptitud.setBarWidth(0.3f);
+        MiGraficoDeAptitud.setData(BarDataAptitud);
+        //MiGraficoDeBarras.setScaleXEnabled(true);
+        MiGraficoDeAptitud.setFitBars(true);
+        Log.d("Scala"," "+MiGraficoDeAptitud.getVisibleXRange());
+        barDataSetAptitudes.setColors(ColorTemplate.JOYFUL_COLORS);
+        barDataSetAptitudes.setValueTextColor(Color.BLACK);
+        barDataSetAptitudes.setValueTextSize(18f);
+        MiGraficoDeAptitud.fitScreen();
+        MiGraficoDeAptitud.invalidate();
+        MiGraficoDeAptitud.setVisibleXRangeMaximum(14); // allow 20 values to be displayed at once on the x-axis, not more
+        MiGraficoDeAptitud.moveViewToX(0);
+    }
+    private void Debug(RespuestaTest respuestaTest)
+    {
+        Log.d("ValoresDeTest","Aptitud C : "+respuestaTest.getAptitudC());
+        Log.d("ValoresDeTest","Aptitud H : "+respuestaTest.getAptitudH());
+        Log.d("ValoresDeTest","Aptitud A : "+respuestaTest.getAptitudC());
+        Log.d("ValoresDeTest","Aptitud S : "+respuestaTest.getAptitudS());
+        Log.d("ValoresDeTest","Aptitud I : "+respuestaTest.getAptitudI());
+        Log.d("ValoresDeTest","Aptitud D : "+respuestaTest.getAptitudD());
+        Log.d("ValoresDeTest","Aptitud E : "+respuestaTest.getAptitudE());
+        Log.d("ValoresDeTest","Interes C : "+respuestaTest.getInteresC());
+        Log.d("ValoresDeTest","Interes H : "+respuestaTest.getInteresH());
+        Log.d("ValoresDeTest","Interes A : "+respuestaTest.getInteresA());
+        Log.d("ValoresDeTest","Interes S : "+respuestaTest.getInteresS());
+        Log.d("ValoresDeTest","Interes I : "+respuestaTest.getAptitudI());
+        Log.d("ValoresDeTest","Interes D : "+respuestaTest.getInteresD());
+        Log.d("ValoresDeTest","Interes E : "+respuestaTest.getInteresE());
+    }
+    private void SetEntriesAptitudes(RespuestaTest respuestaTest) {
+        if(respuestaTest.getAptitudC()!=0)
+        {
+            barEntriesAptitudes.add(new BarEntry(1f,(respuestaTest.getAptitudC()*100)/4));
+        }
+        else
+        {
+            barEntriesAptitudes.add(new BarEntry(1f,1));
+        }
+        if(respuestaTest.getAptitudH()!=0)
+        {
+            barEntriesAptitudes.add(new BarEntry(1f,(respuestaTest.getAptitudH()*100)/4));
+        }
+        else
+        {
+            barEntriesAptitudes.add(new BarEntry(1f,1));
+        }
+        if(respuestaTest.getAptitudA()!=0)
+        {
+            barEntriesAptitudes.add(new BarEntry(3f,(respuestaTest.getAptitudA()*100)/4));
+        }
+        else
+        {
+            barEntriesAptitudes.add(new BarEntry(3f,1));
+        }
+        if(respuestaTest.getAptitudS()!=0)
+        {
+            barEntriesAptitudes.add(new BarEntry(4f,(respuestaTest.getAptitudS()*100)/4));
+        }
+        else
+        {
+            barEntriesAptitudes.add(new BarEntry(4f,1));
+        }
+        if(respuestaTest.getAptitudI()!=0)
+        {
+            barEntriesAptitudes.add(new BarEntry(5f,(respuestaTest.getAptitudI()*100)/4));
+        }
+        else
+        {
+            barEntriesAptitudes.add(new BarEntry(5f,1));
+        }
+        if(respuestaTest.getAptitudD()!=0)
+        {
+            barEntriesAptitudes.add(new BarEntry(6f,(respuestaTest.getAptitudD()*100)/4));
+        }
+        else
+        {
+            barEntriesAptitudes.add(new BarEntry(6f,1));
+        }
+        if(respuestaTest.getAptitudE()!=0)
+        {
+            barEntriesAptitudes.add(new BarEntry(7f,(respuestaTest.getAptitudE()*100)/4));
+        }
+        else
+        {
+            barEntriesAptitudes.add(new BarEntry(7f,1));
+        }
+    }
+    private void SetEntriesIntereses(RespuestaTest respuestaTest) {
+        if(respuestaTest.getInteresC()!=0)
+        {
+            barEntries.add(new BarEntry(1f,(respuestaTest.getInteresC()*100)/4));
+        }
+        else
+        {
+            barEntries.add(new BarEntry(1f,1));
+        }
+        if(respuestaTest.getInteresH()!=0)
+        {
+            barEntries.add(new BarEntry(1f,(respuestaTest.getInteresH()*100)/4));
+        }
+        else
+        {
+            barEntries.add(new BarEntry(1f,1));
+        }
+        if(respuestaTest.getInteresA()!=0)
+        {
+            barEntries.add(new BarEntry(3f,(respuestaTest.getInteresA()*100)/4));
+        }
+        else
+        {
+            barEntries.add(new BarEntry(3f,1));
+        }
+        if(respuestaTest.getAptitudS()!=0)
+        {
+            barEntries.add(new BarEntry(4f,(respuestaTest.getAptitudS()*100)/4));
+        }
+        else
+        {
+            barEntries.add(new BarEntry(4f,1));
+        }
+        if(respuestaTest.getInteresI()!=0)
+        {
+            barEntries.add(new BarEntry(5f,(respuestaTest.getInteresI()*100)/4));
+        }
+        else
+        {
+            barEntries.add(new BarEntry(5f,1));
+        }
+        if(respuestaTest.getInteresD()!=0)
+        {
+            barEntries.add(new BarEntry(6f,(respuestaTest.getInteresD()*100)/4));
+        }
+        else
+        {
+            barEntries.add(new BarEntry(6f,1));
+        }
+        if(respuestaTest.getInteresE()!=0)
+        {
+            barEntries.add(new BarEntry(7f,(respuestaTest.getInteresE()*100)/4));
+        }
+        else
+        {
+            barEntries.add(new BarEntry(7f,1));
+        }
+>>>>>>> 34e6441bf8ac0f1f990c514f6f517044f422b254
     }
 }
