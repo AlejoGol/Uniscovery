@@ -42,12 +42,20 @@ public class FragmentMostrarResultados extends Fragment {
         SetearTablaAptitudes(respuestaTest);
         SetearTablaIntereses(respuestaTest);
 
+<<<<<<< HEAD
+
+        MainActivity main = (MainActivity) getActivity();
+        RespuestaTest respuestaTest = main.getResultadosUltimoTest();
+        SetValoresDeInteres(respuestaTest);
+        SetValoresActitud();
+=======
         return VistaDevolver;
 }
     private void SetearTablaIntereses(RespuestaTest respuestaTest)
     {
         barEntries=new ArrayList<>();
         SetEntriesIntereses(respuestaTest);
+>>>>>>> 34e6441bf8ac0f1f990c514f6f517044f422b254
         barDataSet = new BarDataSet(barEntries, "Mi grafico para el proyecto");
         barData = new BarData(barDataSet);
         barData.setBarWidth(0.3f);
@@ -62,6 +70,46 @@ public class FragmentMostrarResultados extends Fragment {
         MiGraficoDeBarras.invalidate();
         MiGraficoDeBarras.setVisibleXRangeMaximum(14); // allow 20 values to be displayed at once on the x-axis, not more
         MiGraficoDeBarras.moveViewToX(0);
+<<<<<<< HEAD
+        return VistaDevolver;
+}
+    private void SetValoresActitud(RespuestaTest respuesta) {
+
+    }
+    private void SetValoresDeInteres(RespuestaTest respuestaTest) {
+
+        barEntries = new ArrayList<>();
+        barEntries.add(new BarEntry(1f, 1));
+        barEntries.add(new BarEntry(1,4f, 1));
+        barEntries.add(new BarEntry(2f, 1));
+        barEntries.add(new BarEntry(2,4f, 1));
+        barEntries.add(new BarEntry(3f, 1));
+        barEntries.add(new BarEntry(3,4f, 1));
+        barEntries.add(new BarEntry(4f, 1));
+        barEntries.add(new BarEntry(4,4f, 1));
+        barEntries.add(new BarEntry(5f, 1));
+        barEntries.add(new BarEntry(5,4f, 1));
+        barEntries.add(new BarEntry(6f, 1));
+        barEntries.add(new BarEntry(6,4f, 1));
+        barEntries.add(new BarEntry(7f, 1));
+        barEntries.add(new BarEntry(7,4f, 1));
+
+       /* barEntries.add(new BarEntry(1f, (respuestaTest.getInteresC() / 10) * 100));
+        Log.d("ValorInteres",""+respuestaTest.getInteresC());
+        barEntries.add(new BarEntry(1f, (respuestaTest.getAptitudC() / 4) * 100));
+        barEntries.add(new BarEntry(2f,(respuestaTest.getInteresH()/10)*100));
+        barEntries.add(new BarEntry(2f,(respuestaTest.getAptitudH()/4)*100));
+        barEntries.add(new BarEntry(3f,(respuestaTest.getInteresA()/10)*100));
+        barEntries.add(new BarEntry(3f,(respuestaTest.getAptitudA()/4)*100));
+        barEntries.add(new BarEntry(4f,(respuestaTest.getInteresS()/10)*100));
+        barEntries.add(new BarEntry(4f,(respuestaTest.getAptitudS()/4)*100));
+        barEntries.add(new BarEntry(5f,(respuestaTest.getInteresI()/10)*100));
+        barEntries.add(new BarEntry(5f,(respuestaTest.getAptitudI()/4)*100));
+        barEntries.add(new BarEntry(6f,(respuestaTest.getInteresD()/10)*100));
+        barEntries.add(new BarEntry(6f,(respuestaTest.getAptitudD()/4)*100));
+        barEntries.add(new BarEntry(7f,(respuestaTest.getInteresE()/10)*100));
+        barEntries.add(new BarEntry(7f,(respuestaTest.getAptitudE()/4)*100));*/
+=======
     }
     private void SetearTablaAptitudes(RespuestaTest respuestaTest)
     {
@@ -214,5 +262,6 @@ public class FragmentMostrarResultados extends Fragment {
         {
             barEntries.add(new BarEntry(7f,1));
         }
+>>>>>>> 34e6441bf8ac0f1f990c514f6f517044f422b254
     }
 }
