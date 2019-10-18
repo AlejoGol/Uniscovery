@@ -16,119 +16,117 @@ public class RespuestaTest {
     private float AptitudD;
     private float AptitudE;
 
-    public float getInteresC() {
+    float getInteresC() {
         return InteresC;
     }
 
-    public void setInteresC(float InteresC) {
-        InteresC = InteresC;
+    void setInteresC(float InteresC) {
+        this.InteresC = InteresC;
     }
 
-    public float getInteresH() {
+    float getInteresH() {
         return InteresH;
     }
 
-    public void setInteresH(float InteresH) {
-        InteresH = InteresH;
+    void setInteresH(float InteresH) { this.InteresH = InteresH;
     }
 
-    public float getInteresA() {
+    float getInteresA() {
         return InteresA;
     }
 
-    public void setInteresA(float InteresA) {
-        InteresA = InteresA;
+    void setInteresA(float InteresA) {
+        this.InteresA = InteresA;
     }
 
-    public float getInteresS() {
+    float getInteresS() {
         return InteresS;
     }
 
-    public void setInteresS(float InteresS) {
-        InteresS = InteresS;
+    void setInteresS(float InteresS) {
+        this.InteresS = InteresS;
     }
 
-    public float getInteresI() {
+    float getInteresI() {
         return InteresI;
     }
 
-    public void setInteresI(float InteresI) {
-        InteresI = InteresI;
+    void setInteresI(float InteresI) {
+        this.InteresI = InteresI;
     }
 
-    public float getInteresD() {
+    float getInteresD() {
         return InteresD;
     }
 
-    public void setInteresD(float InteresD) {
-        InteresD = InteresD;
+    void setInteresD(float InteresD) {
+        this.InteresD = InteresD;
     }
 
-    public float getInteresE() {
+    float getInteresE() {
         return InteresE;
     }
 
-    public void setInteresE(float InteresE) {
-        InteresE = InteresE;
+    void setInteresE(float InteresE) {
+        this.InteresE = InteresE;
     }
 
-    public float getAptitudC() {
+    float getAptitudC() {
         return AptitudC;
     }
 
-    public void setAptitudC(float aptitudC) {
-        AptitudC = aptitudC;
-    }
+    void setAptitudC(float aptitudC) { 
+        AptitudC = aptitudC; }
 
-    public float getAptitudH() {
+    float getAptitudH() {
         return AptitudH;
     }
 
-    public void setAptitudH(float aptitudH) {
+    void setAptitudH(float aptitudH) {
         AptitudH = aptitudH;
     }
 
-    public float getAptitudA() {
+    float getAptitudA() {
         return AptitudA;
     }
 
-    public void setAptitudA(float aptitudA) {
+    void setAptitudA(float aptitudA) {
         AptitudA = aptitudA;
     }
 
-    public float getAptitudS() {
+    float getAptitudS() {
         return AptitudS;
     }
 
-    public void setAptitudS(float aptitudS) {
+    void setAptitudS(float aptitudS) {
         AptitudS = aptitudS;
     }
 
-    public float getAptitudI() {
+    float getAptitudI() {
         return AptitudI;
     }
 
-    public void setAptitudI(float aptitudI) {
+    void setAptitudI(float aptitudI) {
         AptitudI = aptitudI;
     }
 
-    public float getAptitudD() {
+    float getAptitudD() {
         return AptitudD;
     }
 
-    public void setAptitudD(float aptitudD) {
+    void setAptitudD(float aptitudD) {
         AptitudD = aptitudD;
     }
 
-    public float getAptitudE() {
+    float getAptitudE() {
         return AptitudE;
     }
 
-    public void setAptitudE(float aptitudE) {
+    void setAptitudE(float aptitudE) {
         AptitudE = aptitudE;
     }
 
-    public RespuestaTest() {
+    RespuestaTest() {
         InteresC =0;
         InteresH=0;
         InteresA=0;
@@ -144,7 +142,7 @@ public class RespuestaTest {
         AptitudD=0;
         AptitudE=0;
     }
-    public RespuestaTest(RespuestaTest respuestas) {
+     RespuestaTest(RespuestaTest respuestas) {
         InteresC=respuestas.getInteresC();
         InteresH=respuestas.getInteresH();
         InteresA=respuestas.getInteresA();

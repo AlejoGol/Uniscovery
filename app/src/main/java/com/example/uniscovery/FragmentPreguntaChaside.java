@@ -43,7 +43,7 @@ public class FragmentPreguntaChaside extends Fragment implements View.OnClickLis
         MainActivity.PlayAudio(this.getContext(),R.raw.relax);
         if(main.numeroUltimaPregunta>1&&main.numeroUltimaPregunta!=99)
         {
-            NumeropreguntaActual=main.numeroUltimaPregunta+1;
+            NumeropreguntaActual=main.numeroUltimaPregunta;
             Respuestas=main.getResultadosUltimoTest();
             CargarPreguntas();
             SetearValores();
@@ -68,33 +68,37 @@ public class FragmentPreguntaChaside extends Fragment implements View.OnClickLis
                 if(PreguntaActual.get_Objetivo().equals("INTERES"))
                 {
                     Log.d("Chaside",""+PreguntaActual.get_Letra());
-                    switch(PreguntaActual.get_Letra())
-                    {
+                    switch(PreguntaActual.get_Letra()) {
                         case "C":
-                            Log.d("Switch","entro al switch");
-                            Respuestas.setInteresC((Respuestas.getInteresC())+1f);
-                            Log.d("CHASIDE"," valor respuesta " + Respuestas.getInteresC());
+                            float contador=Respuestas.getInteresC();
+                            contador++;
+                            Log.d("Switch ", ""+contador);
+                            Respuestas.setInteresC(contador);
+                            Log.d("CHASIDE", " valor respuesta " + Respuestas.getInteresC());
                             break;
                         case "H":
-
-                            Respuestas.setInteresH((Respuestas.getInteresH())+1f);
+                            Respuestas.setInteresH((Respuestas.getInteresH() + 1f));
+                            Log.d("CHASIDE", " valor respuesta " + Respuestas.getInteresH());
                             break;
                         case "A":
-
-                            Respuestas.setInteresA((Respuestas.getInteresA())+1f);
+                            Respuestas.setInteresA((Respuestas.getInteresA() + 1f));
+                            Log.d("CHASIDE"," valor respuesta " + Respuestas.getInteresA());
                             break;
                         case "S":
                             Respuestas.setInteresS((Respuestas.getInteresS())+1f);
+                            Log.d("CHASIDE"," valor respuesta " + Respuestas.getInteresS());
                             break;
                         case "D":
                             Respuestas.setInteresD((Respuestas.getInteresD())+1f);
+                            Log.d("CHASIDE"," valor respuesta " + Respuestas.getInteresD());
                             break;
                         case "E":
-
                             Respuestas.setInteresE((Respuestas.getInteresE())+1f);
+                            Log.d("CHASIDE"," valor respuesta " + Respuestas.getInteresE());
                             break;
                         case "I":
                             Respuestas.setInteresI((Respuestas.getInteresI())+1f);
+                            Log.d("CHASIDE"," valor respuesta " + Respuestas.getInteresI());
                             break;
                         default:
                             break;
@@ -154,12 +158,12 @@ public class FragmentPreguntaChaside extends Fragment implements View.OnClickLis
     public void SetearValores()
     {
         textoPregunta.setText(PreguntaActual.get_TextoPregunta());
-        numeroPregunta.setText("Pregunta Numero"+NumeropreguntaActual);
+        numeroPregunta.setText("Pregunta Numero "+NumeropreguntaActual);
     }
     public void CargarPreguntas()
     {
         Log.d("BD","CargarPreguntas");
-        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,13);
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,14);
         Cursor RegistrosLeidos;
         String SqlConsulta="select * from Preguntas where ID_Pregunta="+NumeropreguntaActual;
         RegistrosLeidos=DB.EjecutarConsulta(SqlConsulta);

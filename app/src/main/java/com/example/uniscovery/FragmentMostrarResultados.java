@@ -7,6 +7,7 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -16,6 +17,7 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.jjoe64.graphview.GraphView;
@@ -57,12 +59,12 @@ public class FragmentMostrarResultados extends Fragment {
         SetEntriesIntereses(respuestaTest);
         barDataSet = new BarDataSet(barEntries, "Mi grafico para el proyecto");
         barData = new BarData(barDataSet);
-        barData.setBarWidth(0.3f);
+        barData.setBarWidth(1f);
         MiGraficoDeBarras.setData(barData);
         //MiGraficoDeBarras.setScaleXEnabled(true);
         MiGraficoDeBarras.setFitBars(true);
         Log.d("Scala"," "+MiGraficoDeBarras.getVisibleXRange());
-        barDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
         barDataSet.setValueTextColor(Color.BLACK);
         barDataSet.setValueTextSize(18f);
         MiGraficoDeBarras.fitScreen();
@@ -101,8 +103,12 @@ public class FragmentMostrarResultados extends Fragment {
                 {
                     Seleccionado="Ciencias Exactas y Agrarias";
                 }
-                MainActivity main=(MainActivity)getActivity();
-                main.setSeleccionado(Seleccionado);
+                Log.d("ValorSeleccionado"," valor "+Seleccionado);
+                if(!Seleccionado.equals(""))
+                {
+                    MainActivity main=(MainActivity)getActivity();
+                    main.setSeleccionado(Seleccionado);
+                }
             }
 
             @Override
@@ -137,37 +143,41 @@ public class FragmentMostrarResultados extends Fragment {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
                 String Seleccionado="";
-                if(e.getX()>1f&&e.getX()<1.3f&&e.getY()<=(respuestas.getInteresC()*100)/10)
+                Log.d("Value"," "+e.getX());
+                if(e.getX()>1f&&e.getX()<1.3f&&e.getY()<=(respuestas.getAptitudC()*100)/10)
                 {
                     Seleccionado="Administrativas y Contables";
                 }
-                if(e.getX()>2f&&e.getX()<2.3f&&e.getY()<=(respuestas.getInteresH()*100)/10)
+                if(e.getX()>2f&&e.getX()<2.3f&&e.getY()<=(respuestas.getAptitudH()*100)/10)
                 {
                     Seleccionado="Humanísticas y Sociales";
                 }
-                if(e.getX()>3f&&e.getX()<3.3f&&e.getY()<=(respuestas.getInteresA()*100)/10)
+                if(e.getX()>3f&&e.getX()<3.3f&&e.getY()<=(respuestas.getAptitudA()*100)/10)
                 {
                     Seleccionado=" Artísticas";
                 }
-                if(e.getX()>4f&&e.getX()<4.3f&&e.getY()<=(respuestas.getInteresS()*100)/10)
+                if(e.getX()>4f&&e.getX()<4.3f&&e.getY()<=(respuestas.getAptitudS()*100)/10)
                 {
                     Seleccionado="Medicina y Cs. de la Salud";
                 }
-                if(e.getX()>5f&&e.getX()<5.3f&&e.getY()<=(respuestas.getInteresI()*100)/10)
+                if(e.getX()>5f&&e.getX()<5.3f&&e.getY()<=(respuestas.getAptitudI()*100)/10)
                 {
                     Seleccionado="Ingeniería y Computación";
                 }
-                if(e.getX()>6f&&e.getX()<6.3f&&e.getY()<=(respuestas.getInteresD()*100)/10)
+                if(e.getX()>6f&&e.getX()<6.3f&&e.getY()<=(respuestas.getAptitudD()*100)/10)
                 {
                     Seleccionado="Defensa y Seguridad";
                 }
-                if(e.getX()>7f&&e.getX()<7.3f&&e.getY()<=(respuestas.getInteresE()*100)/10)
+                if(e.getX()>7f&&e.getX()<7.3f&&e.getY()<=(respuestas.getAptitudE()*100)/10)
                 {
                     Seleccionado="Ciencias Exactas y Agrarias";
                 }
-                MainActivity main=(MainActivity)getActivity();
-                main.setSeleccionado(Seleccionado);
-
+                if(!Seleccionado.equals(""))
+                {
+                    MainActivity main=(MainActivity)getActivity();
+                    Log.d("ValorSeleccionado"," valor "+Seleccionado);
+                    main.setSeleccionado(Seleccionado);
+                }
             }
 
             @Override
@@ -204,11 +214,11 @@ public class FragmentMostrarResultados extends Fragment {
         }
         if(respuestaTest.getAptitudH()!=0)
         {
-            barEntriesAptitudes.add(new BarEntry(1f,(respuestaTest.getAptitudH()*100)/4));
+            barEntriesAptitudes.add(new BarEntry(2f,(respuestaTest.getAptitudH()*100)/4));
         }
         else
         {
-            barEntriesAptitudes.add(new BarEntry(1f,1));
+            barEntriesAptitudes.add(new BarEntry(2f,1));
         }
         if(respuestaTest.getAptitudA()!=0)
         {
@@ -254,7 +264,7 @@ public class FragmentMostrarResultados extends Fragment {
     private void SetEntriesIntereses(RespuestaTest respuestaTest) {
         if(respuestaTest.getInteresC()!=0)
         {
-            barEntries.add(new BarEntry(1f,(respuestaTest.getInteresC()*100)/4));
+            barEntries.add(new BarEntry(1f,(respuestaTest.getInteresC()*100)/10));
         }
         else
         {
@@ -262,15 +272,15 @@ public class FragmentMostrarResultados extends Fragment {
         }
         if(respuestaTest.getInteresH()!=0)
         {
-            barEntries.add(new BarEntry(1f,(respuestaTest.getInteresH()*100)/4));
+            barEntries.add(new BarEntry(2f,(respuestaTest.getInteresH()*100)/10));
         }
         else
         {
-            barEntries.add(new BarEntry(1f,1));
+            barEntries.add(new BarEntry(2f,1));
         }
         if(respuestaTest.getInteresA()!=0)
         {
-            barEntries.add(new BarEntry(3f,(respuestaTest.getInteresA()*100)/4));
+            barEntries.add(new BarEntry(3f,(respuestaTest.getInteresA()*100)/10));
         }
         else
         {
@@ -278,7 +288,7 @@ public class FragmentMostrarResultados extends Fragment {
         }
         if(respuestaTest.getAptitudS()!=0)
         {
-            barEntries.add(new BarEntry(4f,(respuestaTest.getAptitudS()*100)/4));
+            barEntries.add(new BarEntry(4f,(respuestaTest.getAptitudS()*100)/10));
         }
         else
         {
@@ -286,7 +296,7 @@ public class FragmentMostrarResultados extends Fragment {
         }
         if(respuestaTest.getInteresI()!=0)
         {
-            barEntries.add(new BarEntry(5f,(respuestaTest.getInteresI()*100)/4));
+            barEntries.add(new BarEntry(5f,(respuestaTest.getInteresI()*100)/10));
         }
         else
         {
@@ -294,7 +304,7 @@ public class FragmentMostrarResultados extends Fragment {
         }
         if(respuestaTest.getInteresD()!=0)
         {
-            barEntries.add(new BarEntry(6f,(respuestaTest.getInteresD()*100)/4));
+            barEntries.add(new BarEntry(6f,(respuestaTest.getInteresD()*100)/10));
         }
         else
         {
@@ -302,7 +312,7 @@ public class FragmentMostrarResultados extends Fragment {
         }
         if(respuestaTest.getInteresE()!=0)
         {
-            barEntries.add(new BarEntry(7f,(respuestaTest.getInteresE()*100)/4));
+            barEntries.add(new BarEntry(7f,(respuestaTest.getInteresE()*100)/10));
         }
         else
         {

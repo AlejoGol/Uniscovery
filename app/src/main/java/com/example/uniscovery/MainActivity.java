@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity   {
         fragmentManager=getFragmentManager();
         preferencias=this.getBaseContext().getSharedPreferences("Uniscovery", Context.MODE_PRIVATE);
         ReemplazarFragment(fragmentMenu);
-        VersionBD=13;
+        VersionBD=14;
         ListaFragment=new ArrayList<>();
         numeroUltimaPregunta=1;
         isPlayingAudio=false;
