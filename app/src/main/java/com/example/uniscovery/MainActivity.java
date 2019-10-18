@@ -31,6 +31,9 @@ public class MainActivity extends AppCompatActivity   {
     int numeroUltimaPregunta;
     private static MediaPlayer Reproductor;
     public static boolean isPlayingAudio;
+    private RespuestaTest ResultadosUltimoTest;
+    private String seleccionado;
+
     public RespuestaTest getResultadosUltimoTest() {
         return ResultadosUltimoTest;
     }
@@ -54,12 +57,16 @@ public class MainActivity extends AppCompatActivity   {
         isPlayingAudio=false;
         Reproductor.stop();
     }
+    public void setSeleccionado(String selec)
+    {
+        seleccionado=selec;
+    }
+    public String getSeleccionado(){return seleccionado;}
     public void RemplazarPorResultados()
     {
         Fragment FragmentAUsar=new FragmentMostrarResultados();
         ReemplazarFragment(FragmentAUsar);
     }
-    private RespuestaTest ResultadosUltimoTest;
 
     public Carrera getSeleccion() {
         return Seleccion;
@@ -175,5 +182,4 @@ public class MainActivity extends AppCompatActivity   {
             getSupportFragmentManager().popBackStack();
         }*/
     }
-    //TODO
 }

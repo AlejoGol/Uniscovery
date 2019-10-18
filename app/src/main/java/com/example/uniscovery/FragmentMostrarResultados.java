@@ -101,7 +101,8 @@ public class FragmentMostrarResultados extends Fragment {
                 {
                     Seleccionado="Ciencias Exactas y Agrarias";
                 }
-
+                MainActivity main=(MainActivity)getActivity();
+                main.setSeleccionado(Seleccionado);
             }
 
             @Override
@@ -164,6 +165,8 @@ public class FragmentMostrarResultados extends Fragment {
                 {
                     Seleccionado="Ciencias Exactas y Agrarias";
                 }
+                MainActivity main=(MainActivity)getActivity();
+                main.setSeleccionado(Seleccionado);
 
             }
 
