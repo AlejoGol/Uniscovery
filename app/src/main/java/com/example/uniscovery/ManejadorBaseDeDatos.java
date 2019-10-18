@@ -61,23 +61,23 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         RegistrosLeidos=midb.rawQuery(Consulta,null);
         return RegistrosLeidos;
     }
-    private void InsertarValores(SQLiteDatabase BaseDeDatos)
-    {
-        InsertarCarrera(BaseDeDatos,"CARRERA DE ARQUITECTURA","DI TELLA","https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg","hola");
-        InsertarCarrera(BaseDeDatos,"CARRERA DE ABOGACÍA","DI TELLA","https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg","En un mundo cambiante, nuestra educación jurídica interdisciplinaria e internacional te prepara para enfrentar y liderar las respuestas a los grandes desafíos profesionales que acarrean la globalización, la integración regional, las nuevas tecnologías y la necesidad de interactuar con profesionales de otras áreas, desde economistas y contadores hasta politólogos o diplomáticos.");
-        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN ADMINISTRACION DE EMPRESAS","DI TELLA","https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg","El Licenciado en Administración de Empresas es un profesional con ánimo emprendedor, formado para la gestión y dirección de los recursos de la empresa desde una perspectiva integral.\n" + "\n" + "Su formación le permite interactuar con todos los estamentos de la organización, con vistas a facilitar la coordinación para lograr objetivos comunes.");
-        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN ECONOMÍA EMPRESARIAL","DI TELLA","https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg","El Licenciado en Economía Empresarial comparte con el Licenciado en Economía, una vocación por el rigor analítico y el detalle metodológico que soportan las herramientas de decisión más modernas utilizadas en las organizaciones.\n" + "\n" +"Comparte también con el Licenciado en Administración una naturaleza emprendedora y de gestión empresarial que le permite dirigir los recursos de la empresa desde una perspectiva integral.\n" + "\n");
-        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN ECONOMÍA","DI TELLA","https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg","Formula diagnósticos de situaciones, escenarios micro y macroeconómicos e implementa políticas en el ámbito público o privado. Se inserta laboralmente en empresas, instituciones financieras, consultoras, ONG, organismos nacionales e internacionales, así como en instituciones de investigación y docencia de la Argentina y del exterior.");
-        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN DISEÑO","DI TELLA","https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg"," Su inserción profesional le permite proponer ideas, acciones y métodos del diseño para los ámbitos de la tecnología, los negocios y la cultura, en el marco de equipos de trabajo multiprofesionales, para detectar oportunidades de solución e innovación. La formación humanística y ética, proyectual y técnica, le permitirá al graduado actuar con idoneidad y eficiencia como profesional del Diseño en relación con imágenes, objetos, mensajes, información, medios tecnológicos y emprendimientos institucionales y empresariales.\n"+"\n");
-        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN ESTUDIOS INTERNACIONALES","DI TELLA","https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg","El licenciado en Estudios Internacionales, desde su formación multidisciplinaria, aporta al análisis y comprensión de un mundo globalizado, interdependiente y pluricultural interpretando las dimensiones políticas, económicas, jurídicas, militares, ambientales y sociales de un entorno en proceso de permanente transformación. Maneja técnicas, metodologías y herramientas que le permiten una aproximación profunda y rigurosa a los complejos fenómenos internacionales");
-        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN CIENCIAS POLÍTICA Y GOBIERNO","DI TELLA","https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg","El licenciado en Ciencia Política y Gobierno cuenta con valiosas herramientas teóricas, empíricas y metodológicas que le permiten abordar y evaluar fenómenos complejos de la vida política y la gestión de instituciones de gobierno. Posee una mirada analítica y sistemática para comprender y accionar frente a esos fenómenos, tanto en el caso argentino como en términos comparados. Propone alternativas innovadoras al nutrirse de otras áreas de conocimiento como la Economía, la Historia, las Políticas Públicas y el Derecho");
-        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN CIENCIAS SOCIALES","DI TELLA","https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg","La formación del licenciado en Ciencias Sociales de la Universidad Torcuato Di Tella le permite comprender y analizar fenómenos sociales; generar contenidos, estrategias y acciones de impacto en la sociedad; formular, desarrollar e implementar estrategias empresariales y programas de políticas públicas y evaluar su influencia en los grupos destinatarios; y comunicar contenidos por diversas vías (informes, presentaciones, artículos periodísticos, material 2.0)." );
-        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN HISTORIA","DI TELLA","https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg","La carrera de Historia ofrece al graduado una amplia gama de posibilidades laborales y de desarrollo profesional. Para aquellos interesados en una carrera académica, la Licenciatura les provee las herramientas necesarias para iniciarse en la investigación. Al mismo tiempo, la carrera suministra al graduado un conjunto de saberes y habilidades cuya utilidad no es exclusiva del trabajo del historiador profesional. ");
-        InsertarCarrera(BaseDeDatos,"LICENCIATURA EN CIENCIAS AMBIENTALES","UBA","https://i0.wp.com/www.alevelplayingfield.group.shef.ac.uk/wp-content/uploads/2018/04/UBA-logo.jpg","El ejercicio de identificar las actividades que puede llevar a cabo un profesional\n" +
+    private void InsertarValores(SQLiteDatabase BaseDeDatos) {
+        InsertarCarrera(BaseDeDatos, "CARRERA DE ARQUITECTURA", "DI TELLA", "https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg", "hola");
+        InsertarCarrera(BaseDeDatos, "CARRERA DE ABOGACÍA", "DI TELLA", "https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg", "En un mundo cambiante, nuestra educación jurídica interdisciplinaria e internacional te prepara para enfrentar y liderar las respuestas a los grandes desafíos profesionales que acarrean la globalización, la integración regional, las nuevas tecnologías y la necesidad de interactuar con profesionales de otras áreas, desde economistas y contadores hasta politólogos o diplomáticos.");
+        InsertarCarrera(BaseDeDatos, "LICENCIATURA EN ADMINISTRACION DE EMPRESAS", "DI TELLA", "https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg", "El Licenciado en Administración de Empresas es un profesional con ánimo emprendedor, formado para la gestión y dirección de los recursos de la empresa desde una perspectiva integral.\n" + "\n" + "Su formación le permite interactuar con todos los estamentos de la organización, con vistas a facilitar la coordinación para lograr objetivos comunes.");
+        InsertarCarrera(BaseDeDatos, "LICENCIATURA EN ECONOMÍA EMPRESARIAL", "DI TELLA", "https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg", "El Licenciado en Economía Empresarial comparte con el Licenciado en Economía, una vocación por el rigor analítico y el detalle metodológico que soportan las herramientas de decisión más modernas utilizadas en las organizaciones.\n" + "\n" + "Comparte también con el Licenciado en Administración una naturaleza emprendedora y de gestión empresarial que le permite dirigir los recursos de la empresa desde una perspectiva integral.\n" + "\n");
+        InsertarCarrera(BaseDeDatos, "LICENCIATURA EN ECONOMÍA", "DI TELLA", "https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg", "Formula diagnósticos de situaciones, escenarios micro y macroeconómicos e implementa políticas en el ámbito público o privado. Se inserta laboralmente en empresas, instituciones financieras, consultoras, ONG, organismos nacionales e internacionales, así como en instituciones de investigación y docencia de la Argentina y del exterior.");
+        InsertarCarrera(BaseDeDatos, "LICENCIATURA EN DISEÑO", "DI TELLA", "https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg", " Su inserción profesional le permite proponer ideas, acciones y métodos del diseño para los ámbitos de la tecnología, los negocios y la cultura, en el marco de equipos de trabajo multiprofesionales, para detectar oportunidades de solución e innovación. La formación humanística y ética, proyectual y técnica, le permitirá al graduado actuar con idoneidad y eficiencia como profesional del Diseño en relación con imágenes, objetos, mensajes, información, medios tecnológicos y emprendimientos institucionales y empresariales.\n" + "\n");
+        InsertarCarrera(BaseDeDatos, "LICENCIATURA EN ESTUDIOS INTERNACIONALES", "DI TELLA", "https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg", "El licenciado en Estudios Internacionales, desde su formación multidisciplinaria, aporta al análisis y comprensión de un mundo globalizado, interdependiente y pluricultural interpretando las dimensiones políticas, económicas, jurídicas, militares, ambientales y sociales de un entorno en proceso de permanente transformación. Maneja técnicas, metodologías y herramientas que le permiten una aproximación profunda y rigurosa a los complejos fenómenos internacionales");
+        InsertarCarrera(BaseDeDatos, "LICENCIATURA EN CIENCIAS POLÍTICA Y GOBIERNO", "DI TELLA", "https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg", "El licenciado en Ciencia Política y Gobierno cuenta con valiosas herramientas teóricas, empíricas y metodológicas que le permiten abordar y evaluar fenómenos complejos de la vida política y la gestión de instituciones de gobierno. Posee una mirada analítica y sistemática para comprender y accionar frente a esos fenómenos, tanto en el caso argentino como en términos comparados. Propone alternativas innovadoras al nutrirse de otras áreas de conocimiento como la Economía, la Historia, las Políticas Públicas y el Derecho");
+        InsertarCarrera(BaseDeDatos, "LICENCIATURA EN CIENCIAS SOCIALES", "DI TELLA", "https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg", "La formación del licenciado en Ciencias Sociales de la Universidad Torcuato Di Tella le permite comprender y analizar fenómenos sociales; generar contenidos, estrategias y acciones de impacto en la sociedad; formular, desarrollar e implementar estrategias empresariales y programas de políticas públicas y evaluar su influencia en los grupos destinatarios; y comunicar contenidos por diversas vías (informes, presentaciones, artículos periodísticos, material 2.0).");
+        InsertarCarrera(BaseDeDatos, "LICENCIATURA EN HISTORIA", "DI TELLA", "https://www.utdt.edu/Images/prensa/utdt-color-alta-cmyk.jpg", "La carrera de Historia ofrece al graduado una amplia gama de posibilidades laborales y de desarrollo profesional. Para aquellos interesados en una carrera académica, la Licenciatura les provee las herramientas necesarias para iniciarse en la investigación. Al mismo tiempo, la carrera suministra al graduado un conjunto de saberes y habilidades cuya utilidad no es exclusiva del trabajo del historiador profesional. ");
+        InsertarCarrera(BaseDeDatos, "LICENCIATURA EN CIENCIAS AMBIENTALES", "UBA", "https://i0.wp.com/www.alevelplayingfield.group.shef.ac.uk/wp-content/uploads/2018/04/UBA-logo.jpg", "El ejercicio de identificar las actividades que puede llevar a cabo un profesional\n" +
                 "en las ciencias ambientales nos fuerza a definir un conjunto cuyos límites son difusos,\n" +
                 "que se superpone a las de actividades de profesionales de otras áreas y que, de hecho,\n" +
                 "incluye tareas que ni siquiera imaginamos en el presente. ");
-        InsertarCarrera(BaseDeDatos,"AGRONOMIA","UBA","https://i0.wp.com/www.alevelplayingfield.group.shef.ac.uk/wp-content/uploads/2018/04/UBA-logo.jpg","El Ingeniero Agrónomo es aquel graduado universitario con una sólida formación científica y tecnológica que le permite intervenir en las cadenas productivas de base agropecuaria, en el ambiente y en la preservación de los recursos naturales desde una visión integral y sustentable, dentro de un contexto socioeconómico con diversos niveles de innovación e incertidumbre, con el fin de promover el desarrollo nacional y el del sector agropecuario.");
+        InsertarCarrera(BaseDeDatos, "AGRONOMIA", "UBA", "https://i0.wp.com/www.alevelplayingfield.group.shef.ac.uk/wp-content/uploads/2018/04/UBA-logo.jpg", "El Ingeniero Agrónomo es aquel graduado universitario con una sólida formación científica y tecnológica que le permite intervenir en las cadenas productivas de base agropecuaria, en el ambiente y en la preservación de los recursos naturales desde una visión integral y sustentable, dentro de un contexto socioeconómico con diversos niveles de innovación e incertidumbre, con el fin de promover el desarrollo nacional y el del sector agropecuario.");
+
         /*InsertarCarrera(BaseDeDatos,"LICENCIATURA EN ECONOMÍA Y ADMINISTRACIÓN AGRARIAS","UBA");
         InsertarCarrera(BaseDeDatos,"LICENCIATURA EN GESTIÓN DE AGROALIMENTOS","UBA");
         InsertarCarrera(BaseDeDatos,"LICENCIATURA EN PLANIFICACIÓN Y DISEÑO DEL PAISAJE","UBA");
@@ -779,7 +779,9 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         InsertarCarrera(BaseDeDatos,"Interpretación de danzas folklóricas y tango","UNA");
         InsertarCarrera(BaseDeDatos,"Interpretación de instrumentos criollos","UNA");
         InsertarCarrera(BaseDeDatos,"Interpretación de tango","UNA");
-        InsertarCarrera(BaseDeDatos,"Tecnicatura en Interpretación en Danza","UNA")*/;//FALTAN USAL UAI UMSA FUC KENNEDY UdeMM UFLO ISALUD Atlántida Argentina UNDEF ENZEÑANZAS LOLA MORA
+        InsertarCarrera(BaseDeDatos,"Tecnicatura en Interpretación en Danza","UNA")*/
+            ;//FALTAN USAL UAI UMSA FUC KENNEDY UdeMM UFLO ISALUD Atlántida Argentina UNDEF ENZEÑANZAS LOLA MORA
+
     }
     private void Tags(SQLiteDatabase BaseDeDatos)
     {
@@ -827,91 +829,100 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         InsertarTags(BaseDeDatos,"ditella");//42
         InsertarTags(BaseDeDatos,"di tella");//43
         //TODO ahora son los tags del chaside
-        InsertarTags(BaseDeDatos,"Organizativo");//
-        InsertarTags(BaseDeDatos,"Superc}vision");//
-        InsertarTags(BaseDeDatos,"Orden");//
-        InsertarTags(BaseDeDatos,"analisis y sintesis");//
-        InsertarTags(BaseDeDatos,"colaboracion");//
-        InsertarTags(BaseDeDatos,"calculo");//
-        InsertarTags(BaseDeDatos,"persuacion");//
-        InsertarTags(BaseDeDatos,"objetivo");//
-        InsertarTags(BaseDeDatos,"practico");//
-        InsertarTags(BaseDeDatos,"tolerante");//
-        InsertarTags(BaseDeDatos,"responsable");//
-        InsertarTags(BaseDeDatos,"ambisioso");//
+        //C
+        InsertarTags(BaseDeDatos,"organizativo");//44
+        InsertarTags(BaseDeDatos,"supervision");//45
+        InsertarTags(BaseDeDatos,"orden");//46
+        InsertarTags(BaseDeDatos,"analisis y sintesis");//47
+        InsertarTags(BaseDeDatos,"colaboracion");//48
+        InsertarTags(BaseDeDatos,"calculo");//49
+        InsertarTags(BaseDeDatos,"persuacion");//50
+        InsertarTags(BaseDeDatos,"objetivo");//51
+        InsertarTags(BaseDeDatos,"practico");//52
+        InsertarTags(BaseDeDatos,"tolerante");//53
+        InsertarTags(BaseDeDatos,"responsable");//54
+        InsertarTags(BaseDeDatos,"ambisioso");//55
         //H
-        InsertarTags(BaseDeDatos,"precision verval");//
-        InsertarTags(BaseDeDatos,"organizacion");//
-        InsertarTags(BaseDeDatos,"relacion de hechos");//
-        InsertarTags(BaseDeDatos,"linguistica");//
-        InsertarTags(BaseDeDatos,"orden");//
-        InsertarTags(BaseDeDatos,"justicia");//
-        InsertarTags(BaseDeDatos,"responsable");//
-        InsertarTags(BaseDeDatos,"justo");//
-        InsertarTags(BaseDeDatos,"Conciliador");//
-        InsertarTags(BaseDeDatos,"persuasivo");//
-        InsertarTags(BaseDeDatos,"sagaz");//
-        InsertarTags(BaseDeDatos,"imaginativo");//
+        InsertarTags(BaseDeDatos,"precision verval");//56
+        InsertarTags(BaseDeDatos,"organizacion");//57
+        InsertarTags(BaseDeDatos,"relacion de hechos");//58
+        InsertarTags(BaseDeDatos,"linguistica");//59
+        InsertarTags(BaseDeDatos,"orden");//60
+        InsertarTags(BaseDeDatos,"justicia");//61
+        InsertarTags(BaseDeDatos,"responsable");//62
+        InsertarTags(BaseDeDatos,"justo");//63
+        InsertarTags(BaseDeDatos,"Conciliador");//64
+        InsertarTags(BaseDeDatos,"persuasivo");//65
+        InsertarTags(BaseDeDatos,"sagaz");//66
+        InsertarTags(BaseDeDatos,"imaginativo");//67
         //A
-        InsertarTags(BaseDeDatos,"esterico");//
-        InsertarTags(BaseDeDatos,"armonico");//
-        InsertarTags(BaseDeDatos,"manual");//
-        InsertarTags(BaseDeDatos,"visual");//
-        InsertarTags(BaseDeDatos,"auditivo");//
-        InsertarTags(BaseDeDatos,"sensible");//
-        InsertarTags(BaseDeDatos,"imaginativo");//
-        InsertarTags(BaseDeDatos,"creativo");//
-        InsertarTags(BaseDeDatos,"detallista");//
-        InsertarTags(BaseDeDatos,"inovador");//
-        InsertarTags(BaseDeDatos,"intuitivo");//
+        InsertarTags(BaseDeDatos,"esterico");//68
+        InsertarTags(BaseDeDatos,"armonico");//69
+        InsertarTags(BaseDeDatos,"manual");//70
+        InsertarTags(BaseDeDatos,"visual");//71
+        InsertarTags(BaseDeDatos,"auditivo");//72
+        InsertarTags(BaseDeDatos,"sensible");//73
+        InsertarTags(BaseDeDatos,"imaginativo");//74
+        InsertarTags(BaseDeDatos,"creativo");//75
+        InsertarTags(BaseDeDatos,"detallista");//76
+        InsertarTags(BaseDeDatos,"inovador");//77
+        InsertarTags(BaseDeDatos,"intuitivo");//78
         //S
-        InsertarTags(BaseDeDatos,"asistir");//
-        InsertarTags(BaseDeDatos,"investigativo");//
-        InsertarTags(BaseDeDatos,"precision");//
-        InsertarTags(BaseDeDatos,"senso-perceptivo");//
-        InsertarTags(BaseDeDatos,"analitico");//
-        InsertarTags(BaseDeDatos,"ayudar");//
-        InsertarTags(BaseDeDatos,"altruista");//
-        InsertarTags(BaseDeDatos,"solidario");//
-        InsertarTags(BaseDeDatos,"paciente");//
-        InsertarTags(BaseDeDatos,"compresivo");//
-        InsertarTags(BaseDeDatos,"respetuoso");//
-        InsertarTags(BaseDeDatos,"persuasivo");//
+        InsertarTags(BaseDeDatos,"asistir");//79
+        InsertarTags(BaseDeDatos,"investigativo");//80
+        InsertarTags(BaseDeDatos,"precision");//81
+        InsertarTags(BaseDeDatos,"senso-perceptivo");//82
+        InsertarTags(BaseDeDatos,"analitico");//83
+        InsertarTags(BaseDeDatos,"ayudar");//84
+        InsertarTags(BaseDeDatos,"altruista");//85
+        InsertarTags(BaseDeDatos,"solidario");//86
+        InsertarTags(BaseDeDatos,"paciente");//87
+        InsertarTags(BaseDeDatos,"compresivo");//88
+        InsertarTags(BaseDeDatos,"respetuoso");//89
+        InsertarTags(BaseDeDatos,"persuasivo");//90
         //I
-        InsertarTags(BaseDeDatos,"calculo");//
-        InsertarTags(BaseDeDatos,"cientifico");//
-        InsertarTags(BaseDeDatos,"manual");//
-        InsertarTags(BaseDeDatos,"exacto");//
-        InsertarTags(BaseDeDatos,"planificar");//
-        InsertarTags(BaseDeDatos,"preciso");//
-        InsertarTags(BaseDeDatos,"practico");//
-        InsertarTags(BaseDeDatos,"critico");//
-        InsertarTags(BaseDeDatos,"analitico");//
-        InsertarTags(BaseDeDatos,"rigido");//
+        InsertarTags(BaseDeDatos,"calculo");//91
+        InsertarTags(BaseDeDatos,"cientifico");//92
+        InsertarTags(BaseDeDatos,"manual");//93
+        InsertarTags(BaseDeDatos,"exacto");//94
+        InsertarTags(BaseDeDatos,"planificar");//95
+        InsertarTags(BaseDeDatos,"preciso");//96
+        InsertarTags(BaseDeDatos,"practico");//97
+        InsertarTags(BaseDeDatos,"critico");//98
+        InsertarTags(BaseDeDatos,"analitico");//99
+        InsertarTags(BaseDeDatos,"rigido");//100
         //D
-        InsertarTags(BaseDeDatos,"justicia");//
-        InsertarTags(BaseDeDatos,"equidad");//
-        InsertarTags(BaseDeDatos,"colaboracion");//
-        InsertarTags(BaseDeDatos,"espiritu de equipo");//
-        InsertarTags(BaseDeDatos,"liderazgo");//
-        InsertarTags(BaseDeDatos,"arriesgado");//
-        InsertarTags(BaseDeDatos,"solidario");//
-        InsertarTags(BaseDeDatos,"valiente");//
-        InsertarTags(BaseDeDatos,"agresivo");//
-        InsertarTags(BaseDeDatos,"persuasivo");//
+        InsertarTags(BaseDeDatos,"justicia");//101
+        InsertarTags(BaseDeDatos,"equidad");//102
+        InsertarTags(BaseDeDatos,"colaboracion");//103
+        InsertarTags(BaseDeDatos,"espiritu de equipo");//104
+        InsertarTags(BaseDeDatos,"liderazgo");//105
+        InsertarTags(BaseDeDatos,"arriesgado");//106
+        InsertarTags(BaseDeDatos,"solidario");//107
+        InsertarTags(BaseDeDatos,"valiente");//108
+        InsertarTags(BaseDeDatos,"agresivo");//109
+        InsertarTags(BaseDeDatos,"persuasivo");//110
         //E
-        InsertarTags(BaseDeDatos,"investigacion");//
-        InsertarTags(BaseDeDatos,"orden");//
-        InsertarTags(BaseDeDatos,"organizacion");//
-        InsertarTags(BaseDeDatos,"analisis y sintesis");//
-        InsertarTags(BaseDeDatos,"numerico");//
-        InsertarTags(BaseDeDatos,"clasificar");//
-        InsertarTags(BaseDeDatos,"metodico");//
-        InsertarTags(BaseDeDatos,"analitico");//
-        InsertarTags(BaseDeDatos,"observador");//
-        InsertarTags(BaseDeDatos,"introvertido");//
-        InsertarTags(BaseDeDatos,"paciente");//
-        InsertarTags(BaseDeDatos,"seguro");//
+        InsertarTags(BaseDeDatos,"investigacion");//111
+        InsertarTags(BaseDeDatos,"orden");//112
+        InsertarTags(BaseDeDatos,"organizacion");//113
+        InsertarTags(BaseDeDatos,"analisis y sintesis");//114
+        InsertarTags(BaseDeDatos,"numerico");//115
+        InsertarTags(BaseDeDatos,"clasificar");//116
+        InsertarTags(BaseDeDatos,"metodico");//117
+        InsertarTags(BaseDeDatos,"analitico");//118
+        InsertarTags(BaseDeDatos,"observador");//119
+        InsertarTags(BaseDeDatos,"introvertido");//120
+        InsertarTags(BaseDeDatos,"paciente");//121
+        InsertarTags(BaseDeDatos,"seguro");//122
+        //Chaside
+        InsertarTags(BaseDeDatos,"Administrativas y Contables");//123
+        InsertarTags(BaseDeDatos,"Humanísticas y Sociales");//124
+        InsertarTags(BaseDeDatos,"Artísticas");//125
+        InsertarTags(BaseDeDatos,"Medicina y Cs. de la Salud");//126
+        InsertarTags(BaseDeDatos,"Ingeniería y Computación");//127
+        InsertarTags(BaseDeDatos,"Defensa y Seguridad");//128
+        InsertarTags(BaseDeDatos,"Ciencias Exactas y Agrarias");//129
         /*InsertarTags(BaseDeDatos,"");//44
         InsertarTags(BaseDeDatos,"");//45
         InsertarTags(BaseDeDatos,"");//46*/
@@ -951,6 +962,58 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         InsertarRelacionTags(BaseDeDatos,11,41);
         InsertarRelacionTags(BaseDeDatos,11,40);
         InsertarRelacionTags(BaseDeDatos,12,40);
+        for(int i=44;i<=55;i++)
+        {
+            //insercion chaside c
+            InsertarRelacionTags(BaseDeDatos,2,i);
+            InsertarRelacionTags(BaseDeDatos,2,123);
+            InsertarRelacionTags(BaseDeDatos,3,i);
+            InsertarRelacionTags(BaseDeDatos,3,123);
+            InsertarRelacionTags(BaseDeDatos,4,i);
+            InsertarRelacionTags(BaseDeDatos,4,123);
+            InsertarRelacionTags(BaseDeDatos,5,i);
+            InsertarRelacionTags(BaseDeDatos,5,123);
+            InsertarRelacionTags(BaseDeDatos,8,i);
+            InsertarRelacionTags(BaseDeDatos,8,123);
+        }
+        for(int i=56;i<=67;i++)
+        {
+            InsertarRelacionTags(BaseDeDatos,7,i);
+            InsertarRelacionTags(BaseDeDatos,7,124);
+            InsertarRelacionTags(BaseDeDatos,9,i);
+            InsertarRelacionTags(BaseDeDatos,9,124);
+            InsertarRelacionTags(BaseDeDatos,10,i);
+            InsertarRelacionTags(BaseDeDatos,10,124);
+            //insercion chaside h
+        }
+        for(int i=68;i<=78;i++)
+        {
+            //insercion chaside a
+            InsertarRelacionTags(BaseDeDatos,1,i);
+            InsertarRelacionTags(BaseDeDatos,1,125);
+            InsertarRelacionTags(BaseDeDatos,6,i);
+            InsertarRelacionTags(BaseDeDatos,6,125);
+        }
+        for(int i=79;i<=90;i++)
+        {
+            //insercion chaside s
+        }
+        for(int i=91;i<=100;i++)
+        {
+            //insercion chaside i
+        }
+        for(int i=101;i<=110;i++)
+        {
+            //insercion chaside d
+        }
+        for(int i=111;i<=122;i++)
+        {
+            //insercion chaside e
+            InsertarRelacionTags(BaseDeDatos,11,i);
+            InsertarRelacionTags(BaseDeDatos,11,129);
+            InsertarRelacionTags(BaseDeDatos,12,i);
+            InsertarRelacionTags(BaseDeDatos,12,129);
+        }
 
     }
     private void Preguntas(SQLiteDatabase BaseDeDatos)
