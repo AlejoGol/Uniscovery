@@ -128,7 +128,13 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
                 eliminar.add(Actual);
             }
         }
-        ListaFiltrada.addAll(listaDeCarreras);
+        String seleccionado=main.getSeleccionado();
+        if(seleccionado.equals(""))
+        {
+            ListaFiltrada.addAll(listaDeCarreras);
+        }else{
+            
+        }
         paginado=new Paginado(ListaFiltrada,ListaFiltrada.size());
         ListaFiltrada=PrimerFiltro();
         Log.d("11/9"," "+ListaFiltrada.size());

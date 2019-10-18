@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity   {
     public boolean VioAdvertencia;
     public static int VersionBD;
     private SharedPreferences preferencias;
+    private RespuestaTest ResultadosUltimoTest;
+    private String seleccionado;
 
     public RespuestaTest getResultadosUltimoTest() {
         return ResultadosUltimoTest;
@@ -32,12 +34,16 @@ public class MainActivity extends AppCompatActivity   {
     public void setResultadosUltimoTest(RespuestaTest resultadosUltimoTest) {
         ResultadosUltimoTest = resultadosUltimoTest;
     }
+    public void setSeleccionado(String selec)
+    {
+        seleccionado=selec;
+    }
+    public String getSeleccionado(){return seleccionado;}
     public void RemplazarPorResultados()
     {
         Fragment FragmentAUsar=new FragmentMostrarResultados();
         ReemplazarFragment(FragmentAUsar);
     }
-    private RespuestaTest ResultadosUltimoTest;
 
     public Carrera getSeleccion() {
         return Seleccion;
