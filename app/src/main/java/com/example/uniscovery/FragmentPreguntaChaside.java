@@ -18,7 +18,7 @@ import java.util.IdentityHashMap;
 
 public class FragmentPreguntaChaside extends Fragment implements View.OnClickListener,RadioGroup.OnCheckedChangeListener {
     View VistaAUsar;
-    Button botonSiguiente;
+    Button botonSiguiente,BotonGuardarResultados;
     TextView numeroPregunta;
     TextView textoPregunta;
     RadioGroup radioOpcion;
@@ -34,6 +34,8 @@ public class FragmentPreguntaChaside extends Fragment implements View.OnClickLis
         NumeropreguntaActual=1;
         CargarPreguntas();
         SetearValores();
+        BotonGuardarResultados=VistaAUsar.findViewById(R.id.SeguirDesPues);
+        BotonGuardarResultados.setOnClickListener(this);
         botonSiguiente.setOnClickListener(this);
         botonSiguiente.setEnabled(false);
         radioOpcion.setOnCheckedChangeListener(this);
@@ -42,89 +44,97 @@ public class FragmentPreguntaChaside extends Fragment implements View.OnClickLis
     }
     public void onClick(View v) {
 
-        int IDElegido=radioOpcion.getCheckedRadioButtonId();
-        if(IDElegido==R.id.opcion_si)
+        if(v.getId()==botonSiguiente.getId())
         {
-            Log.d("CHASIDE","entro al si ");
-            Log.d("CHASIDE"," "+PreguntaActual.get_Objetivo());
-
-            if(PreguntaActual.get_Objetivo().equals("INTERES"))
+            int IDElegido=radioOpcion.getCheckedRadioButtonId();
+            if(IDElegido==R.id.opcion_si)
             {
-                Log.d("Chaside",""+PreguntaActual.get_Letra());
-                switch(PreguntaActual.get_Letra())
+                Log.d("CHASIDE","entro al si ");
+                Log.d("CHASIDE"," "+PreguntaActual.get_Objetivo());
+
+                if(PreguntaActual.get_Objetivo().equals("INTERES"))
                 {
-                    case "C":
-                        Log.d("Switch","entro al switch");
-                        Respuestas.setInteresC((Respuestas.getInteresC())+1f);
-                        Log.d("CHASIDE"," valor respuesta " + Respuestas.getInteresC());
-                        break;
-                    case "H":
+                    Log.d("Chaside",""+PreguntaActual.get_Letra());
+                    switch(PreguntaActual.get_Letra())
+                    {
+                        case "C":
+                            Log.d("Switch","entro al switch");
+                            Respuestas.setInteresC((Respuestas.getInteresC())+1f);
+                            Log.d("CHASIDE"," valor respuesta " + Respuestas.getInteresC());
+                            break;
+                        case "H":
 
-                        Respuestas.setInteresH((Respuestas.getInteresH())+1f);
-                        break;
-                    case "A":
+                            Respuestas.setInteresH((Respuestas.getInteresH())+1f);
+                            break;
+                        case "A":
 
-                        Respuestas.setInteresA((Respuestas.getInteresA())+1f);
-                        break;
-                    case "S":
-                        Respuestas.setInteresS((Respuestas.getInteresS())+1f);
-                        break;
-                    case "D":
-                        Respuestas.setInteresD((Respuestas.getInteresD())+1f);
-                        break;
-                    case "E":
+                            Respuestas.setInteresA((Respuestas.getInteresA())+1f);
+                            break;
+                        case "S":
+                            Respuestas.setInteresS((Respuestas.getInteresS())+1f);
+                            break;
+                        case "D":
+                            Respuestas.setInteresD((Respuestas.getInteresD())+1f);
+                            break;
+                        case "E":
 
-                        Respuestas.setInteresE((Respuestas.getInteresE())+1f);
-                        break;
-                    case "I":
-                        Respuestas.setInteresI((Respuestas.getInteresI())+1f);
-                        break;
-                    default:
-                        break;
+                            Respuestas.setInteresE((Respuestas.getInteresE())+1f);
+                            break;
+                        case "I":
+                            Respuestas.setInteresI((Respuestas.getInteresI())+1f);
+                            break;
+                        default:
+                            break;
+                    }
                 }
+                else
+                {
+                    switch(PreguntaActual.get_Letra())
+                    {
+                        case "C":
+                            Respuestas.setAptitudC((Respuestas.getAptitudC())+1f);
+                            break;
+                        case "H":
+                            Respuestas.setAptitudH((Respuestas.getAptitudH())+1f);
+                            break;
+                        case "A":
+                            Respuestas.setAptitudA((Respuestas.getAptitudA())+1f);
+                            break;
+                        case "S":
+                            Respuestas.setAptitudS((Respuestas.getAptitudS())+1f);
+                            break;
+                        case "I":
+                            Respuestas.setAptitudI((Respuestas.getAptitudI())+1f);
+                            break;
+                        case "D":
+                            Respuestas.setAptitudD((Respuestas.getAptitudD())+1f);
+                            break;
+                        case "E":
+                            Respuestas.setAptitudE((Respuestas.getAptitudE())+1f);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            NumeropreguntaActual++;
+            if(NumeropreguntaActual==99)
+            {
+                MainActivity main=(MainActivity)getActivity();
+                main.setResultadosUltimoTest(Respuestas);
+                main.RemplazarPorResultados();
             }
             else
             {
-                switch(PreguntaActual.get_Letra())
-                {
-                    case "C":
-                        Respuestas.setAptitudC((Respuestas.getAptitudC())+1f);
-                        break;
-                    case "H":
-                        Respuestas.setAptitudH((Respuestas.getAptitudH())+1f);
-                        break;
-                    case "A":
-                        Respuestas.setAptitudA((Respuestas.getAptitudA())+1f);
-                        break;
-                    case "S":
-                        Respuestas.setAptitudS((Respuestas.getAptitudS())+1f);
-                        break;
-                    case "I":
-                        Respuestas.setAptitudI((Respuestas.getAptitudI())+1f);
-                        break;
-                    case "D":
-                        Respuestas.setAptitudD((Respuestas.getAptitudD())+1f);
-                        break;
-                    case "E":
-                        Respuestas.setAptitudE((Respuestas.getAptitudE())+1f);
-                        break;
-                    default:
-                        break;
-                }
+                radioOpcion.clearCheck();
+                CargarPreguntas();
+                SetearValores();
             }
-        }
-        NumeropreguntaActual++;
-        if(NumeropreguntaActual==99)
-        {
-            MainActivity main=(MainActivity)getActivity();
-            main.setResultadosUltimoTest(Respuestas);
-            main.RemplazarPorResultados();
         }
         else
         {
-            radioOpcion.clearCheck();
-            CargarPreguntas();
-            SetearValores();
+         MainActivity mainActivity=(MainActivity) getActivity();
+         mainActivity.ReemplazarInformacionUltimoTest(Respuestas,NumeropreguntaActual);
         }
 
     }

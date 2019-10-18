@@ -14,6 +14,9 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.ValueDependentColor;
@@ -30,32 +33,27 @@ public class FragmentMostrarResultados extends Fragment {
     BarData barData,BarDataAptitud;
     BarDataSet barDataSet,barDataSetAptitudes;
     ArrayList <BarEntry> barEntries,barEntriesAptitudes;
+    RespuestaTest respuestas;
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
         View VistaDevolver = inflater.inflate(R.layout.pantalla_resultados_test, null, true);
         Log.d("Resultados", "Estoy por declarar las barEntries de3l grafico de barras ");
-        MiGraficoDeBarras=(BarChart) VistaDevolver.findViewById(R.id.MiGrafico);
-        MiGraficoDeAptitud=(BarChart) VistaDevolver.findViewById(R.id.TablaAptitudes);
+        MiGraficoDeBarras = (BarChart) VistaDevolver.findViewById(R.id.MiGrafico);
+        MiGraficoDeAptitud = (BarChart) VistaDevolver.findViewById(R.id.TablaAptitudes);
         MainActivity main = (MainActivity) getActivity();
-        RespuestaTest respuestaTest=new RespuestaTest(main.getResultadosUltimoTest());
+        RespuestaTest respuestaTest = new RespuestaTest(main.getResultadosUltimoTest());
         Debug(respuestaTest);
         SetearTablaAptitudes(respuestaTest);
         SetearTablaIntereses(respuestaTest);
-
-<<<<<<< HEAD
-
-        MainActivity main = (MainActivity) getActivity();
-        RespuestaTest respuestaTest = main.getResultadosUltimoTest();
-        SetValoresDeInteres(respuestaTest);
-        SetValoresActitud();
-=======
+        //SetValoresDeInteres(respuestaTest);
+        //SetValoresActitud(respuestaTest);
         return VistaDevolver;
 }
-    private void SetearTablaIntereses(RespuestaTest respuestaTest)
+    private void SetearTablaIntereses(final RespuestaTest respuestaTest)
     {
+        respuestas=respuestaTest;
         barEntries=new ArrayList<>();
         SetEntriesIntereses(respuestaTest);
->>>>>>> 34e6441bf8ac0f1f990c514f6f517044f422b254
         barDataSet = new BarDataSet(barEntries, "Mi grafico para el proyecto");
         barData = new BarData(barDataSet);
         barData.setBarWidth(0.3f);
@@ -70,46 +68,50 @@ public class FragmentMostrarResultados extends Fragment {
         MiGraficoDeBarras.invalidate();
         MiGraficoDeBarras.setVisibleXRangeMaximum(14); // allow 20 values to be displayed at once on the x-axis, not more
         MiGraficoDeBarras.moveViewToX(0);
-<<<<<<< HEAD
-        return VistaDevolver;
+        MiGraficoDeBarras.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+            @Override
+            public void onValueSelected(Entry e, Highlight h) {
+                String Seleccionado="";
+                if(e.getX()>1f&&e.getX()<1.3f&&e.getY()<=(respuestas.getInteresC()*100)/10)
+                {
+                    Seleccionado="Administrativas y Contables";
+                }
+                if(e.getX()>2f&&e.getX()<2.3f&&e.getY()<=(respuestas.getInteresH()*100)/10)
+                {
+                    Seleccionado="Humanísticas y Sociales";
+                }
+                if(e.getX()>3f&&e.getX()<3.3f&&e.getY()<=(respuestas.getInteresA()*100)/10)
+                {
+                    Seleccionado=" Artísticas";
+                }
+                if(e.getX()>4f&&e.getX()<4.3f&&e.getY()<=(respuestas.getInteresS()*100)/10)
+                {
+                    Seleccionado="Medicina y Cs. de la Salud";
+                }
+                if(e.getX()>5f&&e.getX()<5.3f&&e.getY()<=(respuestas.getInteresI()*100)/10)
+                {
+                    Seleccionado="Ingeniería y Computación";
+                }
+                if(e.getX()>6f&&e.getX()<6.3f&&e.getY()<=(respuestas.getInteresD()*100)/10)
+                {
+                    Seleccionado="Defensa y Seguridad";
+                }
+                if(e.getX()>7f&&e.getX()<7.3f&&e.getY()<=(respuestas.getInteresE()*100)/10)
+                {
+                    Seleccionado="Ciencias Exactas y Agrarias";
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected() {
+
+            }
+        });
+
 }
     private void SetValoresActitud(RespuestaTest respuesta) {
 
-    }
-    private void SetValoresDeInteres(RespuestaTest respuestaTest) {
-
-        barEntries = new ArrayList<>();
-        barEntries.add(new BarEntry(1f, 1));
-        barEntries.add(new BarEntry(1,4f, 1));
-        barEntries.add(new BarEntry(2f, 1));
-        barEntries.add(new BarEntry(2,4f, 1));
-        barEntries.add(new BarEntry(3f, 1));
-        barEntries.add(new BarEntry(3,4f, 1));
-        barEntries.add(new BarEntry(4f, 1));
-        barEntries.add(new BarEntry(4,4f, 1));
-        barEntries.add(new BarEntry(5f, 1));
-        barEntries.add(new BarEntry(5,4f, 1));
-        barEntries.add(new BarEntry(6f, 1));
-        barEntries.add(new BarEntry(6,4f, 1));
-        barEntries.add(new BarEntry(7f, 1));
-        barEntries.add(new BarEntry(7,4f, 1));
-
-       /* barEntries.add(new BarEntry(1f, (respuestaTest.getInteresC() / 10) * 100));
-        Log.d("ValorInteres",""+respuestaTest.getInteresC());
-        barEntries.add(new BarEntry(1f, (respuestaTest.getAptitudC() / 4) * 100));
-        barEntries.add(new BarEntry(2f,(respuestaTest.getInteresH()/10)*100));
-        barEntries.add(new BarEntry(2f,(respuestaTest.getAptitudH()/4)*100));
-        barEntries.add(new BarEntry(3f,(respuestaTest.getInteresA()/10)*100));
-        barEntries.add(new BarEntry(3f,(respuestaTest.getAptitudA()/4)*100));
-        barEntries.add(new BarEntry(4f,(respuestaTest.getInteresS()/10)*100));
-        barEntries.add(new BarEntry(4f,(respuestaTest.getAptitudS()/4)*100));
-        barEntries.add(new BarEntry(5f,(respuestaTest.getInteresI()/10)*100));
-        barEntries.add(new BarEntry(5f,(respuestaTest.getAptitudI()/4)*100));
-        barEntries.add(new BarEntry(6f,(respuestaTest.getInteresD()/10)*100));
-        barEntries.add(new BarEntry(6f,(respuestaTest.getAptitudD()/4)*100));
-        barEntries.add(new BarEntry(7f,(respuestaTest.getInteresE()/10)*100));
-        barEntries.add(new BarEntry(7f,(respuestaTest.getAptitudE()/4)*100));*/
-=======
     }
     private void SetearTablaAptitudes(RespuestaTest respuestaTest)
     {
@@ -262,6 +264,6 @@ public class FragmentMostrarResultados extends Fragment {
         {
             barEntries.add(new BarEntry(7f,1));
         }
->>>>>>> 34e6441bf8ac0f1f990c514f6f517044f422b254
     }
+
 }

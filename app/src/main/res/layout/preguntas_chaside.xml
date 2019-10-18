@@ -44,10 +44,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SIGUIENTE"
-        android:textSize="40dp"
-        app:layout_constraintLeft_toLeftOf="@id/radioGroup"
+        android:textSize="30dp"
+        app:layout_constraintLeft_toRightOf="@id/SeguirDesPues"
         app:layout_constraintTop_toBottomOf="@id/radioGroup"
         app:layout_constraintRight_toRightOf="parent"
         android:id="@+id/boton_siguiente"/>
+    <Button
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:text="Guardar resultados parciales"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/boton_siguiente"
+        app:layout_constraintTop_toTopOf="@id/boton_siguiente"
+        android:id="@+id/SeguirDesPues"/>
 
 </android.support.constraint.ConstraintLayout>
