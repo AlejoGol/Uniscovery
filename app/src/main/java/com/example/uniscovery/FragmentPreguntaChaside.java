@@ -32,14 +32,27 @@ public class FragmentPreguntaChaside extends Fragment implements View.OnClickLis
         textoPregunta=VistaAUsar.findViewById(R.id.texto_pregunta);
         radioOpcion=VistaAUsar.findViewById(R.id.radioGroup);
         NumeropreguntaActual=1;
-        CargarPreguntas();
-        SetearValores();
         BotonGuardarResultados=VistaAUsar.findViewById(R.id.SeguirDesPues);
         BotonGuardarResultados.setOnClickListener(this);
         botonSiguiente.setOnClickListener(this);
         botonSiguiente.setEnabled(false);
         radioOpcion.setOnCheckedChangeListener(this);
         Respuestas=new RespuestaTest();
+        MainActivity main=(MainActivity) getActivity();
+        main.DevolverResultados();
+        MainActivity.PlayAudio(this.getContext(),R.raw.relax);
+        if(main.numeroUltimaPregunta>1&&main.numeroUltimaPregunta!=99)
+        {
+            NumeropreguntaActual=main.numeroUltimaPregunta+1;
+            Respuestas=main.getResultadosUltimoTest();
+            CargarPreguntas();
+            SetearValores();
+        }
+        else
+        {
+            CargarPreguntas();
+            SetearValores();
+        }
         return VistaAUsar;
     }
     public void onClick(View v) {
