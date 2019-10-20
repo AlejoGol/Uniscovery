@@ -130,11 +130,13 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
             }
         }
         String seleccionado=main.getSeleccionado();
+        Log.d("ValorSeleccionado"," valor: "+seleccionado);
         if(seleccionado.equals(""))
         {
             ListaFiltrada.addAll(listaDeCarreras);
         }else{
-            ListaFiltrada=VerificarTags(seleccionado);
+            Log.d("ValorSeleccionado"," Entro por lo que funciona a medias");
+            ListaFiltrada.addAll(VerificarTags(seleccionado));
         }
         paginado=new Paginado(ListaFiltrada,ListaFiltrada.size());
         ListaFiltrada=PrimerFiltro();
@@ -197,7 +199,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
     private ArrayList<Carrera> getItemEnElArray()
     {
         Log.d("BD","getItemEnElArray");
-        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,MainActivity.VersionBD);
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,14);
         ArrayList<Carrera> items= new ArrayList<>();
         Cursor RegistrosLeidos;
         String SqlConsulta="select ID_carrera,Nombre_Carrera,Nombre_Facultad,LinkImagen,Descripcion from Carerras" ;

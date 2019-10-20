@@ -8,14 +8,9 @@ import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +21,6 @@ public class MainActivity extends AppCompatActivity   {
     private ArrayList<Fragment> ListaFragment;
     private Carrera Seleccion=null;
     public boolean VioAdvertencia;
-    public static int VersionBD;
     private SharedPreferences preferencias;
     int numeroUltimaPregunta;
     private static MediaPlayer Reproductor;
@@ -89,12 +83,11 @@ public class MainActivity extends AppCompatActivity   {
         fragmentManager=getFragmentManager();
         preferencias=this.getBaseContext().getSharedPreferences("Uniscovery", Context.MODE_PRIVATE);
         ReemplazarFragment(fragmentMenu);
-        VersionBD=14;
         ListaFragment=new ArrayList<>();
         numeroUltimaPregunta=1;
         isPlayingAudio=false;
         ResultadosUltimoTest=new RespuestaTest();
-
+        seleccionado="";
     }
     public void ReemplazarInformacionUltimoTest(RespuestaTest respuestasAGuardar, int NumeroDePreguntas)
     {
@@ -173,13 +166,5 @@ public class MainActivity extends AppCompatActivity   {
         fragmentTransaction.commit();
         ListaFragment.remove(ListaFragment.size()-1);
         Log.d("LLego","al final");
-        /*super.onBackPressed();
-        int count = getSupportFragmentManager().getBackStackEntryCount();
-        if (count == 0) {
-            super.onBackPressed();
-            //additional code
-        } else {
-            getSupportFragmentManager().popBackStack();
-        }*/
     }
 }

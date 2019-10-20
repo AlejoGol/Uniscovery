@@ -43,6 +43,10 @@ public class FragmentMostrarResultados extends Fragment {
         MiGraficoDeBarras = (BarChart) VistaDevolver.findViewById(R.id.MiGrafico);
         MiGraficoDeAptitud = (BarChart) VistaDevolver.findViewById(R.id.TablaAptitudes);
         MainActivity main = (MainActivity) getActivity();
+        if(MainActivity.isPlayingAudio)
+        {
+            main.PararMusica();
+        }
         RespuestaTest respuestaTest = new RespuestaTest(main.getResultadosUltimoTest());
         main.ReemplazarInformacionUltimoTest(respuestaTest,99);
         Debug(respuestaTest);
@@ -75,31 +79,33 @@ public class FragmentMostrarResultados extends Fragment {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
                 String Seleccionado="";
-                if(e.getX()>1f&&e.getX()<1.3f&&e.getY()<=(respuestas.getInteresC()*100)/10)
+                Log.d("Value"," "+e.getX());
+                Log.d("Value","Posicion Y "+e.getY());
+                if(e.getX()==1f)
                 {
                     Seleccionado="Administrativas y Contables";
                 }
-                if(e.getX()>2f&&e.getX()<2.3f&&e.getY()<=(respuestas.getInteresH()*100)/10)
+                if(e.getX()==2f)
                 {
                     Seleccionado="Humanísticas y Sociales";
                 }
-                if(e.getX()>3f&&e.getX()<3.3f&&e.getY()<=(respuestas.getInteresA()*100)/10)
+                if(e.getX()==3f)
                 {
                     Seleccionado=" Artísticas";
                 }
-                if(e.getX()>4f&&e.getX()<4.3f&&e.getY()<=(respuestas.getInteresS()*100)/10)
+                if(e.getX()==4f)
                 {
                     Seleccionado="Medicina y Cs. de la Salud";
                 }
-                if(e.getX()>5f&&e.getX()<5.3f&&e.getY()<=(respuestas.getInteresI()*100)/10)
+                if(e.getX()==5f)
                 {
                     Seleccionado="Ingeniería y Computación";
                 }
-                if(e.getX()>6f&&e.getX()<6.3f&&e.getY()<=(respuestas.getInteresD()*100)/10)
+                if(e.getX()==6f)
                 {
                     Seleccionado="Defensa y Seguridad";
                 }
-                if(e.getX()>7f&&e.getX()<7.3f&&e.getY()<=(respuestas.getInteresE()*100)/10)
+                if(e.getX()==7f)
                 {
                     Seleccionado="Ciencias Exactas y Agrarias";
                 }
@@ -108,6 +114,7 @@ public class FragmentMostrarResultados extends Fragment {
                 {
                     MainActivity main=(MainActivity)getActivity();
                     main.setSeleccionado(Seleccionado);
+                    main.RemplazarPorListado();
                 }
             }
 
@@ -144,39 +151,43 @@ public class FragmentMostrarResultados extends Fragment {
             public void onValueSelected(Entry e, Highlight h) {
                 String Seleccionado="";
                 Log.d("Value"," "+e.getX());
-                if(e.getX()>1f&&e.getX()<1.3f&&e.getY()<=(respuestas.getAptitudC()*100)/10)
+                Log.d("Value","Posicion Y "+e.getY());
+                
+                float posicionX=e.getX();
+                if(e.getX() == 1f)
                 {
                     Seleccionado="Administrativas y Contables";
                 }
-                if(e.getX()>2f&&e.getX()<2.3f&&e.getY()<=(respuestas.getAptitudH()*100)/10)
+                if(e.getX()==2f)
                 {
                     Seleccionado="Humanísticas y Sociales";
                 }
-                if(e.getX()>3f&&e.getX()<3.3f&&e.getY()<=(respuestas.getAptitudA()*100)/10)
+                if(e.getX()==3f)
                 {
                     Seleccionado=" Artísticas";
                 }
-                if(e.getX()>4f&&e.getX()<4.3f&&e.getY()<=(respuestas.getAptitudS()*100)/10)
+                if(e.getX()==4f)
                 {
                     Seleccionado="Medicina y Cs. de la Salud";
                 }
-                if(e.getX()>5f&&e.getX()<5.3f&&e.getY()<=(respuestas.getAptitudI()*100)/10)
+                if(e.getX()==5f)
                 {
                     Seleccionado="Ingeniería y Computación";
                 }
-                if(e.getX()>6f&&e.getX()<6.3f&&e.getY()<=(respuestas.getAptitudD()*100)/10)
+                if(e.getX()==6f)
                 {
                     Seleccionado="Defensa y Seguridad";
                 }
-                if(e.getX()>7f&&e.getX()<7.3f&&e.getY()<=(respuestas.getAptitudE()*100)/10)
+                if(e.getX()==7f)
                 {
                     Seleccionado="Ciencias Exactas y Agrarias";
                 }
+                Log.d("ValorSeleccionado"," valor "+Seleccionado);
                 if(!Seleccionado.equals(""))
                 {
                     MainActivity main=(MainActivity)getActivity();
-                    Log.d("ValorSeleccionado"," valor "+Seleccionado);
                     main.setSeleccionado(Seleccionado);
+                    main.RemplazarPorListado();
                 }
             }
 
