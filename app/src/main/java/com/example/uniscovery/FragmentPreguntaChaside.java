@@ -163,7 +163,7 @@ public class FragmentPreguntaChaside extends Fragment implements View.OnClickLis
     public void CargarPreguntas()
     {
         Log.d("BD","CargarPreguntas");
-        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,14);
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,16);
         Cursor RegistrosLeidos;
         String SqlConsulta="select * from Preguntas where ID_Pregunta="+NumeropreguntaActual;
         RegistrosLeidos=DB.EjecutarConsulta(SqlConsulta);

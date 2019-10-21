@@ -55,7 +55,6 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
     {
         SQLiteDatabase midb;
         midb = this.getReadableDatabase();
-
         Cursor RegistrosLeidos;
         Log.d("BD","CargarInformacion:" + Consulta);
         RegistrosLeidos=midb.rawQuery(Consulta,null);
@@ -966,34 +965,36 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         {
             //insercion chaside c
             InsertarRelacionTags(BaseDeDatos,2,i);
-            InsertarRelacionTags(BaseDeDatos,2,123);
             InsertarRelacionTags(BaseDeDatos,3,i);
-            InsertarRelacionTags(BaseDeDatos,3,123);
             InsertarRelacionTags(BaseDeDatos,4,i);
-            InsertarRelacionTags(BaseDeDatos,4,123);
             InsertarRelacionTags(BaseDeDatos,5,i);
-            InsertarRelacionTags(BaseDeDatos,5,123);
             InsertarRelacionTags(BaseDeDatos,8,i);
-            InsertarRelacionTags(BaseDeDatos,8,123);
+
         }
+        InsertarRelacionTags(BaseDeDatos,2,123);
+        InsertarRelacionTags(BaseDeDatos,3,123);
+        InsertarRelacionTags(BaseDeDatos,4,123);
+        InsertarRelacionTags(BaseDeDatos,5,123);
+        InsertarRelacionTags(BaseDeDatos,8,123);
         for(int i=56;i<=67;i++)
         {
             InsertarRelacionTags(BaseDeDatos,7,i);
-            InsertarRelacionTags(BaseDeDatos,7,124);
             InsertarRelacionTags(BaseDeDatos,9,i);
-            InsertarRelacionTags(BaseDeDatos,9,124);
             InsertarRelacionTags(BaseDeDatos,10,i);
-            InsertarRelacionTags(BaseDeDatos,10,124);
             //insercion chaside h
         }
+        InsertarRelacionTags(BaseDeDatos,7,124);
+        InsertarRelacionTags(BaseDeDatos,9,124);
+        InsertarRelacionTags(BaseDeDatos,10,124);
         for(int i=68;i<=78;i++)
         {
             //insercion chaside a
             InsertarRelacionTags(BaseDeDatos,1,i);
-            InsertarRelacionTags(BaseDeDatos,1,125);
             InsertarRelacionTags(BaseDeDatos,6,i);
-            InsertarRelacionTags(BaseDeDatos,6,125);
+
         }
+        InsertarRelacionTags(BaseDeDatos,6,125);
+        InsertarRelacionTags(BaseDeDatos,1,125);
         for(int i=79;i<=90;i++)
         {
             //insercion chaside s
@@ -1010,11 +1011,11 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
         {
             //insercion chaside e
             InsertarRelacionTags(BaseDeDatos,11,i);
-            InsertarRelacionTags(BaseDeDatos,11,129);
             InsertarRelacionTags(BaseDeDatos,12,i);
-            InsertarRelacionTags(BaseDeDatos,12,129);
-        }
 
+        }
+        InsertarRelacionTags(BaseDeDatos,11,129);
+        InsertarRelacionTags(BaseDeDatos,12,129);
     }
     private void Preguntas(SQLiteDatabase BaseDeDatos)
     {

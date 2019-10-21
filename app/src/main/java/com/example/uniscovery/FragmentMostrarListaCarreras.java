@@ -134,14 +134,21 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
         if(seleccionado.equals(""))
         {
             ListaFiltrada.addAll(listaDeCarreras);
+            paginado=new Paginado(ListaFiltrada,ListaFiltrada.size());
+            ListaFiltrada=PrimerFiltro();
+            Log.d("11/9"," "+ListaFiltrada.size());
+            adapter=new Adaptador_Carrera(getContext(),ListaFiltrada);
         }else{
             Log.d("ValorSeleccionado"," Entro por lo que funciona a medias");
+            Log.d("ValorSeleccionado"," "+VerificarTags(seleccionado).size());
+            searchView.setQuery(seleccionado,true);
+            ListaFiltrada.clear();
             ListaFiltrada.addAll(VerificarTags(seleccionado));
+            Log.d("LargoDeListaParaSegundaVuelta"," largo "+ListaFiltrada.size());
+            adapter=new Adaptador_Carrera(getContext(),ListaFiltrada);
+            paginado=new Paginado(ListaFiltrada,ListaFiltrada.size());
         }
-        paginado=new Paginado(ListaFiltrada,ListaFiltrada.size());
-        ListaFiltrada=PrimerFiltro();
-        Log.d("11/9"," "+ListaFiltrada.size());
-        adapter=new Adaptador_Carrera(getContext(),ListaFiltrada);
+
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(this);
         gridView.setOnScrollListener(this);
@@ -199,7 +206,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
     private ArrayList<Carrera> getItemEnElArray()
     {
         Log.d("BD","getItemEnElArray");
-        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,14);
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,16);
         ArrayList<Carrera> items= new ArrayList<>();
         Cursor RegistrosLeidos;
         String SqlConsulta="select ID_carrera,Nombre_Carrera,Nombre_Facultad,LinkImagen,Descripcion from Carerras" ;
@@ -272,7 +279,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
     private ArrayList<Carrera>  BuscarCarrerasPorId(ArrayList<Integer>IdCarreras)
     {
         ArrayList<Carrera> CarrerasConTags=new ArrayList<>();
-        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,14);
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,16);
 
         Cursor RegistrosLeidos;
         String SqlConsulta="select ID_carrera, Nombre_Carrera, Nombre_Facultad,LinkImagen,Descripcion from Carerras" ;
@@ -300,7 +307,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
     }
     private ArrayList<Integer> BuscarCarrerasPorTag(ArrayList<Integer> IDTags)
     {
-        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(),  "Universidades.db", null,14);
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(),  "Universidades.db", null,16);
 
         Cursor RegistrosLeidos;
         String SqlConsulta="select * from Relacion_Carrera_Tag" ;
@@ -323,7 +330,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
     }
     private ArrayList<Integer> BuscarPorIdTag(String query)
     {
-        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,14);
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,16);
 
         Cursor RegistrosLeidos;
         String SqlConsulta="select * from Tags" ;

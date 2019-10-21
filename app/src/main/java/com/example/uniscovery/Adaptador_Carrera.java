@@ -235,59 +235,6 @@ public class Adaptador_Carrera extends BaseAdapter
         for (Carrera Facultad:MiListaCarreras) {
             ListaFacultades.add(Facultad.NombreFacultad);
         }
-        /*class CargarImagenes extends AsyncTask<String,Void, Bitmap>
-        {
-            @Override
-            protected Bitmap doInBackground(String... Ruta) {
-
-                Bitmap ImagenConvertida=null;
-                try {
-                    for (String ruta:Ruta) {
-                        URL Rutas=new URL(ruta);
-                        HttpURLConnection httpURLConnection=(HttpURLConnection)Rutas.openConnection();
-                        if(httpURLConnection.getResponseCode()==200)
-                        {
-                            InputStream stream=httpURLConnection.getInputStream();
-                            BufferedInputStream lectorEntrada=new BufferedInputStream(stream);
-                            ImagenConvertida= BitmapFactory.decodeStream(lectorEntrada);
-                            httpURLConnection.disconnect();
-                        }
-                    }
-
-                }catch (Exception error)
-                {
-                    Log.d("Error","Codigo:"+error.getLocalizedMessage());
-                }
-
-
-                return ImagenConvertida;
-        }
-
-        @Override
-        protected void onPostExecute(Bitmap bitmap) {
-            super.onPostExecute(bitmap);
-
-            if(bitmap!=null)
-            {
-                MiListaCarreras.get(position).IDImagen=validarImagen(MiListaCarreras.get(position).NombreFacultad);
-                LogoFacultad.setImageBitmap(bitmap);
-            }
-            else
-            {
-                MiListaCarreras.get(position).IDImagen=R.drawable.sinimagen;
-                LogoFacultad.setImageResource(R.drawable.sinimagen);
-            }
-        }
-    }
-        if (MiListaCarreras.get(position).IDImagen!=0)
-        {
-            LogoFacultad.setImageResource(getItem(position).IDImagen);
-        }
-        else
-        {
-            CargarImagenes TareaAsyncronica=new CargarImagenes();
-            TareaAsyncronica.execute(MiListaCarreras.get(position).LinkImagen);
-        }*/
         Glide.with(Contexto).load(MiListaCarreras.get(position).getLinkImagen())
                 .apply(new RequestOptions().error(R.drawable.sinimagen))
                 .into(LogoFacultad);

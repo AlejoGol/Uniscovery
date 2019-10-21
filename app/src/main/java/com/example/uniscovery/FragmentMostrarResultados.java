@@ -114,7 +114,7 @@ public class FragmentMostrarResultados extends Fragment {
                 {
                     MainActivity main=(MainActivity)getActivity();
                     main.setSeleccionado(Seleccionado);
-                    main.RemplazarPorListado();
+                    main.ReemplazarDeGraficoALista();
                 }
             }
 
@@ -187,7 +187,7 @@ public class FragmentMostrarResultados extends Fragment {
                 {
                     MainActivity main=(MainActivity)getActivity();
                     main.setSeleccionado(Seleccionado);
-                    main.RemplazarPorListado();
+                    main.ReemplazarDeGraficoALista();
                 }
             }
 

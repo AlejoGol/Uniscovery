@@ -145,13 +145,18 @@ public class MainActivity extends AppCompatActivity   {
         ReemplazarFragment(mostrarListaCarreras);
 
     }
+    public void ReemplazarDeGraficoALista()
+    {
+        Fragment Grafico=new FragmentMostrarResultados();
+        ListaFragment.add(Grafico);
+        FragmentMostrarListaCarreras mostrarListaCarreras=new FragmentMostrarListaCarreras();
+        ReemplazarFragment(mostrarListaCarreras);
+    }
     public void RemplazarPorTest()
     {
         ListaFragment.add(new FragmentMenu());
         Fragment Chaside=new FragmentPreguntaChaside();
         ReemplazarFragment(Chaside);
-
-
     }
     public void ReemplazarFragment(Fragment FragmentAUsar)
     {
