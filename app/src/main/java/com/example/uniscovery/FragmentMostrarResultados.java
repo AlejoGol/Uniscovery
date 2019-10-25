@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -16,7 +17,9 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
@@ -33,13 +36,18 @@ public class FragmentMostrarResultados extends Fragment {
 
     BarChart MiGraficoDeBarras,MiGraficoDeAptitud;
     BarData barData,BarDataAptitud;
-    BarDataSet barDataSet,barDataSetAptitudes;
-    ArrayList <BarEntry> barEntries,barEntriesAptitudes;
+    BarDataSet barDataSet, barDataSet2, barDataSet3, barDataSet4, barDataSet5, barDataSet6, barDataSet7,barDataSetAptitudes;
+    ArrayList <BarEntry> barEntries, barEntries2, barEntries3, barEntries4, barEntries5, barEntries6, barEntries7,barEntriesAptitudes;
     RespuestaTest respuestas;
+    MainActivity main;
+    String[] names;
+    List<IBarDataSet> bars;
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
         View VistaDevolver = inflater.inflate(R.layout.pantalla_resultados_test, null, true);
         Log.d("Resultados", "Estoy por declarar las barEntries de3l grafico de barras ");
+        main=(MainActivity)getActivity();
+        names= new String[]{"Administrativas y Contables", "Humanísticas y Sociales", "Artísticas", "Medicina y Cs. de la Salud", "Ingeniería y Computación", "Defensa y Seguridad", "Ciencias Exactas y Agrarias"};
         MiGraficoDeBarras = (BarChart) VistaDevolver.findViewById(R.id.MiGrafico);
         MiGraficoDeAptitud = (BarChart) VistaDevolver.findViewById(R.id.TablaAptitudes);
         MainActivity main = (MainActivity) getActivity();
@@ -56,21 +64,70 @@ public class FragmentMostrarResultados extends Fragment {
         //SetValoresActitud(respuestaTest);
         return VistaDevolver;
 }
-    private void SetearTablaIntereses(final RespuestaTest respuestaTest)
-    {
-        respuestas=respuestaTest;
-        barEntries=new ArrayList<>();
+    private void SetearTablaIntereses(final RespuestaTest respuestaTest) {
+        respuestas = respuestaTest;
+        barEntries = new ArrayList<>();
+        barEntries2 = new ArrayList<>();
+        barEntries3 = new ArrayList<>();
+        barEntries4 = new ArrayList<>();
+        barEntries5 = new ArrayList<>();
+        barEntries6 = new ArrayList<>();
+        barEntries7 = new ArrayList<>();
+        //barEntries.add(new BarEntry(0, ))
         SetEntriesIntereses(respuestaTest);
-        barDataSet = new BarDataSet(barEntries, "Mi grafico para el proyecto");
-        barData = new BarData(barDataSet);
+        bars = new ArrayList<IBarDataSet>();
+        barDataSet = new BarDataSet(barEntries, names[0]);
+        barDataSet.setColor(ContextCompat.getColor(main.getApplicationContext(), R.color.red));
+        barDataSet.setValueTextColor(Color.BLACK);
+        barDataSet.setValueTextSize(18f);
+        bars.add(barDataSet);
+        barDataSet2 = new BarDataSet(barEntries2, names[1]);
+        barDataSet2.setColor(ContextCompat.getColor(main.getApplicationContext(), R.color.orange));
+        barDataSet2.setValueTextColor(Color.BLACK);
+        barDataSet2.setValueTextSize(18f);
+        bars.add(barDataSet2);
+        barDataSet3 = new BarDataSet(barEntries3, names[2]);
+        barDataSet3.setColor(ContextCompat.getColor(main.getApplicationContext(), R.color.yellow));
+        barDataSet3.setValueTextColor(Color.BLACK);
+        barDataSet3.setValueTextSize(18f);
+        bars.add(barDataSet3);
+        barDataSet4 = new BarDataSet(barEntries4, names[3]);
+        barDataSet4.setColor(ContextCompat.getColor(main.getApplicationContext(), R.color.green));
+        barDataSet4.setValueTextColor(Color.BLACK);
+        barDataSet4.setValueTextSize(18f);
+        bars.add(barDataSet4);
+        barDataSet5 = new BarDataSet(barEntries5, names[4]);
+        barDataSet5.setColor(ContextCompat.getColor(main.getApplicationContext(), R.color.blue));
+        barDataSet5.setValueTextColor(Color.BLACK);
+        barDataSet5.setValueTextSize(18f);
+        bars.add(barDataSet5);
+        barDataSet6 = new BarDataSet(barEntries6, names[5]);
+        barDataSet6.setColor(ContextCompat.getColor(main.getApplicationContext(), R.color.indigo));
+        barDataSet6.setValueTextColor(Color.BLACK);
+        barDataSet6.setValueTextSize(18f);
+        bars.add(barDataSet6);
+        barDataSet7 = new BarDataSet(barEntries7, names[6]);
+        barDataSet7.setColor(ContextCompat.getColor(main.getApplicationContext(), R.color.violet));
+        barDataSet7.setValueTextColor(Color.BLACK);
+        barDataSet7.setValueTextSize(18f);
+        bars.add(barDataSet7);
+        barData = new BarData(bars);
         barData.setBarWidth(1f);
         MiGraficoDeBarras.setData(barData);
         //MiGraficoDeBarras.setScaleXEnabled(true);
         MiGraficoDeBarras.setFitBars(true);
         Log.d("Scala"," "+MiGraficoDeBarras.getVisibleXRange());
-        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-        barDataSet.setValueTextColor(Color.BLACK);
-        barDataSet.setValueTextSize(18f);
+        //barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        /*barDataSet.setColors(ContextCompat.getColor(main.getApplicationContext(),R.color.red),
+                ContextCompat.getColor(main.getApplicationContext(),R.color.orange),
+                ContextCompat.getColor(main.getApplicationContext(),R.color.yellow),
+                ContextCompat.getColor(main.getApplicationContext(),R.color.green),
+                ContextCompat.getColor(main.getApplicationContext(),R.color.blue),
+                ContextCompat.getColor(main.getApplicationContext(),R.color.indigo),
+                ContextCompat.getColor(main.getApplicationContext(),R.color.violet));
+        */
+
+        //MiGraficoDeBarras.getXAxis().setValueFormatter(new IndexAxisValueFormatter(names));
         MiGraficoDeBarras.fitScreen();
         MiGraficoDeBarras.invalidate();
         MiGraficoDeBarras.setVisibleXRangeMaximum(14); // allow 20 values to be displayed at once on the x-axis, not more
@@ -139,7 +196,14 @@ public class FragmentMostrarResultados extends Fragment {
         //MiGraficoDeBarras.setScaleXEnabled(true);
         MiGraficoDeAptitud.setFitBars(true);
         Log.d("Scala"," "+MiGraficoDeAptitud.getVisibleXRange());
-        barDataSetAptitudes.setColors(ColorTemplate.JOYFUL_COLORS);
+        //barDataSetAptitudes.setColors(ColorTemplate.JOYFUL_COLORS);
+        barDataSetAptitudes.setColors(ContextCompat.getColor(main.getApplicationContext(),R.color.red),
+                ContextCompat.getColor(main.getApplicationContext(),R.color.orange),
+                ContextCompat.getColor(main.getApplicationContext(),R.color.yellow),
+                ContextCompat.getColor(main.getApplicationContext(),R.color.green),
+                ContextCompat.getColor(main.getApplicationContext(),R.color.blue),
+                ContextCompat.getColor(main.getApplicationContext(),R.color.indigo),
+                ContextCompat.getColor(main.getApplicationContext(),R.color.violet));
         barDataSetAptitudes.setValueTextColor(Color.BLACK);
         barDataSetAptitudes.setValueTextSize(18f);
         MiGraficoDeAptitud.fitScreen();
@@ -283,51 +347,51 @@ public class FragmentMostrarResultados extends Fragment {
         }
         if(respuestaTest.getInteresH()!=0)
         {
-            barEntries.add(new BarEntry(2f,(respuestaTest.getInteresH()*100)/10));
+            barEntries2.add(new BarEntry(2f,(respuestaTest.getInteresH()*100)/10));
         }
         else
         {
-            barEntries.add(new BarEntry(2f,1));
+            barEntries2.add(new BarEntry(2f,1));
         }
         if(respuestaTest.getInteresA()!=0)
         {
-            barEntries.add(new BarEntry(3f,(respuestaTest.getInteresA()*100)/10));
+            barEntries3.add(new BarEntry(3f,(respuestaTest.getInteresA()*100)/10));
         }
         else
         {
-            barEntries.add(new BarEntry(3f,1));
+            barEntries3.add(new BarEntry(3f,1));
         }
         if(respuestaTest.getAptitudS()!=0)
         {
-            barEntries.add(new BarEntry(4f,(respuestaTest.getAptitudS()*100)/10));
+            barEntries4.add(new BarEntry(4f,(respuestaTest.getAptitudS()*100)/10));
         }
         else
         {
-            barEntries.add(new BarEntry(4f,1));
+            barEntries4.add(new BarEntry(4f,1));
         }
         if(respuestaTest.getInteresI()!=0)
         {
-            barEntries.add(new BarEntry(5f,(respuestaTest.getInteresI()*100)/10));
+            barEntries5.add(new BarEntry(5f,(respuestaTest.getInteresI()*100)/10));
         }
         else
         {
-            barEntries.add(new BarEntry(5f,1));
+            barEntries5.add(new BarEntry(5f,1));
         }
         if(respuestaTest.getInteresD()!=0)
         {
-            barEntries.add(new BarEntry(6f,(respuestaTest.getInteresD()*100)/10));
+            barEntries6.add(new BarEntry(6f,(respuestaTest.getInteresD()*100)/10));
         }
         else
         {
-            barEntries.add(new BarEntry(6f,1));
+            barEntries6.add(new BarEntry(6f,1));
         }
         if(respuestaTest.getInteresE()!=0)
         {
-            barEntries.add(new BarEntry(7f,(respuestaTest.getInteresE()*100)/10));
+            barEntries7.add(new BarEntry(7f,(respuestaTest.getInteresE()*100)/10));
         }
         else
         {
-            barEntries.add(new BarEntry(7f,1));
+            barEntries7.add(new BarEntry(7f,1));
         }
     }
 

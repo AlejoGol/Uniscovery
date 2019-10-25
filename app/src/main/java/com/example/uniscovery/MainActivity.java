@@ -141,6 +141,7 @@ public class MainActivity extends AppCompatActivity   {
     {
         FragmentMenu menu=new FragmentMenu();
         ListaFragment.add(menu);
+        seleccionado="";
         FragmentMostrarListaCarreras mostrarListaCarreras=new FragmentMostrarListaCarreras();
         ReemplazarFragment(mostrarListaCarreras);
 
