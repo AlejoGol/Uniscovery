@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity   {
     FragmentTransaction fragmentTransaction;
     private ArrayList<Fragment> ListaFragment;
     private Carrera Seleccion=null;
-    public boolean VioAdvertencia;
+    private boolean VioAdvertencia;
     private SharedPreferences preferencias;
     int numeroUltimaPregunta;
     private static MediaPlayer Reproductor;
@@ -28,6 +28,13 @@ public class MainActivity extends AppCompatActivity   {
     private RespuestaTest ResultadosUltimoTest;
     private String seleccionado;
 
+    public boolean getVioAdvertencia() {
+        return VioAdvertencia;
+    }
+
+    public void setVioAdvertencia(boolean vioAdvertencia) {
+        VioAdvertencia = vioAdvertencia;
+    }
     public RespuestaTest getResultadosUltimoTest() {
         return ResultadosUltimoTest;
     }
@@ -78,7 +85,7 @@ public class MainActivity extends AppCompatActivity   {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        VioAdvertencia=true;
+        VioAdvertencia=false;
         FragmentMenu fragmentMenu=new FragmentMenu();
         fragmentManager=getFragmentManager();
         preferencias=this.getBaseContext().getSharedPreferences("Uniscovery", Context.MODE_PRIVATE);

@@ -76,7 +76,6 @@ public  class ManejadorBaseDeDatos extends SQLiteOpenHelper {
                 "que se superpone a las de actividades de profesionales de otras áreas y que, de hecho,\n" +
                 "incluye tareas que ni siquiera imaginamos en el presente. ");
         InsertarCarrera(BaseDeDatos, "AGRONOMIA", "UBA", "https://i0.wp.com/www.alevelplayingfield.group.shef.ac.uk/wp-content/uploads/2018/04/UBA-logo.jpg", "El Ingeniero Agrónomo es aquel graduado universitario con una sólida formación científica y tecnológica que le permite intervenir en las cadenas productivas de base agropecuaria, en el ambiente y en la preservación de los recursos naturales desde una visión integral y sustentable, dentro de un contexto socioeconómico con diversos niveles de innovación e incertidumbre, con el fin de promover el desarrollo nacional y el del sector agropecuario.");
-
         /*InsertarCarrera(BaseDeDatos,"LICENCIATURA EN ECONOMÍA Y ADMINISTRACIÓN AGRARIAS","UBA");
         InsertarCarrera(BaseDeDatos,"LICENCIATURA EN GESTIÓN DE AGROALIMENTOS","UBA");
         InsertarCarrera(BaseDeDatos,"LICENCIATURA EN PLANIFICACIÓN Y DISEÑO DEL PAISAJE","UBA");

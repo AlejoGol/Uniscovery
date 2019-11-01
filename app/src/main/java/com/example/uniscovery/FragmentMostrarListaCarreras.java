@@ -319,7 +319,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
         ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,18);
         ArrayList<Carrera> items= new ArrayList<>();
         Cursor RegistrosLeidos;
-        String SqlConsulta="select ca.ID_carrera,ca.Nombre_Carrera,ca.Nombre_Facultad,ca.LinkImagen,ca.Descripcion,R.ID_carrera,R.ID_Tag,ta.ID_Tag,ta.Nombre_Tag from Carerras AS ca INNER JOIN Relacion_Carrera_Tag As R ON ca.ID_carrera = R.ID_carrera inner join  Tags as ta On R.ID_Tag = ta.ID_Tag where ta.Nombre_Tag LIKE \'"+Query.toUpperCase()+"\'" ;
+        String SqlConsulta="select ca.ID_carrera,ca.Nombre_Carrera,ca.Nombre_Facultad,ca.LinkImagen,ca.Descripcion,R.ID_carrera,R.ID_Tag,ta.ID_Tag,ta.Nombre_Tag from Carerras AS ca INNER JOIN Relacion_Carrera_Tag As R ON ca.ID_carrera = R.ID_carrera inner join  Tags as ta On R.ID_Tag = ta.ID_Tag where ta.Nombre_Tag LIKE \'%"+Query+"%\'" ;
         RegistrosLeidos=DB.EjecutarConsulta(SqlConsulta);
         Log.d("BD","cargo la informacion,puede ser");
 
@@ -364,8 +364,13 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
         int ultimo=firstVisibleItem+visibleItemCount;
         Log.d("Scroll","ultimo elemento visible: "+ultimo);
         Log.d("Scroll","total de items: "+totalItemCount);
-        if(!SearchAbierto)
+        if(listaDeCarreras.isEmpty())
         {
+
+            listaDeCarreras=getItemEnElArray();
+        }
+        Log.d("Scroll","total de items:  sf"+listaDeCarreras.size());
+
             if(firstVisibleItem+visibleItemCount>=totalItemCount/2)
             {
                 if(totalItemCount+10<=listaDeCarreras.size())
@@ -380,7 +385,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
                     ListaFiltrada.addAll(sublista);
                 }
                 ActualizarLista(firstVisibleItem);
-            }
+
         }
 
     }
