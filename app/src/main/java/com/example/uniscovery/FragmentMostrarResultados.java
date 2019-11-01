@@ -18,6 +18,7 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.formatter.LargeValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.listener.ChartTouchListener;
@@ -36,6 +37,7 @@ public class FragmentMostrarResultados extends Fragment {
 
     BarChart MiGraficoDeBarras,MiGraficoDeAptitud;
     BarData barData,BarDataAptitud;
+    ArrayList<BarData> arrayBarData;
     BarDataSet barDataSet, barDataSet2, barDataSet3, barDataSet4, barDataSet5, barDataSet6, barDataSet7,barDataSetAptitudes;
     ArrayList <BarEntry> barEntries, barEntries2, barEntries3, barEntries4, barEntries5, barEntries6, barEntries7,barEntriesAptitudes;
     RespuestaTest respuestas;
@@ -47,7 +49,7 @@ public class FragmentMostrarResultados extends Fragment {
         View VistaDevolver = inflater.inflate(R.layout.pantalla_resultados_test, null, true);
         Log.d("Resultados", "Estoy por declarar las barEntries de3l grafico de barras ");
         main=(MainActivity)getActivity();
-        names= new String[]{"Administrativas y Contables", "Humanísticas y Sociales", "Artísticas", "Medicina y Cs. de la Salud", "Ingeniería y Computación", "Defensa y Seguridad", "Ciencias Exactas y Agrarias"};
+        names= new String[]{"Administrativas", "Sociales", "Artísticas", "Medicina", "Computación", "Defensa", "Cs. Exactas y Agrarias"};
         MiGraficoDeBarras = (BarChart) VistaDevolver.findViewById(R.id.MiGrafico);
         MiGraficoDeAptitud = (BarChart) VistaDevolver.findViewById(R.id.TablaAptitudes);
         MainActivity main = (MainActivity) getActivity();
@@ -73,6 +75,7 @@ public class FragmentMostrarResultados extends Fragment {
         barEntries5 = new ArrayList<>();
         barEntries6 = new ArrayList<>();
         barEntries7 = new ArrayList<>();
+        arrayBarData= new ArrayList<>();
         //barEntries.add(new BarEntry(0, ))
         SetEntriesIntereses(respuestaTest);
         bars = new ArrayList<IBarDataSet>();
@@ -112,7 +115,9 @@ public class FragmentMostrarResultados extends Fragment {
         barDataSet7.setValueTextSize(18f);
         bars.add(barDataSet7);
         barData = new BarData(bars);
+        barData.setValueFormatter(new LargeValueFormatter());
         barData.setBarWidth(0.5f);
+        //arrayBarData.add(barData);
         MiGraficoDeBarras.setData(barData);
         //MiGraficoDeBarras.setScaleXEnabled(true);
         MiGraficoDeBarras.setFitBars(true);
