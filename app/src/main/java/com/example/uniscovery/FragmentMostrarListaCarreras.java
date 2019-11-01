@@ -42,22 +42,40 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                ArrayList<Carrera> ListaFiltrada=new ArrayList<>();
+                ListaFiltrada.clear();
                 query=query.toUpperCase();
                 for (Carrera carrera:listaDeCarreras) {
-
                     if (carrera.NombreCarrera.contains(query)){
+                        Log.d("onQueryTextChange", carrera.NombreCarrera);
+                        Log.d("onQueryTextChange", ""+carrera.getIDCarrera());
                         ListaFiltrada.add(carrera);
                     }
                 }
                 if (query.length()==0)
                 {
-                    Log.d("entro","SI");
+                    Log.d("onQueryTextChange",""+ listaDeCarreras.size());
                     ListaFiltrada.addAll(listaDeCarreras);
-                    ModificarLista(ListaFiltrada);
                 }
-                ModificarLista(ListaFiltrada);
+                ArrayList<Carrera> ConTags=VerificarTags(query);
+                boolean esta=false;
+                for (Carrera Tags:ConTags) {
+                    for(Carrera uno:ListaFiltrada){
+                        if(uno.NombreCarrera.equals(Tags.NombreCarrera)){
+                            esta=true;
+                        }
+                    }
+                    //if(!ListaFiltrada.contains(Tags))
+                    if(!esta)
+                    {
+                        Log.d("onQueryTextChange", Tags.NombreCarrera);
+                        Log.d("onQueryTextChange", ""+Tags.getIDCarrera());
+                        ListaFiltrada.add(Tags);
+                        esta=false;
+                    }
+                }
                 SearchAbierto=true;
+                Log.d("ListaFiltrada",""+ListaFiltrada.size());
+                ModificarLista(ListaFiltrada);
                 return true;
             }
             @Override
@@ -143,7 +161,9 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
             Log.d("ValorSeleccionado"," "+VerificarTags(seleccionado).size());
             searchView.setQuery(seleccionado,true);
             ListaFiltrada.clear();
-            ListaFiltrada.addAll(VerificarTags(seleccionado));
+            ListaFiltrada.addAll(CargarListaConRelaciones(seleccionado));
+            listaDeCarreras.clear();
+            listaDeCarreras.addAll(ListaFiltrada);
             Log.d("LargoDeListaParaSegundaVuelta"," largo "+ListaFiltrada.size());
             adapter=new Adaptador_Carrera(getContext(),ListaFiltrada);
             paginado=new Paginado(ListaFiltrada,ListaFiltrada.size());
@@ -199,14 +219,41 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
         }else{
             Toast.makeText(this.getActivity(), "esta NULL", Toast.LENGTH_SHORT).show();
         }
+    }
+    private ArrayList<Carrera> CargarListaConRelaciones(String Query)
+    {
+        Log.d("BD","CargarListaConRelaciones");
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,18);
+        ArrayList<Carrera> items= new ArrayList<>();
+        Cursor RegistrosLeidos;
+        String SqlConsulta="select ca.ID_carrera,ca.Nombre_Carrera,ca.Nombre_Facultad,ca.LinkImagen,ca.Descripcion,R.ID_carrera,R.ID_Tag,ta.ID_Tag,ta.Nombre_Tag from Carerras AS ca INNER JOIN Relacion_Carrera_Tag As R ON ca.ID_carrera = R.ID_carrera inner join  Tags as ta On R.ID_Tag = ta.ID_Tag where ta.Nombre_Tag=\""+Query.toUpperCase()+"\"" ;
+        RegistrosLeidos=DB.EjecutarConsulta(SqlConsulta);
+        Log.d("BD","cargo la informacion,puede ser");
 
+        if (RegistrosLeidos.moveToFirst()) {
+            do {
+                Log.d("BD","entra");
+                int id=RegistrosLeidos.getInt(0);
+                String Nombre=RegistrosLeidos.getString(1);
+                Log.d("BD",""+Nombre);
+                String Facultad=RegistrosLeidos.getString(2);
+                Log.d("BD",""+Facultad);
+                String Link=RegistrosLeidos.getString(3);
+                String descripcion=RegistrosLeidos.getString(4);
+                Carrera item=new Carrera(0,Nombre,Facultad,descripcion,Link);
+                item.setIDCarrera(id);
+                items.add(item);
+            }while(RegistrosLeidos.moveToNext());
+        }
+        Log.d("CargarListaConRelaciones","Tamaño del Array: "+items.size());
+        RegistrosLeidos.close();
 
-
+        return items;
     }
     private ArrayList<Carrera> getItemEnElArray()
     {
         Log.d("BD","getItemEnElArray");
-        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,16);
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,18);
         ArrayList<Carrera> items= new ArrayList<>();
         Cursor RegistrosLeidos;
         String SqlConsulta="select ID_carrera,Nombre_Carrera,Nombre_Facultad,LinkImagen,Descripcion from Carerras" ;
@@ -279,7 +326,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
     private ArrayList<Carrera>  BuscarCarrerasPorId(ArrayList<Integer>IdCarreras)
     {
         ArrayList<Carrera> CarrerasConTags=new ArrayList<>();
-        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,16);
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,18);
 
         Cursor RegistrosLeidos;
         String SqlConsulta="select ID_carrera, Nombre_Carrera, Nombre_Facultad,LinkImagen,Descripcion from Carerras" ;
@@ -307,7 +354,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
     }
     private ArrayList<Integer> BuscarCarrerasPorTag(ArrayList<Integer> IDTags)
     {
-        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(),  "Universidades.db", null,16);
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(),  "Universidades.db", null,18);
 
         Cursor RegistrosLeidos;
         String SqlConsulta="select * from Relacion_Carrera_Tag" ;
@@ -330,7 +377,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
     }
     private ArrayList<Integer> BuscarPorIdTag(String query)
     {
-        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,16);
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,18);
 
         Cursor RegistrosLeidos;
         String SqlConsulta="select * from Tags" ;

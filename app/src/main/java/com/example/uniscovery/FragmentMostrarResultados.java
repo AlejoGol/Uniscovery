@@ -112,7 +112,7 @@ public class FragmentMostrarResultados extends Fragment {
         barDataSet7.setValueTextSize(18f);
         bars.add(barDataSet7);
         barData = new BarData(bars);
-        barData.setBarWidth(1f);
+        barData.setBarWidth(0.5f);
         MiGraficoDeBarras.setData(barData);
         //MiGraficoDeBarras.setScaleXEnabled(true);
         MiGraficoDeBarras.setFitBars(true);
@@ -361,9 +361,9 @@ public class FragmentMostrarResultados extends Fragment {
         {
             barEntries3.add(new BarEntry(3f,1));
         }
-        if(respuestaTest.getAptitudS()!=0)
+        if(respuestaTest.getInteresS()!=0)
         {
-            barEntries4.add(new BarEntry(4f,(respuestaTest.getAptitudS()*100)/10));
+            barEntries4.add(new BarEntry(4f,(respuestaTest.getInteresS()*100)/10));
         }
         else
         {

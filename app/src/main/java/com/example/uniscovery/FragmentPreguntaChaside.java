@@ -86,7 +86,7 @@ public class FragmentPreguntaChaside extends Fragment implements View.OnClickLis
                             break;
                         case "S":
                             Respuestas.setInteresS((Respuestas.getInteresS())+1f);
-                            Log.d("CHASIDE"," valor respuesta " + Respuestas.getInteresS());
+                            Log.d("CHASIDES"," valor respuesta " + Respuestas.getInteresS());
                             break;
                         case "D":
                             Respuestas.setInteresD((Respuestas.getInteresD())+1f);
@@ -163,7 +163,7 @@ public class FragmentPreguntaChaside extends Fragment implements View.OnClickLis
     public void CargarPreguntas()
     {
         Log.d("BD","CargarPreguntas");
-        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,16);
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,18);
         Cursor RegistrosLeidos;
         String SqlConsulta="select * from Preguntas where ID_Pregunta="+NumeropreguntaActual;
         RegistrosLeidos=DB.EjecutarConsulta(SqlConsulta);
