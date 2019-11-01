@@ -11,27 +11,18 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.LargeValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
-import com.github.mikephil.charting.utils.ColorTemplate;
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.ValueDependentColor;
-import com.jjoe64.graphview.series.BarGraphSeries;
-import com.jjoe64.graphview.series.DataPoint;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
 
 public class FragmentMostrarResultados extends Fragment {
 
@@ -82,37 +73,37 @@ public class FragmentMostrarResultados extends Fragment {
         barDataSet = new BarDataSet(barEntries, names[0]);
         barDataSet.setColor(ContextCompat.getColor(main.getApplicationContext(), R.color.red));
         barDataSet.setValueTextColor(Color.BLACK);
-        barDataSet.setValueTextSize(18f);
+        barDataSet.setValueTextSize(15f);
         bars.add(barDataSet);
         barDataSet2 = new BarDataSet(barEntries2, names[1]);
         barDataSet2.setColor(ContextCompat.getColor(main.getApplicationContext(), R.color.orange));
         barDataSet2.setValueTextColor(Color.BLACK);
-        barDataSet2.setValueTextSize(18f);
+        barDataSet2.setValueTextSize(15f);
         bars.add(barDataSet2);
         barDataSet3 = new BarDataSet(barEntries3, names[2]);
         barDataSet3.setColor(ContextCompat.getColor(main.getApplicationContext(), R.color.yellow));
         barDataSet3.setValueTextColor(Color.BLACK);
-        barDataSet3.setValueTextSize(18f);
+        barDataSet3.setValueTextSize(15f);
         bars.add(barDataSet3);
         barDataSet4 = new BarDataSet(barEntries4, names[3]);
         barDataSet4.setColor(ContextCompat.getColor(main.getApplicationContext(), R.color.green));
         barDataSet4.setValueTextColor(Color.BLACK);
-        barDataSet4.setValueTextSize(18f);
+        barDataSet4.setValueTextSize(15f);
         bars.add(barDataSet4);
         barDataSet5 = new BarDataSet(barEntries5, names[4]);
         barDataSet5.setColor(ContextCompat.getColor(main.getApplicationContext(), R.color.blue));
         barDataSet5.setValueTextColor(Color.BLACK);
-        barDataSet5.setValueTextSize(18f);
+        barDataSet5.setValueTextSize(15f);
         bars.add(barDataSet5);
         barDataSet6 = new BarDataSet(barEntries6, names[5]);
         barDataSet6.setColor(ContextCompat.getColor(main.getApplicationContext(), R.color.indigo));
         barDataSet6.setValueTextColor(Color.BLACK);
-        barDataSet6.setValueTextSize(18f);
+        barDataSet6.setValueTextSize(15f);
         bars.add(barDataSet6);
         barDataSet7 = new BarDataSet(barEntries7, names[6]);
         barDataSet7.setColor(ContextCompat.getColor(main.getApplicationContext(), R.color.violet));
         barDataSet7.setValueTextColor(Color.BLACK);
-        barDataSet7.setValueTextSize(18f);
+        barDataSet7.setValueTextSize(15f);
         bars.add(barDataSet7);
         barData = new BarData(bars);
         barData.setValueFormatter(new LargeValueFormatter());
@@ -120,6 +111,7 @@ public class FragmentMostrarResultados extends Fragment {
         //arrayBarData.add(barData);
         MiGraficoDeBarras.setData(barData);
         //MiGraficoDeBarras.setScaleXEnabled(true);
+        MiGraficoDeBarras.getLegend().setEnabled(false);
         MiGraficoDeBarras.setFitBars(true);
         Log.d("Scala"," "+MiGraficoDeBarras.getVisibleXRange());
         //barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);

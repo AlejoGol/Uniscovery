@@ -38,4 +38,9 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/CardViewRecipiente"
         />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:id="@+id/Spacio"
+        app:layout_constraintTop_toBottomOf="@id/ListaACargar"/>
 </android.support.constraint.ConstraintLayout>

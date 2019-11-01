@@ -8,6 +8,9 @@
     <string name="pagina_anterior">pagina anterior</string>
     <string name="siguiente_pagina">siguiente Pagina</string>
     <string name="nombre_de_la_carrera">Nombre de la carrera</string>
+    <string name="las_respuestas_del_test_son">Las respuestas del test son:</string>
+    <string name="intereses">INTERESES</string>
+    <string name="aptitudes">APTITUDES</string>
     <string-array name="ArrayDeString">
         <item>INGENIERIA INFORMATICA</item>
         <item>CIENCIAS DE LA COMPUTACION</item>

@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/RespuestasText"
-        android:text="Las respuestas del test son:"
+        android:text="@string/las_respuestas_del_test_son"
         android:textAlignment="center"
         app:layout_constraintTop_toTopOf="parent"
         android:textSize="30sp"
@@ -33,8 +33,9 @@
         android:id="@+id/txtIntereses"
         app:layout_constraintTop_toBottomOf="@id/RespuestasText"
         app:layout_constraintLeft_toLeftOf="parent"
+        android:textColor="#000000"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="INTERESES"
+        android:text="@string/intereses"
         android:textSize="25sp"
         />
     <com.github.mikephil.charting.charts.BarChart
@@ -186,7 +187,8 @@
         app:layout_constraintTop_toBottomOf="@id/violetSquare"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="APTITUDES"
+        android:text="@string/aptitudes"
+        android:textColor="#000000"
         android:textSize="25sp"
         />
     <com.github.mikephil.charting.charts.BarChart
@@ -197,6 +199,11 @@
         android:layout_height="300sp"
         app:layout_constraintTop_toBottomOf="@id/txtAptitudes"
         />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:id="@+id/Spacio"
+                app:layout_constraintTop_toBottomOf="@id/TablaAptitudes"/>
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
