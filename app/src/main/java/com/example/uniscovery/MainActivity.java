@@ -11,6 +11,8 @@ import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity   {
     private SharedPreferences preferencias;
     int numeroUltimaPregunta;
     private static MediaPlayer Reproductor;
-    public static boolean isPlayingAudio;
+    public static boolean isPlayingAudio,EstaEnElTest;
     private RespuestaTest ResultadosUltimoTest;
     private String seleccionado;
 
@@ -65,6 +67,7 @@ public class MainActivity extends AppCompatActivity   {
     public String getSeleccionado(){return seleccionado;}
     public void RemplazarPorResultados()
     {
+        EstaEnElTest=false;
         Fragment FragmentAUsar=new FragmentMostrarResultados();
         ReemplazarFragment(FragmentAUsar);
     }
@@ -162,6 +165,7 @@ public class MainActivity extends AppCompatActivity   {
     }
     public void RemplazarPorTest()
     {
+        EstaEnElTest=true;
         ListaFragment.add(new FragmentMenu());
         Fragment Chaside=new FragmentPreguntaChaside();
         ReemplazarFragment(Chaside);
@@ -177,7 +181,32 @@ public class MainActivity extends AppCompatActivity   {
         fragmentTransaction=fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.FrameLayoutPrincipal,ListaFragment.get(ListaFragment.size()-1));
         fragmentTransaction.commit();
+        if(isPlayingAudio)
+        {
+            Reproductor.stop();
+            isPlayingAudio=false;
+        }
         ListaFragment.remove(ListaFragment.size()-1);
         Log.d("LLego","al final");
+    }
+    @Override
+    protected void onStart() {
+        if(EstaEnElTest)
+        {
+            Reproductor.start();
+            isPlayingAudio=true;
+        }
+        super.onStart();
+    }
+
+    @Override
+    protected void onPause() {
+
+        super.onPause();
+        if(isPlayingAudio)
+        {
+            Reproductor.pause();
+            isPlayingAudio=false;
+        }
     }
 }

@@ -163,7 +163,15 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
             ListaFiltrada.clear();
             ListaFiltrada.addAll(CargarListaConRelaciones(seleccionado));
             listaDeCarreras.clear();
-            listaDeCarreras.addAll(ListaFiltrada);
+            if(ListaFiltrada.size()==0)
+            {
+                Toast toast1 =Toast.makeText(this.getActivity(), "No pusimos todavia carreras de esta categoria", Toast.LENGTH_SHORT);
+                toast1.show();
+            }
+            else {
+
+                listaDeCarreras.addAll(ListaFiltrada);
+            }
             Log.d("LargoDeListaParaSegundaVuelta"," largo "+ListaFiltrada.size());
             adapter=new Adaptador_Carrera(getContext(),ListaFiltrada);
             paginado=new Paginado(ListaFiltrada,ListaFiltrada.size());
@@ -223,7 +231,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
     private ArrayList<Carrera> CargarListaConRelaciones(String Query)
     {
         Log.d("BD","CargarListaConRelaciones");
-        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,18);
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,20);
         ArrayList<Carrera> items= new ArrayList<>();
         Cursor RegistrosLeidos;
         String SqlConsulta="select ca.ID_carrera,ca.Nombre_Carrera,ca.Nombre_Facultad,ca.LinkImagen,ca.Descripcion,R.ID_carrera,R.ID_Tag,ta.ID_Tag,ta.Nombre_Tag from Carerras AS ca INNER JOIN Relacion_Carrera_Tag As R ON ca.ID_carrera = R.ID_carrera inner join  Tags as ta On R.ID_Tag = ta.ID_Tag where ta.Nombre_Tag=\""+Query.toUpperCase()+"\"" ;
@@ -253,7 +261,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
     private ArrayList<Carrera> getItemEnElArray()
     {
         Log.d("BD","getItemEnElArray");
-        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,18);
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,20);
         ArrayList<Carrera> items= new ArrayList<>();
         Cursor RegistrosLeidos;
         String SqlConsulta="select ID_carrera,Nombre_Carrera,Nombre_Facultad,LinkImagen,Descripcion from Carerras" ;
@@ -316,7 +324,7 @@ public class FragmentMostrarListaCarreras extends Fragment implements AdapterVie
     private ArrayList<Carrera> TraerCosasDeLaBD(String Query)
     {
         Log.d("BD","TraerCosasDeLaBD");
-        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,18);
+        ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,20);
         ArrayList<Carrera> items= new ArrayList<>();
         Cursor RegistrosLeidos;
         String SqlConsulta="select ca.ID_carrera,ca.Nombre_Carrera,ca.Nombre_Facultad,ca.LinkImagen,ca.Descripcion,R.ID_carrera,R.ID_Tag,ta.ID_Tag,ta.Nombre_Tag from Carerras AS ca INNER JOIN Relacion_Carrera_Tag As R ON ca.ID_carrera = R.ID_carrera inner join  Tags as ta On R.ID_Tag = ta.ID_Tag where ta.Nombre_Tag LIKE \'%"+Query+"%\'" ;

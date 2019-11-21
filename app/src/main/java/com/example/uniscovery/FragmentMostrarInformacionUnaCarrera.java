@@ -109,7 +109,7 @@ public class FragmentMostrarInformacionUnaCarrera extends Fragment implements Vi
         private ArrayList<Materia> TraerMaterias()
         {
             ArrayList<Materia> Materias=new ArrayList<>();
-            ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,18);
+            ManejadorBaseDeDatos DB = new ManejadorBaseDeDatos(this.getActivity().getApplicationContext(), "Universidades.db", null,20);
 
             Cursor RegistrosLeidos;
             String SqlConsulta="select ID_Materia,Anio,Nombre_Materia,Descripcion_Materia from Materias where ID_Carrera = "+idCarrera + " ORDER BY Anio";
