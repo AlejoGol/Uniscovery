@@ -61,11 +61,11 @@ public class FragmentPreguntaChaside extends Fragment implements View.OnClickLis
             AlertDialog.Builder mensaje=new AlertDialog.Builder(this.getContext());
             mensaje.setMessage("Hola. Si estás usando esta aplicación es porque estás pensando en construir tu proyecto vocacional. \n" +
                     "\n" +
-                    "A través de una serie de preguntas esperamos que puedas acercarte a conocerte. El autoconocimiento es fundamental para un proceso vocacional. Conociéndote, conociendo las abilidades que tenes desarrolladas, las abilidades que te gustaría desarrollar, tomando conciencia de tus intereses la idea es que puedas realizar una planificación de tus proyectos futuros. \n" +
+                    "A través de una serie de preguntas esperamos que puedas acercarte a conocerte. El autoconocimiento es fundamental para un proceso vocacional. Conociéndote, conociendo las habilidades que tenes desarrolladas, las habilidades que te gustaría desarrollar, tomando conciencia de tus intereses la idea es que puedas realizar una planificación de tus proyectos futuros. \n" +
                     "\n" +
-                    "Es importante que entiendas que no hay una decisión correcta y que dure para toda la vida. Las decisiones se construyen y se van modificando a lo largo de la vida, sin embargo en la medida en que conocemos nuestras inquietudes y nuestras metas podremos concretar un lindo proyecto para nuestras vidas. \n" +
+                    "Es importante que entiendas que no hay una decisión correcta y que dure para toda la vida. Las decisiones se construyen y se van modificando a lo largo de la vida, sin embargo, en la medida en que conocemos nuestras inquietudes y nuestras metas podremos concretar un lindo proyecto para nuestras vidas.  \n" +
                     "\n" +
-                    "Acordare que esto que vas a realizar es simplemente una técnica. Esto no determina que el resultado sea absoluto. ");
+                    "Acordare que esto que vas a realizar es simplemente una técnica. Esto no determina que el resultado sea absoluto.\n");
             mensaje.setTitle("Leer con detenimiento");
             mensaje.setPositiveButton("Entiendo",null);
             mensaje.create();
